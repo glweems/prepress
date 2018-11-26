@@ -25,6 +25,7 @@ export default {
 					brand: "Gildan",
 					title: "Heavy Cotton T-Shirt",
 					fabric: "100% Cotton",
+					price: 2,
                     tbn: require("@/assets/img/shirts/G500/g500_tbn.jpg"),
                     features: [
                         "6 oz. 100% pre-shrunk cotton; Ash, Sports Grey, Heather, Antique, and Safety colors are poly/cotton blends",
@@ -65,6 +66,7 @@ export default {
 					brand: "Bella + Canvas",
 					title: "Ringspun Cotton T-Shirt",
 					fabric: "100% Cotton",
+					price: 3,
                     tbn: require("@/assets/img/shirts/3001c/3001C_tbn.jpg"),
                     features: [
                         "6 oz. 100% pre-shrunk cotton; Ash, Sports Grey, Heather, Antique, and Safety colors are poly/cotton blends",
@@ -73,7 +75,13 @@ export default {
                         "Double-needle stitched for durability",
                         "Huge color selection"
                     ],
-					colors: [
+					colors: [ 
+						{
+                            name: "White",
+                            abr: "wht",
+                            hex: "#ffffff", 
+                            path: require("@/assets/img/shirts/3001c/3001c_wht.jpg"),
+						},
 						{
                             name: "Black",
                             abr: "blk",
@@ -105,6 +113,7 @@ export default {
 					brand: "Anvil",
 					title: "Lightweight T-Shirt",
 					fabric: "100% Cotton",
+					price: 2,
                     tbn: require("../assets/img/shirts/980/980_tbn.jpg"),
                     features: [
                         "6 oz. 100% pre-shrunk cotton; Ash, Sports Grey, Heather, Antique, and Safety colors are poly/cotton blends",

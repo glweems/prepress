@@ -1,47 +1,27 @@
 <template lang="pug">
-
 .item
-	h1.title {{ item.title }}
-	img#item-img.card(:src="loadPath")
+	img(:src="item.colors[0].path")
 	.info
-
-		.swatches
-			swatch(v-for="(color, index) in item.colors", 
-					:key="index")
-					.swatch.card(v-on:click="swatchImg(color, index)", 
-					:style="{ background: color.hex }", 
-					:img="color.path")
-
-		h6.subtitle  {{ item.brand }}
-		p {{ item.desc }}
-
-		//- Features
-		ul(v-for="(feature, index) in item.features")
-			li  {{ feature }}
-
-	//- Get Pricing
-	section.hero.is-success
-		.hero-body
-			router-link( :to="{ name: 'calculator', params: {  id: index, color: color, colorAbr: colorAbr, colorIndex: colorIndex } }", :price="item.price", :key="item.id" ).title Get Pricing
-		
-
-
-
-
+		h1 this is the calculator 
+		br
+		p Item Id: {{ item.id }}
+		p Color Index: {{ colorIndex }}
+		p Item Price: {{ "$"+item.price+".00" }}
+		img
 </template>
 
 <script>
 export default {
-	name: "SingleProduct",
-	props: ["index"],
+	name: "calculator",
+	props: ["index", "color", "colorIndex"],
 	data() {
 		return {
-			index: String, 
-			item: Object,
-		color: {},
-			colorAbr: "tbn",
-			colorIndex: String,
-			loadPath: String,
+			item: Object, 
+			pricing: {
+			qty: Number, 
+			locations: Number,
+			loadPath: "String"
+			},
 			items: [
 				{
 					id: "G500",
@@ -49,7 +29,7 @@ export default {
 					title: "Heavy Cotton T-Shirt",
 					fabric: "100% Cotton",
 					price: 1,
-					tbn: 0,
+					tbn: require("@/assets/img/shirts/G500/g500_tbn.jpg"),
 					features: [
 						"6 oz. 100% pre-shrunk cotton; Ash, Sports Grey, Heather, Antique, and Safety colors are poly/cotton blends",
 						"Ladies option is the Gildan Ultra Cotton Ladies T-shirt",
@@ -58,12 +38,6 @@ export default {
 						"Huge color selection"
 					],
 					colors: [
-						{
-							name: "White",
-							abr: "wht",
-							hex: "#ffffff",
-							path: require("@/assets/img/shirts/G500/g500_wht.jpg")
-						},
 						{
 							name: "Ash",
 							abr: "ash",
@@ -177,56 +151,20 @@ export default {
 	},
 	created() {
 		this.index = this.$route.params.id
+
 		this.item = this.items[this.index]
-		let x = this.item.tbn  
-		this.loadPath = this.item.colors[x].path
-		
+
+	
 	},
 	methods: {
-		swatchImg: function(color, which) {
-
-			document.getElementById("item-img").src = color.path
-
-			this.color = color
-
-			this.colorAbr = color.abr
-
-			this.colorIndex = which
-		}
+			loadPath: function () {
+				
+			}
 	}
 };
 </script>
 
 <style lang="sass" scoped>
-
-.item 
-	.title 
-		margin: 1em
-	img
-		max-width: 80%
-		border-radius: 5px
-
-
-.info 
-	padding: 1em 2em
-
-
-swatch
-	display: inline-block
-	margin: 0 .25em
-	.swatch
-		height: 1.5em
-		width: 1.5em
-		background: blue
-		border-radius: 5px
-
-
-.footer 
-	position: absolute
-	bottom: 0px
-	margin-right: auto
-	margin-left: auto
-	left: 50%
-	transform: translate(-50%, 0)
-
+img
+	max-width: 80%
 </style>
