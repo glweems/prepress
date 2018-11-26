@@ -1,8 +1,6 @@
 <template lang="pug">
 
    items
-      //- router-link(:to="{name: 'singleProduct', params: {id: '1'}}",  id="hi")  singleProduct
-
       .items
          item(v-for="(item, index) in items", :key="item.index")
             img(:src="item.tbn").img-fluid

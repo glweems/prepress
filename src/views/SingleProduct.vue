@@ -1,13 +1,20 @@
 <template lang="pug">
-    .card
-        img.card-img-top.img-fluid(:src="item.tbn")
-        .card-body
-            h5.card-title {{ item.title }}
-            h6.card-subtitle.text-muted {{ item.brand }}
-            .card-body
-                p.card-text {{ item.desc }}
-                .features(v-for="(feature, index) in item.features")
-                  p {{ feature }}
+.item
+   h1.title {{ item.title }}
+   img#item-img.card(:src="item.tbn")
+   .info
+
+      //-  Swatches
+      .swatches
+         swatch(v-for="color in item.colors", :key="color.name")
+               .swatch(v-on:click="swatchImg(color.path)", :style="{ background: color.hex }", :img="color.path")
+
+      h6.subtitle  {{ item.brand }}
+      p {{ item.desc }}
+
+      //- Item Features
+      ul(v-for="(feature, index) in item.features")
+         li  {{ feature }}
 </template>
 
 <script>
@@ -34,25 +41,25 @@ export default {
                colors: [{
                      name: "Ash",
                      abr: "ash",
-                     hex: "blue",
+                     hex: "#c1c1c1",
                      path: require("@/assets/img/shirts/G500/g500_ash.jpg"),
                   },
                   {
                      name: "Black",
                      abr: "blk",
-                     hex: "red",
+                     hex: "#191919",
                      path: require("@/assets/img/shirts/G500/g500_blk.jpg"),
                   },
                   {
                      name: "Light Pink",
                      abr: "lpnk",
-                     hex: "green",
+                     hex: "#eebfc5",
                      path: require("@/assets/img/shirts/G500/g500_lpnk.jpg"),
                   },
                   {
                      name: "Gravel",
                      abr: "grv",
-                     hex: "grey",
+                     hex: "#767070",
                      path: require("@/assets/img/shirts/G500/g500_grv.jpg"),
                   }
                ]
@@ -79,19 +86,19 @@ export default {
                   {
                      name: "Leaf",
                      abr: "lef",
-                     hex: "#fff",
+                     hex: "#298c30",
                      path: require("@/assets/img/shirts/3001c/3001c_lef.jpg"),
                   },
                   {
                      name: "Navy",
                      abr: "nvy",
-                     hex: "#fff",
+                     hex: "#13164d",
                      path: require("@/assets/img/shirts/3001c/3001c_nvy.jpg"),
                   },
                   {
                      name: "Red",
                      abr: "red",
-                     hex: "#fff",
+                     hex: "#ae2324",
                      path: require("@/assets/img/shirts/3001c/3001c_red.jpg"),
                   }
                ]
@@ -112,25 +119,25 @@ export default {
                colors: [{
                      name: "Black",
                      abr: "blk",
-                     hex: "#fff",
-                     path: require("@/assets/img/shirts/3001c/3001c_blk.jpg"),
+                     hex: "black",
+                     path: require("@/assets/img/shirts/980/980_blk.jpg"),
                   },
                   {
-                     name: "Leaf",
-                     abr: "lef",
-                     hex: "#fff",
-                     path: require("@/assets/img/shirts/3001c/3001c_lef.jpg"),
+                     name: "Spring Yello",
+                     abr: "spyl",
+                     hex: "#d0c778",
+                     path: require("@/assets/img/shirts/980/980_spyl.jpg"),
                   },
                   {
                      name: "Navy",
                      abr: "nvy",
-                     hex: "#fff",
+                     hex: "#11113e",
                      path: require("@/assets/img/shirts/3001c/3001c_nvy.jpg"),
                   },
                   {
                      name: "Red",
                      abr: "red",
-                     hex: "#fff",
+                     hex: "#aa1d3b",
                      path: require("@/assets/img/shirts/3001c/3001c_red.jpg"),
                   }
                ]
@@ -142,10 +149,30 @@ export default {
       this.index = this.$route.params.id
       this.item = this.items[this.index]
    },
+  methods: {
+    swatchImg: function (img) {
+       document.getElementById("item-img").src = img
+    }
+  }
 }
 </script>
 
 <style lang="sass" scoped>
-img
-   max-width: 80%
+.item 
+   .title 
+      // padding-bottom: 1em
+   margin: 1em
+   img
+      max-width: 80%
+.info 
+   padding: 1em 2em
+
+swatch
+   display: inline-block
+   margin: 0 .5em
+   .swatch
+      height: 2em
+      width: 2em
+      background: blue
+      border-radius: 5px
 </style>

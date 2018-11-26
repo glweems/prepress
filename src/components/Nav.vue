@@ -1,7 +1,8 @@
 <template lang="pug">
 #nav
-   nav(v-for="page in pages")
-      router-link(:to="page.path", :key="page.name") {{ page.name }}
+   ul(v-for="page in pages")
+      li 
+         router-link(:to="page.path", :key="page.name") {{ page.name }}
 </template>
 
 <script>
@@ -29,6 +30,10 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+ul
+   display: inline-block
+   li
+      padding: 1em 1em
 #nav
    font-family: 'Avenir', Helvetica, Arial, sans-serif
    -webkit-font-smoothing: antialiased
@@ -39,5 +44,5 @@ export default {
       font-weight: bold
       color: #2c3e50
       &.router-link-exact-active 
-      color: #42b983
+         color: #42b983
 </style>
