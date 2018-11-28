@@ -3,16 +3,14 @@ import App from './App.vue'
 import router from './router'
 import Nav from './components/Nav'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = true
 
 new Vue({
-  router,
-  render: h => h(App)
+	router,
+	render: h => h(App)
 }).$mount('#app')
 
 new Vue({
-  router,
-  render: h => h(Nav)
+	router,
+	render: h => h(Nav)
 }).$mount('#nav')
-
-
