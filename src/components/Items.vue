@@ -8,13 +8,12 @@
 			.info
 				.text
 					//- h6 {{ item.brand }}
-					router-link(:to="{ name: 'singleProduct', params: { id: index } }", :key="item.id" ).button.is-link  Select {{ item.id }}
+					router-link(:to="itemPath(item.id, item.colors[0].abr)" exact).button.is-link  Select
+					//- router-link(:to="{ name: 'singleProduct', params: { id: index } }", :key="item.id" ).button.is-link  Select {{ item.id }}
 	 
 </template>
 
 <script>
-import JSON from "../JSON/items.json"
-
 export default {
   name: "Products",
   data() {
@@ -35,12 +34,6 @@ export default {
             "Huge color selection"
           ],
           colors: [
-            {
-              name: "White",
-              abr: "wht",
-              hex: "#ffffff",
-              path: require("@/assets/img/shirts/G500/g500_wht.jpg")
-            },
             {
               name: "Ash",
               abr: "ash",
@@ -153,19 +146,21 @@ export default {
     };
   },
   computed: {
-    imgPath() {
-      return this.items;
-	 },
+   //  imgPath() {
+   //    return this.items;
+   //  }
   },
   methods: {
-	  itemTbn(thisTbn) {
-		return this.items.colors[thisTbn].path
-	 }
+	 // Create Path " /product/:id/color/:color "
+	//  router.replace(location)
+    itemPath(idPath, colorPath) {
+      return "/products/" + idPath + "?color="  + colorPath 
+    }
   },
   created() {
-    if (this.item.img) {
-      this.item.img.hex = this.item.id;
-    }
+   //  if (this.item.img) {
+   //    this.item.img.hex = this.item.id;
+   //  }
   }
 };
 </script>

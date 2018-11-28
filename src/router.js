@@ -5,6 +5,7 @@ import Home from './views/Home.vue'
 Vue.use(Router)
 
 export default new Router({
+	mode: 'history',
 	routes: [{
 			path: '/',
 			name: 'home',
@@ -25,7 +26,6 @@ export default new Router({
 			// this generates a separate chunk (about.[hash].js) for this route
 			// which is lazy-loaded when the route is visited.
 			component: () => import( /* webpackChunkName: "about" */ './components/Items.vue'),
-			props: true,
 		},
 		{
 			path: '/products/:id',
@@ -34,16 +34,14 @@ export default new Router({
 			// this generates a separate chunk (about.[hash].js) for this route
 			// which is lazy-loaded when the route is visited.
 			component: () => import( /* webpackChunkName: "about" */ './views/SingleProduct.vue'),
-			props: true
 		},
 		{
-			path: '/pricing/:id',
+			path: '/quote/:id',
 			name: 'calculator',
 			// route level code-splitting
 			// this generates a separate chunk (about.[hash].js) for this route
 			// which is lazy-loaded when the route is visited.
 			component: () => import( /* webpackChunkName: "about" */ './components/Calculator.vue'),
-			props: true
-		}
+		},
 	]
 })

@@ -1,23 +1,25 @@
 {
-  "name": "playground",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
-  },
-  "dependencies": {
-    "bootstrap": "github:twbs/bootstrap",
-    "vue": "^2.5.17",
-    "vue-router": "^3.0.1"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.5",
-    "@vue/cli-service": "^3.0.5",
-    "node-sass": "^4.9.0",
-    "pug": "^2.0.3",
-    "pug-plain-loader": "^1.0.0",
-    "sass-loader": "^7.0.1",
-    "vue-template-compiler": "^2.5.17"
-  }
+	"name": "playground",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"serve": "vue-cli-service serve",
+		"build": "vue-cli-service build"
+	},
+	"dependencies": {
+		"JSON": "file:src/JSON",
+		"pretty-checkbox-vue": "^1.1.9",
+		"promise": "^8.0.2",
+		"vue": "^2.5.17",
+		"vue-router": "^3.0.1"
+	},
+	"devDependencies": {
+		"@vue/cli-plugin-babel": "^3.0.5",
+		"@vue/cli-service": "^3.0.5",
+		"node-sass": "^4.9.0",
+		"pug": "^2.0.3",
+		"pug-plain-loader": "^1.0.0",
+		"sass-loader": "^7.0.1",
+		"vue-template-compiler": "^2.5.17"
+	}
 }
