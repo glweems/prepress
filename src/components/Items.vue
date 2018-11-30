@@ -1,15 +1,12 @@
 <template lang="pug">
 
-//- items
-.container
-		.item(v-for="(item, index) in items", :key="index").item
-			h6.title.is-4 {{ item.title }}
-			img(:src="item.colors[0].path").card
-			.info
-				.text
-					//- h6 {{ item.brand }}
-					router-link(:to="itemPath(item.id, item.colors[0].abr)" exact).button.is-link  Select
-					//- router-link(:to="{ name: 'singleProduct', params: { id: index } }", :key="item.id" ).button.is-link  Select {{ item.id }}
+items
+	.item(v-for="(item, index) in items", :key="index").item
+		h6.title.is-4 {{ item.title }}
+		img(:src="item.colors[0].path").card
+		.info
+			.text
+				router-link(:to="itemPath(item.id, item.colors[0].abr)" exact).button.is-link  Select
 	 
 </template>
 
@@ -146,26 +143,18 @@ export default {
     };
   },
   computed: {
-   //  imgPath() {
-   //    return this.items;
-   //  }
   },
   methods: {
-	 // Create Path " /product/:id/color/:color "
-	//  router.replace(location)
     itemPath(idPath, colorPath) {
       return "/products/" + idPath + "?color="  + colorPath 
     }
   },
   created() {
-   //  if (this.item.img) {
-   //    this.item.img.hex = this.item.id;
-   //  }
   }
 };
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 
 img
 	width: 65%
@@ -176,6 +165,5 @@ img
 .item
 	margin-bottom: 3vh
 	padding-bottom: 2vh
-	border-bottom: 1px solid black
 
 </style>

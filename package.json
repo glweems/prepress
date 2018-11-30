@@ -7,7 +7,7 @@
 		"build": "vue-cli-service build"
 	},
 	"dependencies": {
-		"JSON": "file:src/JSON",
+		"bulma": "^0.7.2",
 		"pretty-checkbox-vue": "^1.1.9",
 		"promise": "^8.0.2",
 		"vue": "^2.5.17",
@@ -16,6 +16,7 @@
 	"devDependencies": {
 		"@vue/cli-plugin-babel": "^3.0.5",
 		"@vue/cli-service": "^3.0.5",
+		"@vue/devtools": "^4.1.5",
 		"node-sass": "^4.9.0",
 		"pug": "^2.0.3",
 		"pug-plain-loader": "^1.0.0",
