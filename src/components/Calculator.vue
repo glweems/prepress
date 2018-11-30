@@ -8,6 +8,7 @@
 			label.label Total Quantity
 			.control
 				input.input(v-model="qty", type='text', pattern="[0-9]*")
+				p.help.is-danger {{ isEnough }}
 
 	br
 
@@ -34,9 +35,9 @@
 			p Your Price
 			button.delete(aria-label='delete')
 		.message-body
-			p Shirts: {{ job.text }}
-			br
-			p {{ job.locations[0].id }}
+			//- p Shirts: {{ job.text }}
+			//- br
+			//- p {{ job.locations[0].id }}
 
 	//- Progress Bar
 	//- progress.progress.is-small(:value='progress.steps[0]', max='10') 
@@ -53,11 +54,10 @@ export default {
   },
   data() {
     return {
-      calculate: true,
       qty: "",
       locations: [
-        { id: "Front", colors: 0, price: 100 },
-        { id: "Back", colors: 0, price: 100 }
+        { id: "Front", colors: 0 },
+        { id: "Back", colors: 0 }
       ],
       progress: {
         steps: [1, 2, 3, 4, 5, 6]
@@ -82,32 +82,60 @@ export default {
 	 }
   },
 	computed: {
+		isEnough() {
+			let qty = this.qty 
+			let min = this.screenprint.breaks[0] 
+			let isEnough = false
+				//- if qty is not enough this is false
+				if (qty >= min) {
+					isEnough = true
+				} 
+			return isEnough
+		},
 		printedSides() {
-			let filtered = this.locations;
-				if (this.qty > 0) {
-					filtered = filtered.filter(
-						m => m.colors != 0
+			let locations = this.locations;
+				if (this.isEnough == true) {
+					locations = locations.filter(
+						l => l.colors != 0
 				);
+			} else {
+				locations = "No Colors Selected"
 			}
-			return filtered;
-		},
-		qtyBracket() {
-			let qty = this.qty;
-			let priceBreaks = this.screenprint.breaks;
-			var value = priceBreaks.find(function(b) {
-				return b >= qty
-			});
-			return value
-		},
-		job() {
-			let x = this.printedSides
-			return {
-				text: "Your Screen Printing Job", 
-				locations: x
+			if (locations.length == 0) {
+				locations = ""
 			}
+				let sides = {
+					front: locations[0].colors
+				}
+			return sides
+		},
+		colorArr() {
+			let front = this.printedSides.front
+			return front -1
+		},
+		qtyArr() {
+			let result = "Not Ready"
+			if (this.isEnough == true) {
+				let qty = this.qty;
+				let priceBreaks = this.screenprint.breaks;
+				let value = priceBreaks.find(function(b) { return b >= qty });
+				result = priceBreaks.indexOf(value)
+			} 
+			return result
+		},
+		printPrice() {
+			var matrix = this.screenprint.matrix
+			var isEnough = this.isEnough
+			if(isEnough == true) {
+				// color = this.colorArr[0];
+				// base = matrix[0]
+				// base = this.screenprint.matrix[0];
+			}
+			return matrix[this.colorArr][this.qtyArr]
 		}
 	}
 }
+
 </script>
 
 <style lang="sass" scoped>
