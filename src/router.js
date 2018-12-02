@@ -1,9 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import devtools from '@vue/devtools'
 
- 
+
 Vue.use(Router)
 
 export default new Router({

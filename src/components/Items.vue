@@ -1,12 +1,13 @@
 <template lang="pug">
 
-items
-	.item(v-for="(item, index) in items", :key="index").item
-		h6.title.is-4 {{ item.title }}
-		img(:src="item.colors[0].path").card
-		.info
-			.text
-				router-link(:to="itemPath(item.id, item.colors[0].abr)" exact).button.is-link  Select
+.items
+	template(v-for="item in items")
+		.item
+			h6.title.is-4 {{ item.title }}
+			img(:src="tbn(item)" @click="imgClick(item)").card
+			.info
+				.text
+					router-link(:to="link(item)", :key="item.id").button.is-link  Select
 	 
 </template>
 
@@ -142,14 +143,33 @@ export default {
       ]
     };
   },
-  computed: {
-  },
   methods: {
-    itemPath(idPath, colorPath) {
-      return "/products/" + idPath + "?color="  + colorPath 
+    //   Construct thumbnail
+    tbn(item) {
+      var tbn = item.tbn;
+      var path = item.colors[tbn].path;
+      return path;
+    },
+    // Construct router-link obj
+    link(item) {
+      var id = item.id;
+      var tbn = item.tbn;
+      var color = item.colors[tbn].abr;
+      // Create obj
+      var obj = {
+        name: "singleProduct",
+        path: "/products/" + id,
+        params: { id: id },
+        query: { color: color }
+      };
+
+      return obj;
+    },
+    // Click Img to go to item
+    imgClick(item) {
+      var link = this.link(item);
+      this.$router.push(link);
     }
-  },
-  created() {
   }
 };
 </script>
@@ -165,5 +185,4 @@ img
 .item
 	margin-bottom: 3vh
 	padding-bottom: 2vh
-
 </style>

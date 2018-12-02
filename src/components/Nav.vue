@@ -7,26 +7,27 @@
 
 <script>
 export default {
-   name: "Nav",
-   props: [" "],
-   data() {
-      return {
-         pages: [{
-               name: "Home",
-               path: "/"
-            },
-            {
-               name: "About",
-               path: "/about"
-            },
-            {
-               name: "Products",
-               path: "/products"
-            },
-         ]
-      }
-   }
-}
+  name: "Nav",
+  props: [" "],
+  data() {
+    return {
+      pages: [
+        {
+          name: "Home",
+          path: "/"
+        },
+        {
+          name: "About",
+          path: "/about"
+        },
+        {
+          name: "Products",
+          path: "/products"
+        }
+      ]
+    };
+  }
+};
 </script>
 
 <style lang="sass" scoped>
