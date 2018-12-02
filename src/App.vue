@@ -1,14 +1,18 @@
 <template lang="pug">
 #app.container
+	Nav 
 	router-view
 </template>
 
 <script>
+import Nav from "@/components/Nav";
 export default {
   name: "App",
+  components: {
+    Nav
+  },
   data() {
-    return {
-    };
+    return {};
   }
 };
 </script>

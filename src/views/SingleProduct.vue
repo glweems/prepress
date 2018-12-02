@@ -7,9 +7,6 @@
 
 	.info
 		swatches(:item="item")
-		//- .swatches
-		//- 	template(v-for="(color, index) in item.colors")
-		//- 		a.swatch.card(@click="swatch(color)", :style=" { background: color.hex } ")
 
 		router-link.button.is-link(:to="{name: 'calculator', path: '/quote/' + item.id, query: {color: color.abr}}") Get Pricing
 		//- Features

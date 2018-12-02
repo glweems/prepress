@@ -23,6 +23,10 @@ export default {
         {
           name: "Products",
           path: "/products"
+        },
+        {
+          name: "Calculator",
+          path: "/quote/"
         }
       ]
     };
