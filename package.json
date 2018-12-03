@@ -5,7 +5,8 @@
 	"scripts": {
 		"serve": "vue-cli-service serve",
 		"vue-devtools": "vue-devtools",
-		"proxy": "ngrok http 8098",
+		"dev": "webpack --watch --mode development",
+		"webpack": "webpack --mode development",
 		"build": "vue-cli-service build"
 	},
 	"dependencies": {
@@ -20,10 +21,15 @@
 		"@vue/cli-plugin-babel": "^3.2.0",
 		"@vue/cli-service": "^3.2.0",
 		"@vue/devtools": "^4.1.5",
+		"html-loader": "^0.5.5",
+		"html-webpack-plugin": "^3.2.0",
 		"node-sass": "^4.9.0",
 		"pug": "^2.0.3",
+		"pug-html-loader": "^1.1.5",
 		"pug-plain-loader": "^1.0.0",
 		"sass-loader": "^7.0.1",
-		"vue-template-compiler": "^2.5.17"
+		"vue-template-compiler": "^2.5.17",
+		"webpack": "^4.26.1",
+		"webpack-cli": "^3.1.2"
 	}
 }

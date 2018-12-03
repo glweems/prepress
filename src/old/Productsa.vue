@@ -1,19 +1,14 @@
 <template lang="pug">
-
-.items
-	template(v-for="item in items")
-		.item
-			h6.title.is-4 {{ item.title }}
-			img(:src="tbn(item)" @click="imgClick(item)").card
-			.info
-				.text
-					router-link(:to="link(item)", :key="item.id").button.is-link  Select
-	 
+router-view
 </template>
 
 <script>
+// import Products from "@/views/Product";
+import Product from "@/views/Product";
+import Products from "@/views/Products";
 export default {
   name: "Products",
+  components: {},
   data() {
     return {
       items: [
@@ -22,8 +17,7 @@ export default {
           brand: "Gildan",
           title: "Heavy Cotton T-Shirt",
           fabric: "100% Cotton",
-          price: 1,
-          tbn: 0,
+          tbn: require("@/assets/img/shirts/G500/g500_tbn.jpg"),
           features: [
             "6 oz. 100% pre-shrunk cotton; Ash, Sports Grey, Heather, Antique, and Safety colors are poly/cotton blends",
             "Ladies option is the Gildan Ultra Cotton Ladies T-shirt",
@@ -35,25 +29,25 @@ export default {
             {
               name: "Ash",
               abr: "ash",
-              hex: "#c1c1c1",
+              hex: "blue",
               path: require("@/assets/img/shirts/G500/g500_ash.jpg")
             },
             {
               name: "Black",
               abr: "blk",
-              hex: "#191919",
+              hex: "red",
               path: require("@/assets/img/shirts/G500/g500_blk.jpg")
             },
             {
               name: "Light Pink",
               abr: "lpnk",
-              hex: "#eebfc5",
+              hex: "green",
               path: require("@/assets/img/shirts/G500/g500_lpnk.jpg")
             },
             {
               name: "Gravel",
               abr: "grv",
-              hex: "#767070",
+              hex: "grey",
               path: require("@/assets/img/shirts/G500/g500_grv.jpg")
             }
           ]
@@ -63,8 +57,7 @@ export default {
           brand: "Bella + Canvas",
           title: "Ringspun Cotton T-Shirt",
           fabric: "100% Cotton",
-          price: 3,
-          tbn: 0,
+          tbn: require("@/assets/img/shirts/3001c/3001C_tbn.jpg"),
           features: [
             "6 oz. 100% pre-shrunk cotton; Ash, Sports Grey, Heather, Antique, and Safety colors are poly/cotton blends",
             "Ladies option is the Gildan Ultra Cotton Ladies T-shirt",
@@ -82,19 +75,19 @@ export default {
             {
               name: "Leaf",
               abr: "lef",
-              hex: "#298c30",
+              hex: "#fff",
               path: require("@/assets/img/shirts/3001c/3001c_lef.jpg")
             },
             {
               name: "Navy",
               abr: "nvy",
-              hex: "#13164d",
+              hex: "#fff",
               path: require("@/assets/img/shirts/3001c/3001c_nvy.jpg")
             },
             {
               name: "Red",
               abr: "red",
-              hex: "#ae2324",
+              hex: "#fff",
               path: require("@/assets/img/shirts/3001c/3001c_red.jpg")
             }
           ]
@@ -104,8 +97,7 @@ export default {
           brand: "Anvil",
           title: "Lightweight T-Shirt",
           fabric: "100% Cotton",
-          price: 2,
-          tbn: 0,
+          tbn: require("../assets/img/shirts/980/980_tbn.jpg"),
           features: [
             "6 oz. 100% pre-shrunk cotton; Ash, Sports Grey, Heather, Antique, and Safety colors are poly/cotton blends",
             "Ladies option is the Gildan Ultra Cotton Ladies T-shirt",
@@ -117,25 +109,25 @@ export default {
             {
               name: "Black",
               abr: "blk",
-              hex: "black",
-              path: require("@/assets/img/shirts/980/980_blk.jpg")
+              hex: "#fff",
+              path: require("@/assets/img/shirts/3001c/3001c_blk.jpg")
             },
             {
-              name: "Spring Yellow",
-              abr: "spyl",
-              hex: "#d0c778",
-              path: require("@/assets/img/shirts/980/980_spyl.jpg")
+              name: "Leaf",
+              abr: "lef",
+              hex: "#fff",
+              path: require("@/assets/img/shirts/3001c/3001c_lef.jpg")
             },
             {
               name: "Navy",
               abr: "nvy",
-              hex: "#11113e",
+              hex: "#fff",
               path: require("@/assets/img/shirts/3001c/3001c_nvy.jpg")
             },
             {
               name: "Red",
               abr: "red",
-              hex: "#aa1d3b",
+              hex: "#fff",
               path: require("@/assets/img/shirts/3001c/3001c_red.jpg")
             }
           ]
@@ -143,46 +135,50 @@ export default {
       ]
     };
   },
-  methods: {
-    //   Construct thumbnail
-    tbn(item) {
-      var tbn = item.tbn;
-      var path = item.colors[tbn].path;
-      return path;
-    },
-    // Construct router-link obj
-    link(item) {
-      var id = item.id;
-      var tbn = item.tbn;
-      var color = item.colors[tbn].abr;
-      // Create obj
-      var obj = {
-        name: "singleProduct",
-        path: "/products/" + id,
-        params: { id: id },
-        query: { color: color }
-      };
-
-      return obj;
-    },
-    // Click Img to go to item
-    imgClick(item) {
-      var link = this.link(item);
-      this.$router.push(link);
+  computed: {
+    imgPath() {
+      return this.items;
+    }
+  },
+  created() {
+    if (this.item.img) {
+      this.item.img.hex = this.item.id;
     }
   }
 };
 </script>
 
-<style lang="sass" scoped>
-
+<style lang="sass">
+// @import "@/assets/sass/app.sass"
 img
-	width: 65%
-.card
-	border-radius: 1.5vw
-	margin-bottom: 1vh
-	padding: 3vw
-.item
-	margin-bottom: 3vh
-	padding-bottom: 2vh
+   max-width: 80%
+.items
+    width: 100%
+    display: grid
+    grid-gap: .45em
+    .item
+        display: grid
+        border: 1px solid black
+        border-radius: .25em
+        background: white
+        grid-template-columns: auto 3fr
+        margin: 0 1em
+        img
+            padding: .5em
+            max-height: 7em
+            align-self: center
+            background: lightblue
+.info
+.title
+    padding-top: 1vh
+    font-size: 15px
+.brand
+    font-size: 13px
+
+.swatches
+    display: grid
+    grid-template-columns: 1fr 1fr
+.swatch
+    width: 1em
+    height: 1em
 </style>

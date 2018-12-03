@@ -1,31 +1,21 @@
 <template lang="pug">
 
-.wrapper
-	p.title.is-4 {{ item.title }}
-	p.subtitle  {{ item.brand }}
-	img#item-img.card(:src="color.path")
-
-	.info
-		swatches(:item="item")
-
-		router-link.button.is-link(:to="{name: 'calculator', path: '/quote/' + item.id, query: {color: color.abr}}") Get Pricing
-		//- Features
-		ul(v-for="(feature, index) in item.features")
-			li  {{ feature }}				
-
+.items
+	template(v-for="item in items")
+		.item
+			h6.title.is-4 {{ item.title }}
+			img(:src="tbn(item)" @click="imgClick(item)").card
+			.info
+				.text
+					router-link(:to="link(item)", :key="item.id").button.is-link  Select
 </template>
 
 <script>
-import swatches from "@/components/Swatches";
 export default {
-  name: "singleProduct",
-  components: {
-    swatches
-  },
+  name: "Products",
+  props: ["items"],
   data() {
     return {
-      colorAbr: this.$route.query.color,
-      id: this.$route.params.id,
       items: [
         {
           id: "G500",
@@ -42,12 +32,6 @@ export default {
             "Huge color selection"
           ],
           colors: [
-            {
-              name: "White",
-              abr: "wht",
-              hex: "#ffffff",
-              path: require("@/assets/img/shirts/G500/g500_wht.jpg")
-            },
             {
               name: "Ash",
               abr: "ash",
@@ -159,49 +143,45 @@ export default {
       ]
     };
   },
-  methods: {},
-  computed: {
-    item() {
-      let id = this.id;
-      let item = this.items.find(item => item.id == id);
-      return item;
+  methods: {
+    //   Construct thumbnail
+    tbn(item) {
+      var tbn = item.tbn;
+      var path = item.colors[tbn].path;
+      return path;
     },
-    color() {
-      let color = this.item.colors.find(color => color.abr == this.colorAbr);
-      return color;
+    // Construct router-link obj
+    link(item) {
+      var id = item.id;
+      var tbn = item.tbn;
+      var color = item.colors[tbn].abr;
+      // Create obj
+      var obj = {
+        name: "singleProduct",
+        path: "/products/item/" + id,
+        params: { id: id },
+        query: { color: color }
+      };
+
+      return obj;
     },
-    toPricing() {
-      let item = this.item.id;
-      let colorAbr = this.colorAbr;
-      return "/quote/" + item + "?color=" + colorAbr;
+    // Click Img to go to item
+    imgClick(item) {
+      var link = this.link(item);
+      this.$router.push(link);
     }
-  },
-  watch: {}
+  }
 };
 </script>
 
 <style lang="sass" scoped>
-.wrapper
-	.title
-		margin: 1em
-	img
-		max-width: 80%
-		border-radius: 5px
-
-.info
-	width: 100%
-	// padding: 1em 2em
-
-
-.swatches
-	width: 100%
-	// background: pink
-
-.swatch
-	margin: 0 .25em
-	display: inline-block
-	height: 1.5em
-	width: 1.5em
-	background: blue
-	border-radius: 5px
+img
+	width: 65%
+.card
+	border-radius: 1.5vw
+	margin-bottom: 1vh
+	padding: 3vw
+.item
+	margin-bottom: 3vh
+	padding-bottom: 2vh
 </style>

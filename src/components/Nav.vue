@@ -1,8 +1,17 @@
 <template lang="pug">
-#nav
-   ul(v-for="page in pages")
-      li 
-         router-link(:to="page.path", :key="page.name") {{ page.name }}
+nav.navbar(role='navigation', aria-label='main navigation')
+	.navbar-brand
+		a.navbar-item(href='/')
+			img(src='https://bulma.io/images/bulma-logo.png', width='112', height='28')
+		a.navbar-burger.burger(role='button', aria-label='menu', aria-expanded='false', data-target='navbarBasicExample')
+			span(aria-hidden='true')
+			span(aria-hidden='true')
+			span(aria-hidden='true')
+	#navbarBasicExample.navbar-menu
+		.navbar-start
+		template(v-for="page in pages")
+			router-link(:to="page.path", class="navbar-item", :key="page.name") {{ page.name }}
+		.navbar-end
 </template>
 
 <script>
@@ -22,12 +31,16 @@ export default {
         },
         {
           name: "Products",
-          path: "/products"
-        },
-        {
-          name: "Calculator",
-          path: "/quote/"
+          path: "/products/all"
         }
+        //   {
+        //     name: "Calculator",
+        //     path: "/quote/"
+        //   },
+        //   {
+        //     name: "Tests",
+        //     path: "/tests/"
+        //   }
       ]
     };
   }

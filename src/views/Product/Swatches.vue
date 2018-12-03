@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "swatches",
+  name: "Swatches",
   props: ["item"],
   data() {
     return {
@@ -30,8 +30,7 @@ export default {
 .swatch
 	margin: 0 .25em
 	display: inline-block
-	height: 1.5em
-	width: 1.5em
-	background: blue
-	border-radius: 5px
+	height: 1em
+	width: 1em
+	border-radius: 25px
 </style>

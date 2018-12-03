@@ -1,58 +1,39 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from './views/Home.vue'
-import QuoteProduct from "@/views/QuoteProduct"
-import Nav from "@/components/Nav"
+import Vue from "vue";
+import Router from "vue-router";
+import Products from "@/components/Products"
+// import Swatches from "@/views/Product/Swatches"
+// import QuoteProduct from "@/views/QuoteProduct";
 
-
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
-	mode: 'history',
+	mode: "history",
 	routes: [{
-			path: '/',
-			name: 'home',
-			component: Home
+			path: "/",
+			// name: "home",
+			component: () => import("@/views/Home")
 		},
 		{
-			path: '/about',
-			name: 'about',
-			// route level code-splitting
-			// this generates a separate chunk (about.[hash].js) for this route
-			// which is lazy-loaded when the route is visited.
-			component: () => import( /* webpackChunkName: "about" */ './views/About.vue')
+			path: "/about",
+			// name: "about",
+			component: () => import("@/views/About")
 		},
 		{
-			path: '/products/',
-			name: 'products',
-			// route level code-splitting
-			// this generates a separate chunk (about.[hash].js) for this route
-			// which is lazy-loaded when the route is visited.
-			component: () => import( /* webpackChunkName: "about" */ './components/Items.vue'),
-		},
-		{
-			path: '/products/:id',
-			name: 'singleProduct',
-			// route level code-splitting
-			// this generates a separate chunk (about.[hash].js) for this route
-			// which is lazy-loaded when the route is visited.
-			component: () => import( /* webpackChunkName: "about" */ './views/SingleProduct.vue'),
-		},
-		{
-			path: '/quote/',
-			name: 'calculator',
-			// route level code-splitting
-			// this generates a separate chunk (about.[hash].js) for this route
-			// which is lazy-loaded when the route is visited.
-			component: () => import( /* webpackChunkName: "about" */ './components/Calculator.vue'),
+			path: "/products/",
+			component: () => import("@/components/Products"),
+			props: true,
 			children: [{
-				// A will be rendered in the second <router-view>
-				// when /your-sidebar-url/a is matched
-				path: '/:id/',
-				components: {
-					quoteProduct: QuoteProduct
-				}
-			}, ]
+				path: "/products/all/",
+				name: "all",
+				component: () => import("@/views/Product/List"),
+				props: true,
+			}, {
+				path: "/products/id/:id/",
+				component: () => import("@/views/Product/Product"),
+				name: "product",
+				props: true,
+			}]
 		},
+
 	]
-})
+});
