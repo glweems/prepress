@@ -1,7 +1,8 @@
 <template lang="pug">
 router-view(:items="items")
-	List(:items="items")
-	Product(:items="items")
+//- div
+//- 	List(:items="items")
+//- 	Product(:items="items")
 		//- Product
 		//- Product(:item="items")
 //- .items
@@ -17,10 +18,11 @@ router-view(:items="items")
 <script>
 import List from "@/views/Product/List";
 import Product from "@/views/Product/Product";
+import Calculator from "./Calculator";
 export default {
   name: "Products",
   //   props: ["items"],
-  components: { Product, List },
+  components: { Product, List, Calculator },
   data() {
     return {
       items: [
@@ -29,7 +31,7 @@ export default {
           brand: "Gildan",
           title: "Heavy Cotton T-Shirt",
           fabric: "100% Cotton",
-          price: 1,
+          upgrade: 1,
           tbn: 0,
           features: [
             "6 oz. 100% pre-shrunk cotton; Ash, Sports Grey, Heather, Antique, and Safety colors are poly/cotton blends",
@@ -70,7 +72,7 @@ export default {
           brand: "Bella + Canvas",
           title: "Ringspun Cotton T-Shirt",
           fabric: "100% Cotton",
-          price: 3,
+          upgrade: 3,
           tbn: 0,
           features: [
             "6 oz. 100% pre-shrunk cotton; Ash, Sports Grey, Heather, Antique, and Safety colors are poly/cotton blends",
@@ -111,7 +113,7 @@ export default {
           brand: "Anvil",
           title: "Lightweight T-Shirt",
           fabric: "100% Cotton",
-          price: 2,
+          upgrade: 2,
           tbn: 0,
           features: [
             "6 oz. 100% pre-shrunk cotton; Ash, Sports Grey, Heather, Antique, and Safety colors are poly/cotton blends",

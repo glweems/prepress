@@ -41,11 +41,11 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 <style lang="sass">
-@import "../public/main.sass"
+@import "@/sass/main.sass"
 
 html
 	background: $light
 	
-#app
-	text-align: center
+// #app
+// 	text-align: center
 </style>

@@ -1,26 +1,44 @@
 <template lang="pug">
 .products
-	template(v-for="item in items")
+	template(v-if="view('all')")
+		template(v-for="item in items")
+			.product-wrapper(@click="cardClick(item)")
+				Product(:items="items", :item="item", :key="item.id")
 
-		Product(:items="items", :item="item")
+					span(slot="title")
+						p.card-header-title {{ item.title }}
 
-			span(slot="title")
-				p.card-header-title {{ item.title }}
+					span(slot="brand") 
+						p.subtitle.is-6 {{ item.brand }}
 
-			span(slot="brand") 
-				p.subtitle.is-6 {{ item.brand }}
+					span(slot="fabric")
+						p
+							small {{ item.fabric }}
+					span(slot="swatches")
+						swatches(:item="item")
 
-			span(slot="fabric")
-				p
-					small {{ item.fabric }}
-			span(slot="swatches")
-				swatches(:item="item")
+					span(slot="img") 
+						img(:id="item.id", :src="img(item)")
 
-			span(slot="img") 
-				img(:id="item.id", :src="img(item)")
+	template(v-if="view('quoteAll')")
+		template(v-for="item in items")
+			.product-wrapper(@click="cardClick(item)")
+				Product(:items="items", :item="item", :key="item.id")
 
-			span(slot="link") 
-				router-link(:to="toProduct(item.id)") Details
+					span(slot="title")
+						p.card-header-title {{ item.title }}
+
+					span(slot="brand") 
+						p.subtitle.is-6 {{ item.brand }}
+
+					span(slot="fabric")
+						p
+							small {{ item.fabric }}
+					span(slot="swatches")
+						swatches(:item="item")
+
+					span(slot="img") 
+						img(:id="item.id", :src="img(item)")
 </template>
 
 <script>
@@ -33,24 +51,33 @@ export default {
   data() {
     return {};
   },
-  computed: {},
+  computed: {
+    route() {
+      return this.$route.name;
+    }
+  },
   methods: {
-    toProduct(id) {
-      var obj = {
-        path: "/products/id/" + id,
-        params: {
-          id: id
-        }
-      };
-      return obj;
+    view(name) {
+      var route = this.route;
+      if (route == name) {
+        return true;
+      }
     },
     img(item) {
       return item.colors[0].path;
+    },
+    cardClick(item) {
+      var obj = {
+        name: "product",
+        path: "/products/id/" + item.id,
+        params: {
+          id: item.id
+        }
+      };
+      this.$router.push(obj);
     }
   }
 };
 </script>
 
-<style lang="sass" scoped>
-
-</style>
+<style lang="sass" scoped></style>

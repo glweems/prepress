@@ -1,5 +1,26 @@
 <template lang="pug">
 .product
+	//- Single Product View
+	template(v-if="view('product')")
+		.single
+				.card
+					//- header.card-header
+						p.card-header-title {{ item.title }}
+					.card-content
+						p.title {{item.title}}
+						p.subtitle.is-4 {{ item.brand }}
+						.card-image
+							figure.image
+								img#item-img(:src="color.path")
+						.media-content
+							Swatches(:item="item")
+						.content
+							.features
+								ul 
+									template(v-for="(feature, index) in item.features")
+										li {{ feature }}
+					footer.card-footer
+						router-link.card-footer-item(:to="getQuote()") Get Quote
 	//- Multi Product View
 	template(v-if="view('all')")
 		.card
@@ -16,33 +37,26 @@
 						slot(name="fabric")
 						slot(name="swatches")
 						slot(name="link")
-						 
-			//- 	.content
-			//- 		//- | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-			//- footer.card-footer
-			//- 	p.card-footer-item
-			//- 		span
-			//- 			| View on
-			//- 			a(href='https://twitter.com/codinghorror/status/506010907021828096') Twitter
-			//- slot(name="link")
-	//- Single Product View
-	template(v-if="view('product')")
-		p.title.is-4 {{ item.title }}
-		p.subtitle  {{ item.brand }}
-		img#item-img.card(:src="color.path")
 
-		.info
-			swatches(:item="item")
 
-			router-link.button.is-link(:to="{name: 'calculator', path: '/quote/' + item.id, query: {color: color.abr}}") Get Pricing
-			//- Features
-			ul(v-for="(feature, index) in item.features")
-				li  {{ feature }}
-
+	//- Calculator Product View
+	template(v-if="view('quoteId')")
+		.card
+			.card-content
+				.media
+					.media-left
+						figure.image.is-64x64
+							img(:src="color.path")
+					.media-content
+						p.title.is-5 {{item.title}}
+						p.subtitle.is-6 {{ item.brand }}
+				.content
+					|	Color: {{ color.name }}
 </template>
 
 <script>
 import Swatches from "@/views/Product/Swatches";
+
 export default {
   name: "Product",
   props: ["items"],
@@ -85,61 +99,33 @@ export default {
       if (route == name) {
         return true;
       }
+    },
+    getQuote() {
+      var obj = {
+        path: "/quote/id/" + this.item.id,
+        params: {
+          id: this.item.id
+        },
+        query: {
+          color: this.color.abr
+        }
+      };
+      return obj;
     }
   }
-  //   computed: {
-  //     route() {
-  //       let route = this.$route.name;
-  //       return route;
-  //     },
-  //     item() {
-  //       if ((this.route = "product")) {
-  //         let id = this.id;
-  //         let item = this.items.find(item => item.id == id);
-  //       }
-  //       return item;
-  //     },
-  //     colorAbr() {
-  //       let colorAbr = this.$route.query.color;
-  //       if (colorAbr == undefined) {
-  //         colorAbr = this.item.colors[0].abr;
-  //       }
-  //       return colorAbr;
-  //     },
-  //     color() {
-  //       let color = this.item.colors.find(color => color.abr == this.colorAbr);
-  //       return color;
-  //     },
-  //     toPricing() {
-  //       let item = this.item.id;
-  //       let colorAbr = this.colorAbr;
-  //       return "/quote/" + item + "?color=" + colorAbr;
-  //     },
-  //     view() {
-  //       let route = this.$route.name;
-  //       let view = false;
-  //       if (route) {
-  //         view = true;
-  //       }
-  //       return false;
-  //     }
-  //   },
-  //   methods: {
-  //     all() {
-  //       if (this.route == "all") {
-  //         return true;
-  //       }
-  //     },
-  //     product() {
-  //       if (this.route == "product") {
-  //         return true;
-  //       }
-  //     }
-  //   }
 };
 </script>
 
 <style lang="sass" scoped>
-.card
+v-carousel
+	max-width: 50%
+.product
 	margin: .5em 0
+
+.single
+	img
+		padding: 1.25em
+
+.features
+	text-align: left
 </style>

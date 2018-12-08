@@ -1,35 +1,42 @@
 {
-	"name": "playground",
-	"version": "0.1.0",
-	"private": true,
-	"scripts": {
-		"serve": "vue-cli-service serve",
-		"vue-devtools": "vue-devtools",
-		"dev": "webpack --watch --mode development",
-		"webpack": "webpack --mode development",
-		"build": "vue-cli-service build"
-	},
-	"dependencies": {
-		"bulma": "^0.7.2",
-		"electron": "^3.0.10",
-		"pretty-checkbox-vue": "^1.1.9",
-		"promise": "^8.0.2",
-		"vue": "^2.5.17",
-		"vue-router": "^3.0.1"
-	},
-	"devDependencies": {
-		"@vue/cli-plugin-babel": "^3.2.0",
-		"@vue/cli-service": "^3.2.0",
-		"@vue/devtools": "^4.1.5",
-		"html-loader": "^0.5.5",
-		"html-webpack-plugin": "^3.2.0",
-		"node-sass": "^4.9.0",
-		"pug": "^2.0.3",
-		"pug-html-loader": "^1.1.5",
-		"pug-plain-loader": "^1.0.0",
-		"sass-loader": "^7.0.1",
-		"vue-template-compiler": "^2.5.17",
-		"webpack": "^4.26.1",
-		"webpack-cli": "^3.1.2"
-	}
+  "name": "playground",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "dev": "webpack --watch --mode development",
+    "vue-devtools": "vue-devtools",
+    "webpack": "webpack --mode development"
+  },
+  "dependencies": {
+    "bulma": "^0.7.2",
+    "electron": "^3.0.10",
+    "element-ui": "^2.4.11",
+    "pretty-checkbox-vue": "^1.1.9",
+    "promise": "^8.0.2",
+    "vue": "^2.5.17",
+    "vue-router": "^3.0.1",
+    "vue-select": "^2.5.1",
+    "vuetify": "^1.3.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.2.0",
+    "@vue/cli-service": "^3.2.0",
+    "@vue/devtools": "^4.1.5",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.9.0",
+    "pug": "^2.0.3",
+    "pug-html-loader": "^1.1.5",
+    "pug-plain-loader": "^1.0.0",
+    "sass-loader": "^7.0.1",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
+    "vue-cli-plugin-vuetify": "^0.4.6",
+    "vue-template-compiler": "^2.5.17",
+    "vuetify-loader": "^1.0.5",
+    "webpack": "^4.26.1",
+    "webpack-cli": "^3.1.2"
+  }
 }

@@ -1,257 +1,96 @@
 <template lang="pug">
+.container 
 
-.calculator
+	//- Product
+	//- template(v-if="route('quoteId')")
+	template
+		Product(:items="this.$props.items", :key="item.id")
 
-	//- Enter QTY
-	.step.qty
-		.field
-			label.label Total Quantity
-			.control
-				input.input(v-model="qty", type='text', pattern="[0-9]*")
-				p.help.is-danger {{ isEnough }}
+		//- Calculator
+	.card
+		header.card-header
+			p.card-header-title Options
+			a.card-header-icon(href='#', aria-label='more options')
+				span.icon
+					i.fas.fa-angle-down(aria-hidden='true')
+		.card-content
+			.step.qty
+				.content
+					p.subtitle Total Quantity
+					el-input-number(v-model='qty', @change='inputQty(qty)', :min='0', :max='1000')
+					template(v-if="qty < 12")
+						p.help.is-danger Minimum QTY 12
+				template(v-if="isEnough()")
+					.content
+						p.subtitle Print Locations
+						template(v-for="location in locations")
+							label.label {{ location.id }}
+							el-input-number(v-model='location.colors', :min='0', :max='4')
+							
 
-	br
+							//- input.input(v-model="qty", type='text', pattern="[0-9]*")
+					//- 		hr
+					//- .step.locations
+					//- 	//- Pick Locations & Number of Colors
+					//- 	strong Number of sides being printed
+					//- 	hr
+					//- 	.colors
+					//- 		div
+					//- 			p.subtitle.is-6 {{locations[0].id}}
+					//- 			el-checkbox
+							//- template(v-if="showBack()")
+							//- 	div
+							//- 		p.subtitle.is-6 {{locations[1].id}}
+							//- 		v-select(v-model="locations[1].colors", :options="screenprint.colors")
+	//- .wrapper
+	//- 	article.message.is-success
+	//- 		.message-header
+	//- 			p Your Price Is!
+	//- 			button.delete(aria-label='delete')
+	//- 		.message-body
+	//- 			p.title {{ price.per }}
 
-	//- Pick Locations & Number of Colors
-	strong Number of sides being printed
-
-		.feilds.is-grouped
-			//- Label
-			template(v-for="location in locations")
-				.field.has-addons
-					.control
-						label.button.is-link {{ location.id }}
-					
-					//- Dropdown
-					.control.is-expanded
-						.select.is-fullwidth
-							select(v-model="location.colors")
-								option(v-for="color in screenprint.colors") {{ color }}
-				p {{ location }}
-	br
-
-	article.message.is-success
-		.message-header
-			p Your Price
-			button.delete(aria-label='delete')
-		.message-body
-			p {{ job }}
-			//- p Shirts: {{ job.text }}
-			//- br
-			//- p {{ job.locations[0].id }}
-
-	//- Progress Bar
-	//- progress.progress.is-small(:value='progress.steps[0]', max='10') 
-
-			
-</template>
+	</template>
 
 <script>
-import singleProduct from "@/views/SingleProduct";
+import List from "@/views/Product/List";
+import Product from "@/views/Product/Product";
 export default {
-  name: "calculator",
+  name: "Calculator",
+  props: ["items"],
   components: {
-    singleProduct
+    List,
+    Product
   },
   data() {
     return {
+      id: this.$route.params.id,
+      colorAbr: this.$route.query.color,
       qty: 12,
-      locations: [{ id: "Front", colors: 1 }, { id: "Back", colors: 1 }],
+      locations: [
+        {
+          id: "Front",
+          colors: null
+        },
+        { id: "Back", colors: null }
+      ],
       progress: {
         steps: [1, 2, 3, 4, 5, 6]
       },
       screenprint: {
-        colors: [0, 1, 2, 3, 4],
+        colors: [1, 2, 3, 4],
         breaks: [12, 24, 36, 100],
         matrix: [
           [10, 9, 8, 7],
           [10.75, 9.5, 8.25, 7.25],
           [11.5, 10.75, 9, 7.5],
           [14.25, 12.5, 9.5, 8]
-        ]
-      },
-      location2: [1.25, 1.5, 1.75, 2],
-      colorAbr: this.$route.query.color,
-      id: this.$route.params.id,
-      items: [
-        {
-          id: "G500",
-          brand: "Gildan",
-          title: "Heavy Cotton T-Shirt",
-          fabric: "100% Cotton",
-          price: 0,
-          tbn: 0,
-          features: [
-            "6 oz. 100% pre-shrunk cotton; Ash, Sports Grey, Heather, Antique, and Safety colors are poly/cotton blends",
-            "Ladies option is the Gildan Ultra Cotton Ladies T-shirt",
-            "Sturdy heavyweight cotton",
-            "Double-needle stitched for durability",
-            "Huge color selection"
-          ],
-          colors: [
-            {
-              name: "White",
-              abr: "wht",
-              hex: "#ffffff",
-              path: require("@/assets/img/shirts/G500/g500_wht.jpg")
-            },
-            {
-              name: "Ash",
-              abr: "ash",
-              hex: "#c1c1c1",
-              path: require("@/assets/img/shirts/G500/g500_ash.jpg")
-            },
-            {
-              name: "Black",
-              abr: "blk",
-              hex: "#191919",
-              path: require("@/assets/img/shirts/G500/g500_blk.jpg")
-            },
-            {
-              name: "Light Pink",
-              abr: "lpnk",
-              hex: "#eebfc5",
-              path: require("@/assets/img/shirts/G500/g500_lpnk.jpg")
-            },
-            {
-              name: "Gravel",
-              abr: "grv",
-              hex: "#767070",
-              path: require("@/assets/img/shirts/G500/g500_grv.jpg")
-            }
-          ]
-        },
-        {
-          id: "C3001",
-          brand: "Bella + Canvas",
-          title: "Ringspun Cotton T-Shirt",
-          fabric: "100% Cotton",
-          price: 3,
-          tbn: 2,
-          features: [
-            "6 oz. 100% pre-shrunk cotton; Ash, Sports Grey, Heather, Antique, and Safety colors are poly/cotton blends",
-            "Ladies option is the Gildan Ultra Cotton Ladies T-shirt",
-            "Sturdy heavyweight cotton",
-            "Double-needle stitched for durability",
-            "Huge color selection"
-          ],
-          colors: [
-            {
-              name: "Black",
-              abr: "blk",
-              hex: "#fff",
-              path: require("@/assets/img/shirts/3001c/3001c_blk.jpg")
-            },
-            {
-              name: "Leaf",
-              abr: "lef",
-              hex: "#298c30",
-              path: require("@/assets/img/shirts/3001c/3001c_lef.jpg")
-            },
-            {
-              name: "Navy",
-              abr: "nvy",
-              hex: "#13164d",
-              path: require("@/assets/img/shirts/3001c/3001c_nvy.jpg")
-            },
-            {
-              name: "Red",
-              abr: "red",
-              hex: "#ae2324",
-              path: require("@/assets/img/shirts/3001c/3001c_red.jpg")
-            }
-          ]
-        },
-        {
-          id: "980",
-          brand: "Anvil",
-          title: "Lightweight T-Shirt",
-          fabric: "100% Cotton",
-          price: 1,
-          tbn: 0,
-          features: [
-            "6 oz. 100% pre-shrunk cotton; Ash, Sports Grey, Heather, Antique, and Safety colors are poly/cotton blends",
-            "Ladies option is the Gildan Ultra Cotton Ladies T-shirt",
-            "Sturdy heavyweight cotton",
-            "Double-needle stitched for durability",
-            "Huge color selection"
-          ],
-          colors: [
-            {
-              name: "Black",
-              abr: "blk",
-              hex: "black",
-              path: require("@/assets/img/shirts/980/980_blk.jpg")
-            },
-            {
-              name: "Spring Yellow",
-              abr: "spyl",
-              hex: "#d0c778",
-              path: require("@/assets/img/shirts/980/980_spyl.jpg")
-            },
-            {
-              name: "Navy",
-              abr: "nvy",
-              hex: "#11113e",
-              path: require("@/assets/img/shirts/3001c/3001c_nvy.jpg")
-            },
-            {
-              name: "Red",
-              abr: "red",
-              hex: "#aa1d3b",
-              path: require("@/assets/img/shirts/3001c/3001c_red.jpg")
-            }
-          ]
-        }
-      ]
+        ],
+        location2: [1.25, 1.5, 1.75, 2]
+      }
     };
   },
-  computed: {
-    job() {
-      //  list of job vars
-      var obj = {};
-      // console.log(obj);
-
-      var qty = this.qty;
-      console.log("qty: " + qty);
-      // find minimum qty
-      var min = this.screenprint.breaks[0];
-
-      var locations = this.locations;
-
-      // Check ready function
-      function ready() {
-        var result = false;
-        if (qty >= min) {
-          result = true;
-          obj.ready = true;
-        }
-        return result;
-      }
-
-      // Set QTY
-      if (ready()) {
-        obj.qty = qty;
-      }
-
-      // Find locations
-      // function getLocations() {
-      //   if (ready()) {
-      //     var sides = [];
-      //     // Get the sides
-
-      //     var i = 0;
-      //     while (locations[i].colors) {
-      //       sides[i] = locations[i].id;
-      //       i++;
-      //     }
-      //   }
-      //   return sides;
-      // }
-      // console.log("locations: " + getLocations());
-
-      return obj;
-    },
+  methods: {
     isEnough() {
       let qty = this.qty;
       let min = this.screenprint.breaks[0];
@@ -262,60 +101,113 @@ export default {
       }
       return isEnough;
     },
-    printedSides() {
-      let locations = this.locations;
-      if (this.isEnough == true) {
-        locations = locations.filter(l => l.colors != 0);
-      } else {
-        locations = "No Colors Selected";
-      }
-      if (locations.length == 0) {
-        locations = "";
-      }
-      let sides = locations;
-      return sides;
+    inputQty(value) {
+      var message = "Qty: " + value;
+      console.log(message);
     },
-    colorArr() {
-      let front = this.printedSides.front;
-      return front - 1;
+    pickColors() {
+      if (isEnough() === true) {
+      }
+    },
+    showBack() {
+      if (this.locations[0].colors > 0) {
+        return true;
+      }
+    },
+    route() {
+      return this.$route.name;
+    }
+  },
+  computed: {
+    //  isEnough() {
+    //    let qty = this.qty;
+    //    let min = this.screenprint.breaks[0];
+    //    let isEnough = false;
+    //    //- if qty is not enough this is false
+    //    if (qty >= min) {
+    //      isEnough = true;
+    //    }
+    //    return isEnough;
+    //  },
+    item() {
+      var id = this.id;
+      var item = this.items.find(item => item.id == id);
+      return item;
     },
     qtyArr() {
-      let result = "Not Ready";
+      let result = null;
       if (this.isEnough == true) {
         let qty = this.qty;
-        let priceBreaks = this.screenprint.breaks;
-        let value = priceBreaks.find(function(b) {
+        let breaks = this.screenprint.breaks;
+        let value = breaks.find(function(b) {
           return b >= qty;
         });
-        result = priceBreaks.indexOf(value);
+        result = breaks.indexOf(value);
       }
       return result;
     },
-    // - Find Base Price
-    printPrice() {
+    sides() {
+      var arr = [];
+      let front = null;
+      let back = null;
+      if (this.locations[0].colors != null) {
+        front = this.locations[0];
+      }
+      if (this.locations[1].colors != null) {
+        back = this.locations[1];
+      }
+      arr[0] = front;
+      arr[1] = back;
+      return arr;
+    },
+    job() {
+      var qtyArr = this.qtyArr;
       var matrix = this.screenprint.matrix;
+      var location2 = this.screenprint.location2;
       var isEnough = this.isEnough;
-      var base = "Not Ready";
       if (isEnough == true) {
-        var base = matrix[this.colorArr][this.qtyArr];
+        var base = matrix[this.sides[0].colors - 1][this.qtyArr];
+        if (this.sides[1]) {
+          var back = location2[this.sides[1].colors - 1];
+        }
       }
       return {
         base: base,
-        location2: "hi"
+        back: back,
+        upgrade: this.item.upgrade
+        //   location2: back
       };
     },
-    newObj() {
-      var locations = this.printedSides;
-      var i = 0;
-      var text = "";
-      while (locations[i]) {
-        text += locations[i].id;
-        i++;
+    price() {
+      var obj = {};
+      var base = this.job.base;
+      let back = this.job.back;
+      var upgrade = this.job.upgrade;
+      let total = "base + back + upgrade;";
+
+      if (back === undefined) {
+        total = base + upgrade;
+      } else {
+        total = base + back + upgrade;
       }
-      return text;
+
+      obj.per = "$" + total;
+
+      return obj;
     }
   }
 };
 </script>
 
-<style lang="sass" scoped></style>
+<style lang="sass" scoped>
+.wrapper
+	margin: 1em
+	text-align: center
+
+.colors
+	display: grid
+	grid-template-columns: 1fr 1fr
+	.subtitle
+		padding: none
+		margin: none
+</style>

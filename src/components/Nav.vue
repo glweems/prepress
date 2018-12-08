@@ -32,11 +32,11 @@ export default {
         {
           name: "Products",
           path: "/products/all"
+        },
+        {
+          name: "Quote",
+          path: "/quote/"
         }
-        //   {
-        //     name: "Calculator",
-        //     path: "/quote/"
-        //   },
         //   {
         //     name: "Tests",
         //     path: "/tests/"
