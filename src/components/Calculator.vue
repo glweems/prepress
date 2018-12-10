@@ -1,43 +1,54 @@
 <template lang="pug">
-.calculator
+#calculator
 
 	//- Product
 	template
 		Product(:items="this.$props.items", :key="item.id")
 
-	//- Calculator Form
-	el-form(ref='form', :model='form', labelPosition="top")
+	.calculator
+		//- Calculator Form
+		el-form(ref='form', :model='form', labelPosition="top")
 
-		//- Breakouts Switch
-		el-form-item(label='Have Sizes?')
-			el-switch(v-model='form.breakouts' @change="sizesSwitch()")
+			//- Breakouts Switch
+			el-form-item(label='Have Sizes?')
+				el-switch(v-model='form.breakouts' @change="sizesSwitch()")
+				
+				//- Total Qty			
+				.total-qty 
+					template(v-if="!form.breakouts")
+						el-form-item(label='Quantity')
+							el-input-number(v-model='form.qty', :min='0', :max='1000')
 
-		.total-qty // Total Qty
-			template(v-if="!form.breakouts")
-				el-form-item(label='Quantity')
-					el-input-number(v-model='form.qty', :min='0', :max='1000')
+				//- Breakouts
+				template(v-if="form.breakouts")
+					.scroller
+						template(v-for="size in form.sizes")
+							.scroll-item
+								el-form-item(:label='size.title')
+									el-input-number(v-model='size.qty', :min='0')
 
-		//- Breakouts
-		template(v-if="form.breakouts")
-			.scroller
-				template(v-for="size in form.sizes")
-					.scroll-item
-						el-form-item(:label='size.title')
-							el-input-number(v-model='size.qty', :min='0')
+				//- Printed Colors
+				.scroller
+					el-form-item(label="Number of Printed Colors")
+						template(v-for="location in form.locations")
+							.scroll-item
+								el-form-item(:label='location.id')
+									el-select(v-model='location.colors', :placeholder='location.id', :key="location.id" clearable)
+										el-option(v-for='color in screenprint.colors', :key='color', :label='color', :value='color')
 
-		//- Printed Colors
-		.scroller
-			el-form-item(label="Number of Printed Colors")
-				template(v-for="location in form.locations")
-					.scroll-item
-						el-form-item(:label='location.id')
-							el-select(v-model='location.colors', :placeholder='location.id', :key="location.id" clearable)
-								el-option(v-for='color in screenprint.colors', :key='color', :label='color', :value='color')
-
+			//- Quote Button
+			el-form-item
+				el-button(type="success", :disabled="submit()" @click="viewQuote()") Get Quote
+			
 		//- Quote
-		el-form-item
-			el-button(type="success", :disabled="submit()" @click="viewQuote()") Get Quote
+	template(v-if="form.viewQuote")
 		.quote
+			el-card.box-card
+				.clearfix(slot='header')
+					span Card name
+					el-button(style='float: right; padding: 3px 0', type='text') Operation button
+				.text.item(v-for='o in 4', :key='o') {{'List item ' + o }}		
+						
 </template>
 
 <script>
@@ -52,7 +63,6 @@ export default {
 	},
 	data() {
 		return {
-			text: {},
 			form: {
 				viewQuote: false,
 				breakouts: false,
@@ -111,7 +121,7 @@ export default {
 					[11.5, 10.75, 9, 7.5],
 					[14.25, 12.5, 9.5, 8]
 				],
-				location2: [1.25, 1.5, 1.75, 2]
+				secondLocation: [1.25, 1.5, 1.75, 2]
 			},
 			id: this.$route.params.id,
 			colorAbr: this.$route.query.color
@@ -120,17 +130,6 @@ export default {
 	methods: {
 		viewQuote() {
 			this.form.viewQuote = true;
-		},
-		open() {
-			this.$alert("This is a message", "Title", {
-				confirmButtonText: "OK",
-				callback: action => {
-					this.$message({
-						type: "info",
-						message: `action: ${action}`
-					});
-				}
-			});
 		},
 		sizesSwitch() {
 			this.form.qty = 0;
@@ -171,33 +170,107 @@ export default {
 			var item = this.items.find(item => item.id == id);
 			return item;
 		},
-		qtyArr() {
+		price() {
 			var qty = this.form.qty;
 			var breaks = this.screenprint.breaks;
+			var front = this.form.locations[0].colors;
+			var back = this.form.locations[1].colors;
+			var upgrade = this.item.upgrade;
+			var matrixTwo = this.screenprint.secondLocation;
+			var matrix = this.screenprint.matrix;
+			var tax = 0.07;
 			var value = 0;
 			var i;
-			for (i = 0; i < breaks.length; i++) {
-				if (qty >= breaks[i]) {
-					value = breaks[i];
+
+			// Get array value for matrix qty
+			function qtyArr() {
+				var result;
+				for (i = 0; i < breaks.length; i++) {
+					// takes qty and finds pricebreak
+					if (qty >= breaks[i]) {
+						value = breaks[i];
+					}
 				}
-				var result = breaks.indexOf(value);
+				result = breaks.indexOf(value);
+				if (result < 0) {
+					result = undefined;
+				}
+				return result;
 			}
-			if (result < 0) {
-				result = null;
+
+			var qtyArr = qtyArr();
+
+			function colorArr(colors) {
+				if (colors != 0) {
+					return colors - 1;
+				}
 			}
-			var colors = this.form.locations[0].colors - 1;
-			var matrix = this.screenprint.matrix;
-			var price = matrix[colors][result];
-			return price;
+
+			var baseColorArr = colorArr(front);
+
+			function basePrice(arr, col) {
+				return matrix[arr][col];
+			}
+
+			// Find if 2nd location has any printed colors
+			function secondPrint(colors) {
+				// If yes find how many and what cost is
+				var arr;
+				var value = 0;
+				if (colors != 0) {
+					arr = colorArr(colors);
+					value = matrixTwo[arr];
+				}
+				return value;
+			}
+
+			var backPrintPrice = secondPrint(back);
+
+			function pricePer(base, back, upgrade) {
+				return base + back + upgrade;
+			}
+			function subtotal(qty, pricePer) {
+				return qty * pricePer;
+			}
+
+			var pricePer = pricePer(
+				basePrice(baseColorArr, qtyArr),
+				secondPrint(back),
+				this.item.upgrade
+			);
+
+			var subtotal = subtotal(qty, pricePer);
+
+			function getTax(tax, subtotal) {
+				var result = tax * subtotal;
+				return +(Math.round(result + "e+2") + "e-2");
+			}
+
+			var tax = getTax(tax, subtotal);
+
+			var total = subtotal + tax;
+
+			var obj = {
+				base: basePrice(baseColorArr, qtyArr),
+				secondPrint: secondPrint(back),
+				upgrade: this.item.upgrade,
+				pricePer: pricePer,
+				subtotal: subtotal,
+				tax: tax,
+				total: total
+			};
+			return obj;
 		}
 	}
 };
 </script>
 
 <style lang="sass" scoped>
-.el-form
-	text-align: center
+#calculator
 	margin: 2vh 3vw
+
+.calculator
+	text-align: center
 
 .scroller
 	padding-left: 1em
@@ -217,5 +290,5 @@ export default {
 
 .total-qty
 	.el-input-number
-		width: 100%
+		// width: 100%
 </style>
