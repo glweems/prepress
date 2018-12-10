@@ -11,16 +11,16 @@
 
 			//- Breakouts Switch
 			el-form-item(label='Have Sizes?')
-				el-switch(v-model='form.breakouts' @change="sizesSwitch()")
+				el-switch(v-model='form.hasSizes' @change="sizesSwitch()")
 				
 				//- Total Qty			
 				.total-qty 
-					template(v-if="!form.breakouts")
+					template(v-if="!form.hasSizes")
 						el-form-item(label='Quantity')
 							el-input-number(v-model='form.qty', :min='0', :max='1000')
 
 				//- Breakouts
-				template(v-if="form.breakouts")
+				template(v-if="form.hasSizes")
 					.scroller
 						template(v-for="size in form.sizes")
 							.scroll-item
@@ -67,7 +67,7 @@ export default {
 		return {
 			form: {
 				viewQuote: false,
-				breakouts: false,
+				hasSizes: false,
 				qty: 0,
 				sizes: [
 					{
@@ -107,13 +107,6 @@ export default {
 					}
 				]
 			},
-			locations: [
-				{
-					id: "Front",
-					colors: null
-				},
-				{ id: "Back", colors: null }
-			],
 			screenprint: {
 				colors: [1, 2, 3, 4],
 				breaks: [12, 24, 36, 100],
@@ -124,9 +117,7 @@ export default {
 					[14.25, 12.5, 9.5, 8]
 				],
 				secondLocation: [1.25, 1.5, 1.75, 2]
-			},
-			id: this.$route.params.id,
-			colorAbr: this.$route.query.color
+			}
 		};
 	},
 	methods: {
@@ -158,6 +149,12 @@ export default {
 		}
 	},
 	computed: {
+		id() {
+			return this.$route.params.id;
+		},
+		colorAbr() {
+			return this.$route.query.color;
+		},
 		isReady() {
 			var status = false;
 			if (this.isEnough() && this.form.locations[0].colors > 0) {
@@ -165,7 +162,10 @@ export default {
 			}
 			return status;
 		},
-		totalQty() {
+		addedQty() {
+			if (!this.form.hasSizes) {
+				return undefined;
+			}
 			let total = 0;
 			var i;
 			for (i = 0; i < this.form.sizes.length; i++) {
@@ -174,15 +174,12 @@ export default {
 			this.form.qty = total;
 			return total;
 		},
-		item() {
-			var id = this.id;
-			var item = this.items.find(item => item.id == id);
-			return item;
-		},
 		price() {
+			// Function won't run till this.isReady = true
 			if (!this.isReady) {
 				return undefined;
 			}
+
 			var qty = this.form.qty;
 			var breaks = this.screenprint.breaks;
 			var front = this.form.locations[0].colors;
@@ -202,24 +199,24 @@ export default {
 					if (qty >= breaks[i]) {
 						value = breaks[i];
 					}
-				}
+				} // Match result to pricebreaks && return index
 				result = breaks.indexOf(value);
 				if (result < 0) {
 					result = undefined;
 				}
 				return result;
 			}
-
 			var qtyArr = qtyArr();
 
+			// Finds matrix index of colors passed to funct
 			function colorArr(colors) {
 				if (colors != 0) {
 					return colors - 1;
 				}
 			}
-
 			var baseColorArr = colorArr(front);
 
+			// Matches qtyArr & colorArr to matrix array
 			function basePrice(arr, col) {
 				return matrix[arr][col];
 			}
@@ -235,32 +232,31 @@ export default {
 				}
 				return value;
 			}
-
 			var backPrintPrice = secondPrint(back);
 
+			// Finds subtotal for single shirt
 			function pricePer(base, back, upgrade) {
 				return base + back + upgrade;
 			}
-			function subtotal(qty, pricePer) {
-				return qty * pricePer;
-			}
-
 			var pricePer = pricePer(
 				basePrice(baseColorArr, qtyArr),
 				secondPrint(back),
 				this.item.upgrade
 			);
 
+			// Calculates job subtotal
+			function subtotal(qty, pricePer) {
+				return qty * pricePer;
+			}
 			var subtotal = subtotal(qty, pricePer);
 
+			// Calculates TAX for subtotal
 			function getTax(tax, subtotal) {
 				var result = tax * subtotal;
+				// Rounds result to only 2 decimals
 				return +(Math.round(result + "e+2") + "e-2");
 			}
-
 			var tax = getTax(tax, subtotal);
-
-			var total = subtotal + tax;
 
 			var obj = {
 				base: basePrice(baseColorArr, qtyArr),
@@ -269,9 +265,14 @@ export default {
 				pricePer: pricePer,
 				subtotal: subtotal,
 				tax: tax,
-				total: total
+				total: subtotal + tax
 			};
 			return obj;
+		},
+		item() {
+			var id = this.id;
+			var item = this.items.find(item => item.id == id);
+			return item;
 		}
 	}
 };
