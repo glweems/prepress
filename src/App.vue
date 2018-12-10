@@ -46,6 +46,14 @@ document.addEventListener("DOMContentLoaded", () => {
 html
 	background: $light
 	
-// #app
-// 	text-align: center
+#layout
+	margin: 1em
+
+input
+  &[type="color"], &[type="date"], &[type="datetime"], &[type="datetime-local"], &[type="email"], &[type="month"], &[type="number"], &[type="password"], &[type="search"], &[type="tel"], &[type="text"], &[type="time"], &[type="url"], &[type="week"]
+    font-size: 16px
+
+select:focus, textarea
+  font-size: 16px
+
 </style>

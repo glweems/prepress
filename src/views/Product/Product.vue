@@ -16,7 +16,7 @@
 							Swatches(:item="item")
 						.content
 							.features
-								ul 
+								ul
 									template(v-for="(feature, index) in item.features")
 										li {{ feature }}
 					footer.card-footer
@@ -58,61 +58,63 @@
 import Swatches from "@/views/Product/Swatches";
 
 export default {
-  name: "Product",
-  props: ["items"],
-  components: {
-    Swatches
-  },
-  data() {
-    return {};
-  },
-  computed: {
-    route() {
-      return this.$route.name;
-    },
-    id() {
-      return this.$route.params.id;
-    },
-    item() {
-      var id = this.id;
-      var item = this.items.find(item => item.id == id);
-      return item;
-    },
-    colorName() {
-      let name = this.$route.query.color;
-      if (name == undefined) {
-        name = this.item.colors[0].abr;
-      }
-      return name;
-    },
-    color() {
-      let color = this.item.colors.find(color => color.abr == this.colorName);
-      return color;
-    },
-    img() {
-      return this.color.path;
-    }
-  },
-  methods: {
-    view(name) {
-      var route = this.route;
-      if (route == name) {
-        return true;
-      }
-    },
-    getQuote() {
-      var obj = {
-        path: "/quote/id/" + this.item.id,
-        params: {
-          id: this.item.id
-        },
-        query: {
-          color: this.color.abr
-        }
-      };
-      return obj;
-    }
-  }
+	name: "Product",
+	props: ["items"],
+	components: {
+		Swatches
+	},
+	data() {
+		return {};
+	},
+	computed: {
+		route() {
+			return this.$route.name;
+		},
+		id() {
+			return this.$route.params.id;
+		},
+		item() {
+			var id = this.id;
+			var item = this.items.find(item => item.id == id);
+			return item;
+		},
+		colorName() {
+			let name = this.$route.query.color;
+			if (name == undefined) {
+				name = this.item.colors[0].abr;
+			}
+			return name;
+		},
+		color() {
+			let color = this.item.colors.find(
+				color => color.abr == this.colorName
+			);
+			return color;
+		},
+		img() {
+			return this.color.path;
+		}
+	},
+	methods: {
+		view(name) {
+			var route = this.route;
+			if (route == name) {
+				return true;
+			}
+		},
+		getQuote() {
+			var obj = {
+				path: "/quote/id/" + this.item.id,
+				params: {
+					id: this.item.id
+				},
+				query: {
+					color: this.color.abr
+				}
+			};
+			return obj;
+		}
+	}
 };
 </script>
 

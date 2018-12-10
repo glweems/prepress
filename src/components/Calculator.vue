@@ -1,213 +1,221 @@
 <template lang="pug">
-.container 
+.calculator
 
 	//- Product
-	//- template(v-if="route('quoteId')")
 	template
 		Product(:items="this.$props.items", :key="item.id")
 
-		//- Calculator
-	.card
-		header.card-header
-			p.card-header-title Options
-			a.card-header-icon(href='#', aria-label='more options')
-				span.icon
-					i.fas.fa-angle-down(aria-hidden='true')
-		.card-content
-			.step.qty
-				.content
-					p.subtitle Total Quantity
-					el-input-number(v-model='qty', @change='inputQty(qty)', :min='0', :max='1000')
-					template(v-if="qty < 12")
-						p.help.is-danger Minimum QTY 12
-				template(v-if="isEnough()")
-					.content
-						p.subtitle Print Locations
-						template(v-for="location in locations")
-							label.label {{ location.id }}
-							el-input-number(v-model='location.colors', :min='0', :max='4')
-							
+	//- Calculator Form
+	el-form(ref='form', :model='form', labelPosition="top")
 
-							//- input.input(v-model="qty", type='text', pattern="[0-9]*")
-					//- 		hr
-					//- .step.locations
-					//- 	//- Pick Locations & Number of Colors
-					//- 	strong Number of sides being printed
-					//- 	hr
-					//- 	.colors
-					//- 		div
-					//- 			p.subtitle.is-6 {{locations[0].id}}
-					//- 			el-checkbox
-							//- template(v-if="showBack()")
-							//- 	div
-							//- 		p.subtitle.is-6 {{locations[1].id}}
-							//- 		v-select(v-model="locations[1].colors", :options="screenprint.colors")
-	//- .wrapper
-	//- 	article.message.is-success
-	//- 		.message-header
-	//- 			p Your Price Is!
-	//- 			button.delete(aria-label='delete')
-	//- 		.message-body
-	//- 			p.title {{ price.per }}
+		//- Breakouts Switch
+		el-form-item(label='Have Sizes?')
+			el-switch(v-model='form.breakouts' @change="sizesSwitch()")
 
-	</template>
+		.total-qty // Total Qty
+			template(v-if="!form.breakouts")
+				el-form-item(label='Quantity')
+					el-input-number(v-model='form.qty', :min='0', :max='1000')
+
+		//- Breakouts
+		template(v-if="form.breakouts")
+			.scroller
+				template(v-for="size in form.sizes")
+					.scroll-item
+						el-form-item(:label='size.title')
+							el-input-number(v-model='size.qty', :min='0')
+
+		//- Printed Colors
+		.scroller
+			el-form-item(label="Number of Printed Colors")
+				template(v-for="location in form.locations")
+					.scroll-item
+						el-form-item(:label='location.id')
+							el-select(v-model='location.colors', :placeholder='location.id', :key="location.id" clearable)
+								el-option(v-for='color in screenprint.colors', :key='color', :label='color', :value='color')
+
+		//- Quote
+		el-form-item
+			el-button(type="success", :disabled="submit()" @click="viewQuote()") Get Quote
+		.quote
+</template>
 
 <script>
 import List from "@/views/Product/List";
 import Product from "@/views/Product/Product";
 export default {
-  name: "Calculator",
-  props: ["items"],
-  components: {
-    List,
-    Product
-  },
-  data() {
-    return {
-      id: this.$route.params.id,
-      colorAbr: this.$route.query.color,
-      qty: 12,
-      locations: [
-        {
-          id: "Front",
-          colors: null
-        },
-        { id: "Back", colors: null }
-      ],
-      progress: {
-        steps: [1, 2, 3, 4, 5, 6]
-      },
-      screenprint: {
-        colors: [1, 2, 3, 4],
-        breaks: [12, 24, 36, 100],
-        matrix: [
-          [10, 9, 8, 7],
-          [10.75, 9.5, 8.25, 7.25],
-          [11.5, 10.75, 9, 7.5],
-          [14.25, 12.5, 9.5, 8]
-        ],
-        location2: [1.25, 1.5, 1.75, 2]
-      }
-    };
-  },
-  methods: {
-    isEnough() {
-      let qty = this.qty;
-      let min = this.screenprint.breaks[0];
-      let isEnough = false;
-      //- if qty is not enough this is false
-      if (qty >= min) {
-        isEnough = true;
-      }
-      return isEnough;
-    },
-    inputQty(value) {
-      var message = "Qty: " + value;
-      console.log(message);
-    },
-    pickColors() {
-      if (isEnough() === true) {
-      }
-    },
-    showBack() {
-      if (this.locations[0].colors > 0) {
-        return true;
-      }
-    },
-    route() {
-      return this.$route.name;
-    }
-  },
-  computed: {
-    //  isEnough() {
-    //    let qty = this.qty;
-    //    let min = this.screenprint.breaks[0];
-    //    let isEnough = false;
-    //    //- if qty is not enough this is false
-    //    if (qty >= min) {
-    //      isEnough = true;
-    //    }
-    //    return isEnough;
-    //  },
-    item() {
-      var id = this.id;
-      var item = this.items.find(item => item.id == id);
-      return item;
-    },
-    qtyArr() {
-      let result = null;
-      if (this.isEnough == true) {
-        let qty = this.qty;
-        let breaks = this.screenprint.breaks;
-        let value = breaks.find(function(b) {
-          return b >= qty;
-        });
-        result = breaks.indexOf(value);
-      }
-      return result;
-    },
-    sides() {
-      var arr = [];
-      let front = null;
-      let back = null;
-      if (this.locations[0].colors != null) {
-        front = this.locations[0];
-      }
-      if (this.locations[1].colors != null) {
-        back = this.locations[1];
-      }
-      arr[0] = front;
-      arr[1] = back;
-      return arr;
-    },
-    job() {
-      var qtyArr = this.qtyArr;
-      var matrix = this.screenprint.matrix;
-      var location2 = this.screenprint.location2;
-      var isEnough = this.isEnough;
-      if (isEnough == true) {
-        var base = matrix[this.sides[0].colors - 1][this.qtyArr];
-        if (this.sides[1]) {
-          var back = location2[this.sides[1].colors - 1];
-        }
-      }
-      return {
-        base: base,
-        back: back,
-        upgrade: this.item.upgrade
-        //   location2: back
-      };
-    },
-    price() {
-      var obj = {};
-      var base = this.job.base;
-      let back = this.job.back;
-      var upgrade = this.job.upgrade;
-      let total = "base + back + upgrade;";
-
-      if (back === undefined) {
-        total = base + upgrade;
-      } else {
-        total = base + back + upgrade;
-      }
-
-      obj.per = "$" + total;
-
-      return obj;
-    }
-  }
+	name: "Calculator",
+	props: ["items"],
+	components: {
+		List,
+		Product
+	},
+	data() {
+		return {
+			text: {},
+			form: {
+				viewQuote: false,
+				breakouts: false,
+				qty: 0,
+				sizes: [
+					{
+						id: "S",
+						title: "Small",
+						qty: 0
+					},
+					{
+						id: "M",
+						title: "Medium",
+						qty: 0
+					},
+					{
+						id: "L",
+						title: "Large",
+						qty: 0
+					},
+					{
+						id: "XL",
+						title: "Extra Large",
+						qty: 0
+					},
+					{
+						id: "2XL",
+						title: "Double Extra Large",
+						qty: 0
+					}
+				],
+				locations: [
+					{
+						id: "Front",
+						colors: ""
+					},
+					{
+						id: "Back",
+						colors: ""
+					}
+				]
+			},
+			locations: [
+				{
+					id: "Front",
+					colors: null
+				},
+				{ id: "Back", colors: null }
+			],
+			screenprint: {
+				colors: [1, 2, 3, 4],
+				breaks: [12, 24, 36, 100],
+				matrix: [
+					[10, 9, 8, 7],
+					[10.75, 9.5, 8.25, 7.25],
+					[11.5, 10.75, 9, 7.5],
+					[14.25, 12.5, 9.5, 8]
+				],
+				location2: [1.25, 1.5, 1.75, 2]
+			},
+			id: this.$route.params.id,
+			colorAbr: this.$route.query.color
+		};
+	},
+	methods: {
+		viewQuote() {
+			this.form.viewQuote = true;
+		},
+		open() {
+			this.$alert("This is a message", "Title", {
+				confirmButtonText: "OK",
+				callback: action => {
+					this.$message({
+						type: "info",
+						message: `action: ${action}`
+					});
+				}
+			});
+		},
+		sizesSwitch() {
+			this.form.qty = 0;
+			var i;
+			for (i = 0; i < breaks.length; i++) {
+				breaks[i].qty = 0;
+			}
+		},
+		isEnough() {
+			if (this.form.qty >= this.screenprint.breaks[0]) {
+				return true;
+			}
+			if (this.totalQty >= this.screenprint.breaks[0]) {
+				return true;
+			}
+		},
+		submit() {
+			if (!this.isEnough()) {
+				return true;
+			}
+		},
+		route() {
+			return this.$route.name;
+		}
+	},
+	computed: {
+		totalQty() {
+			let total = 0;
+			var i;
+			for (i = 0; i < this.form.sizes.length; i++) {
+				total += this.form.sizes[i].qty;
+			}
+			this.form.qty = total;
+			return total;
+		},
+		item() {
+			var id = this.id;
+			var item = this.items.find(item => item.id == id);
+			return item;
+		},
+		qtyArr() {
+			var qty = this.form.qty;
+			var breaks = this.screenprint.breaks;
+			var value = 0;
+			var i;
+			for (i = 0; i < breaks.length; i++) {
+				if (qty >= breaks[i]) {
+					value = breaks[i];
+				}
+				var result = breaks.indexOf(value);
+			}
+			if (result < 0) {
+				result = null;
+			}
+			var colors = this.form.locations[0].colors - 1;
+			var matrix = this.screenprint.matrix;
+			var price = matrix[colors][result];
+			return price;
+		}
+	}
 };
 </script>
 
 <style lang="sass" scoped>
-.wrapper
-	margin: 1em
+.el-form
 	text-align: center
+	margin: 2vh 3vw
 
-.colors
-	display: grid
-	grid-template-columns: 1fr 1fr
-	.subtitle
-		padding: none
-		margin: none
+.scroller
+	padding-left: 1em
+	overflow-x: scroll
+	overflow-y: hidden
+	-webkit-overflow-scrolling: touch
+	white-space: nowrap
+
+.scroll-item
+	display: inline-flex
+	margin: 0 .25em
+	.el-input-number
+		max-width: 10em
+		display: flex
+	.el-select
+		max-width: 7em
+
+.total-qty
+	.el-input-number
+		width: 100%
 </style>
