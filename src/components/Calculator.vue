@@ -40,6 +40,7 @@
 			el-form-item
 				el-button(type="success", :disabled="submit()" @click="viewQuote()") Get Quote
 			
+			//- p {{this.isReady()}}
 		//- Quote
 	template(v-if="form.viewQuote")
 		.quote
@@ -48,6 +49,7 @@
 					span Card name
 					el-button(style='float: right; padding: 3px 0', type='text') Operation button
 				.text.item(v-for='o in 4', :key='o') {{'List item ' + o }}		
+				
 						
 </template>
 
@@ -139,10 +141,10 @@ export default {
 			}
 		},
 		isEnough() {
-			if (this.form.qty >= this.screenprint.breaks[0]) {
-				return true;
-			}
-			if (this.totalQty >= this.screenprint.breaks[0]) {
+			if (
+				this.form.qty >= this.screenprint.breaks[0] ||
+				this.totalQty >= this.screenprint.breaks[0]
+			) {
 				return true;
 			}
 		},
@@ -156,6 +158,13 @@ export default {
 		}
 	},
 	computed: {
+		isReady() {
+			var status = false;
+			if (this.isEnough() && this.form.locations[0].colors > 0) {
+				status = true;
+			}
+			return status;
+		},
 		totalQty() {
 			let total = 0;
 			var i;
@@ -171,6 +180,9 @@ export default {
 			return item;
 		},
 		price() {
+			if (!this.isReady) {
+				return undefined;
+			}
 			var qty = this.form.qty;
 			var breaks = this.screenprint.breaks;
 			var front = this.form.locations[0].colors;
