@@ -2,27 +2,25 @@
 .product
 	//- Single Product View
 	template(v-if="view('product')")
-		.single
-				.card
-					//- header.card-header
-						p.card-header-title {{ item.title }}
-					.card-content
-						p.title {{item.title}}
-						p.subtitle.is-4 {{ item.brand }}
-						.card-image
-							figure.image
+			.card
+				.card-content
+					p.title.is-5 {{item.title}}
+					p.subtitle.is-6 {{ item.brand }}
+					.media-content
+						el-carousel(:autoplay="false", key="images", arrow="always")
+							el-carousel-item(v-for="(color, index) in item.colors", :key="color.name")
 								img#item-img(:src="color.path")
-						.media-content
-							Swatches(:item="item")
-						.content
-							.features
-								ul
-									template(v-for="(feature, index) in item.features")
-										li {{ feature }}
-					footer.card-footer
-						router-link.card-footer-item(:to="getQuote()") Get Quote
+
+					.content
+						.quote-btn
+							el-button(type='success' @click="getQuote()" plain) Get Quote
+						.features
+							ul
+								template(v-for="(feature, index) in item.features")
+									li {{ feature }}
+				
 	//- Multi Product View
-	template(v-if="view('all')")
+	template(v-if="view('products')")
 		.card
 			header.card-header
 				slot(name="title")
@@ -38,7 +36,6 @@
 						slot(name="swatches")
 						slot(name="link")
 
-
 	//- Calculator Product View
 	template(v-if="view('quoteId')")
 		.card
@@ -52,11 +49,11 @@
 						p.subtitle.is-6 {{ item.brand }}
 				.content
 					|	Color: {{ color.name }}
+					
 </template>
 
 <script>
 import Swatches from "@/views/Product/Swatches";
-
 export default {
 	name: "Product",
 	props: ["items"],
@@ -71,7 +68,7 @@ export default {
 			return this.$route.name;
 		},
 		id() {
-			return this.$route.params.id;
+			return this.$route.query.id;
 		},
 		item() {
 			var id = this.id;
@@ -112,22 +109,33 @@ export default {
 					color: this.color.abr
 				}
 			};
-			return obj;
+			this.$router.push(obj);
 		}
 	}
 };
 </script>
 
 <style lang="sass" scoped>
-v-carousel
-	max-width: 50%
-.product
-	margin: .5em 0
 
-.single
+.product
+	.card-content
+		text-align: left
+	text-align: center
+	
+	.quote-btn
+		text-align: center
+		padding: .25em
+		.el-button
+			width: 90%
+		
+.el-carousel
+	background: white
 	img
 		padding: 1.25em
+		// max-width: 80%
 
 .features
+	// padding-top: 1em
 	text-align: left
+
 </style>

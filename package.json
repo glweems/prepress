@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "npm run vue-cli-service serve:vue & npm run webpack",
     "build": "vue-cli-service build",
     "dev": "webpack --watch --mode development",
     "vue-devtools": "vue-devtools",
@@ -21,22 +21,10 @@
     "vuetify": "^1.3.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.2.0",
-    "@vue/cli-service": "^3.2.0",
-    "@vue/devtools": "^4.1.5",
-    "html-loader": "^0.5.5",
-    "html-webpack-plugin": "^3.2.0",
-    "node-sass": "^4.9.0",
-    "pug": "^2.0.3",
-    "pug-html-loader": "^1.1.5",
-    "pug-plain-loader": "^1.0.0",
-    "sass-loader": "^7.0.1",
-    "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.1",
-    "vue-cli-plugin-vuetify": "^0.4.6",
-    "vue-template-compiler": "^2.5.17",
-    "vuetify-loader": "^1.0.5",
-    "webpack": "^4.26.1",
-    "webpack-cli": "^3.1.2"
+    "babel-core": "^6.21.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-es2015": "^6.18.0",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.4"
   }
 }

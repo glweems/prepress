@@ -1,10 +1,5 @@
 {
-	"folders": [
-		{
-			"path": "."
-		}
-	],
-   "settings": {
-		"vscode-journal-view.expanded": true
-   }
+	"folders": [{
+		"path": "."
+	}],
 }

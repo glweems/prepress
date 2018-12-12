@@ -1,5 +1,8 @@
-import Vue from "vue";
-import Router from "vue-router";
+import Vue from "vue"
+import Router from "vue-router"
+// import Layout from "@/components/Layout"
+// import Filter from "@/components/Filter"
+// import Nav from "@/components/Nav"
 
 Vue.use(Router);
 
@@ -7,50 +10,31 @@ export default new Router({
 	mode: "history",
 	routes: [{
 			path: "/",
-			// name: "home",
-			component: () => import("@/views/Home")
+			name: "home",
+			component: () => import("@/views/Home"),
+			props: true
 		},
 		{
 			path: "/about",
-			// name: "about",
-			component: () => import("@/views/About")
+			name: "about",
+			component: () => import("@/views/About"),
+			props: true
 		},
 		{
-			path: "/products/",
+			path: "/products",
+			name: "products",
 			component: () => import("@/components/Products"),
-			props: true,
-			children: [{
-				path: "/products/all/",
-				name: "all",
-				component: () => import("@/views/Product/List"),
-				props: true,
-			}, {
-				path: "/products/id/:id/",
-				name: "product",
-				component: () => import("@/views/Product/Product"),
-				props: true,
-			}, {
-				path: "/quote/",
-				name: "calculator",
-				component: () => import("@/components/Calculator"),
-				props: true,
-				children: [{
-					path: "/quote/products/",
-					name: "quoteAll",
-					component: () => import("@/views/Product/List"),
-					props: true,
-				}, {
-					path: "/quote/id/:id/",
-					name: "quoteId",
-					component: () => import("@/views/Product/Product"),
-					props: true,
-				}, {
-					path: "/quote/price/",
-					name: "pricing",
-					component: () => import("@/views/Product/Product"),
-					props: true,
-				}, ]
-			}]
+			props: true
+		}, {
+			path: "/product",
+			name: "product",
+			component: () => import("@/views/Product/Product"),
+			props: true
+		}, {
+			path: "/calculator",
+			name: "calculator",
+			component: () => import("@/components/Calculator"),
+			props: true
 		},
 	]
-});
+})
