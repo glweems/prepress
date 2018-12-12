@@ -9,7 +9,6 @@
 import Items from "@/App";
 export default {
   name: "About",
-  props: ["products"],
   data() {
     return {
       Items: {}

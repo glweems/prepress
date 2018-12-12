@@ -1,6 +1,8 @@
 <template lang="pug">
 .products
-	template(v-if="view('products')", v-for="item in items")
+	template(v-for="item in items")
+		p-item(:item="item", :key="item.id")
+	//- template(v-if="view('products')", v-for="item in items")
 		.product-wrapper(@click="cardClick(item)")
 			Product(:items="items", :item="item", :key="item.id")
 
@@ -18,37 +20,17 @@
 
 				span(slot="img") 
 					img(:id="item.id", :src="img(item)")
-		
-
-	template(v-if="view('quoteAll')")
-		template(v-for="item in items")
-			.product-wrapper(@click="cardClick(item)")
-				Product(:items="items", :item="item", :key="item.id")
-
-					span(slot="title")
-						p.card-header-title {{ item.title }}
-
-					span(slot="brand") 
-						p.subtitle.is-6 {{ item.brand }}
-
-					span(slot="fabric")
-						p
-							small {{ item.fabric }}
-					span(slot="swatches")
-						swatches(:item="item")
-
-					span(slot="img") 
-						img(:id="item.id", :src="img(item)")
-		
+				
 </template>
 
 <script>
 import Product from "@/views/Product/Product";
 import Swatches from "@/views/Product/Swatches";
+import ProductsItem from "@/components/ProductsItem";
 export default {
 	name: "Products",
 	props: ["items"],
-	components: { Product, Swatches },
+	components: { Product, Swatches, "p-item": ProductsItem },
 	data() {
 		return {};
 	},

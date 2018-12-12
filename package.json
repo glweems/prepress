@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "npm run vue-cli-service serve:vue & npm run webpack",
+    "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "dev": "webpack --watch --mode development",
     "vue-devtools": "vue-devtools",
