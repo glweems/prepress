@@ -11,8 +11,8 @@ import Nav from "@/components/Nav";
 export default {
 	name: "App",
 	components: {
-		Layout,
-		Nav
+		Nav,
+		Layout
 	},
 	data() {
 		return {
@@ -36,6 +36,7 @@ export default {
 			],
 			items: [
 				{
+					index: 0,
 					id: "G500",
 					brand: "Gildan",
 					title: "Heavy Cotton T-Shirt",
@@ -77,6 +78,7 @@ export default {
 					]
 				},
 				{
+					index: 1,
 					id: "C3001",
 					brand: "Bella + Canvas",
 					title: "Ringspun Cotton T-Shirt",
@@ -118,6 +120,7 @@ export default {
 					]
 				},
 				{
+					index: 2,
 					id: "980",
 					brand: "Anvil",
 					title: "Lightweight T-Shirt",
@@ -157,9 +160,53 @@ export default {
 							path: require("@/assets/img/shirts/3001c/3001c_red.jpg")
 						}
 					]
+				},
+				{
+					index: 3,
+					id: "C1717",
+					brand: "Comfort Colors",
+					title: "Adult Heavyweight RS T-Shirt",
+					fabric: "100% Cotton",
+					upgrade: 4,
+					tbn: "",
+					features: [
+						"100% ringspun cotton",
+						"preshrunk",
+						"soft-washed",
+						"garment-dyed fabric",
+						"twill taped shoulder-to-shoulder",
+						"set-in sleeves",
+						"double-needle stitched sleeves and bottom hem",
+						"1'' ribbed collar with double-needle topstitched neckline"
+					],
+					colors: [
+						{
+							name: "White",
+							abr: "wht",
+							hex: "#ffffff",
+							path: require("@/assets/img/shirts/C1717/C1717_wht.jpg")
+						},
+						{
+							name: "Demin",
+							abr: "den",
+							hex: "#38373F",
+							path: require("@/assets/img/shirts/C1717/C1717_den.jpg")
+						},
+						{
+							name: "Brick",
+							abr: "brk",
+							hex: "#6A2C2F",
+							path: require("@/assets/img/shirts/C1717/C1717_brk.jpg")
+						}
+					]
 				}
 			]
 		};
+	},
+	methods: {
+		getPath(item) {
+			return "item";
+		}
 	}
 };
 </script>
@@ -169,15 +216,14 @@ export default {
 
 html
 	background: $light
-	
+
 #layout
 	margin: 1em
 
 input
   &[type="color"], &[type="date"], &[type="datetime"], &[type="datetime-local"], &[type="email"], &[type="month"], &[type="number"], &[type="password"], &[type="search"], &[type="tel"], &[type="text"], &[type="time"], &[type="url"], &[type="week"]
-    font-size: 16px
+	 font-size: 16px
 
 select:focus, textarea
   font-size: 16px
-
 </style>
