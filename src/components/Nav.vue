@@ -1,8 +1,6 @@
 <template lang="pug">
 .nav
 	nav
-		.nav-brand
-			i(:src="brand")
 		.nav-item(v-for="page in pages")
 			router-link(:to="page.path", :key="page.id") {{ page.id }}
 	
@@ -21,21 +19,29 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+@import "@/sass/main.sass"
+
 nav
 	display: flex
-	background: white
-	padding: 1vh 1em
+	background: $dark
+	padding: .6em
+	padding-left: 0
 	overflow-x: scroll
 	overflow-y: hidden
 	-webkit-overflow-scrolling: touch
 	white-space: nowrap
-	text-align: right
+	font-weight: bold
 	
-	// .nav-brand
-
 	
-
+.nav-item
+	margin-left: .5em
+	a
+		padding-right: .5em
+		// border-right: 1px solid lightgrey
 a
-	padding: 0 1vw
+	color: $light
+a.router-link-exact-active
+		color: $primary
+		font-size: 17px
 
 </style>

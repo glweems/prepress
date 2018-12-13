@@ -1,8 +1,37 @@
 <template lang="pug">
 #calculator
-
+	
+	.p-details(v-if="hasItem")
+		p Product: 
+			span
+				h1 {{ item.title }} 
+		
 	//- Product
 	.calculator
+	
+		.quote(v-if="form.viewQuote")
+			el-card.box-card
+				.clearfix(slot='header')
+					span Job Details
+					el-button(style='float: right; padding: 3px 0', type='text') Save Quote
+					
+				.text.item Product: {{ item.title }}
+				.text.item Color:
+					span(:style="{ color: color.hex }") {{ "   " + color.name }}
+					
+				template(v-if="form.hasSizes" v-for="size in form.sizes")
+					.text.item(v-if="size.qty != 0") {{size.id}} - {{size.qty}}
+					
+				.text.item(v-if="form.hasSizes") Total: {{ form.qty }}
+				
+				.text.item(v-if="!form.hasSizes") Qty: {{ form.qty }}
+				.text.item Printed Colors Front: {{ form.locations[0].colors }}
+				.text.item(v-if="form.locations[1].colors != 0") Printed Colors Back: {{ form.locations[1].colors }}
+				.text.item Price per shirt: ${{ price.pricePer }}
+				.text.item Subtotal: ${{ price.subtotal }}
+				.text.item Tax: ${{ price.tax }}
+				.text.item Total: ${{ price.total }}
+				
 		//- Calculator Form
 		el-form(ref='form', :model='form', labelPosition="top")
 
@@ -39,29 +68,7 @@
 			
 			//- p {{this.isReady()}}
 		//- Quote
-	template(v-if="form.viewQuote")
-		.quote
-			el-card.box-card
-				.clearfix(slot='header')
-					span Job Details
-					el-button(style='float: right; padding: 3px 0', type='text') Save Quote
-					
-				.text.item Product: {{ item.title }}
-				.text.item Color:
-					span(:style="{ color: color.hex }") {{ "   " + color.name }}
-					
-				template(v-if="form.hasSizes" v-for="size in form.sizes")
-					.text.item(v-if="size.qty != 0") {{size.id}} - {{size.qty}}
-					
-				.text.item(v-if="form.hasSizes") Total: {{ form.qty }}
-				
-				.text.item(v-if="!form.hasSizes") Qty: {{ form.qty }}
-				.text.item Printed Colors Front: {{ form.locations[0].colors }}
-				.text.item(v-if="form.locations[1].colors != 0") Printed Colors Back: {{ form.locations[1].colors }}
-				.text.item Price per shirt: ${{ price.pricePer }}
-				.text.item Subtotal: ${{ price.subtotal }}
-				.text.item Tax: ${{ price.tax }}
-				.text.item Total: ${{ price.total }}
+		
 				
 				
 						
@@ -167,10 +174,17 @@ export default {
 	},
 	computed: {
 		id() {
-			return this.$route.params.id;
+			return this.$route.query.id;
 		},
 		colorAbr() {
 			return this.$route.query.color;
+		},
+		hasItem() {
+			if (this.id) {
+				return true;
+			} else {
+				return false;
+			}
 		},
 		color() {
 			let color = this.item.colors.find(color => color.abr == this.colorAbr);
@@ -325,4 +339,7 @@ export default {
 .total-qty
 	.el-input-number
 		// width: 100%
+		
+.quote
+	text-align: left
 </style>

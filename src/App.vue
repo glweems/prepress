@@ -1,18 +1,20 @@
 <template lang="pug">
 #app
 	Nav(:pages="pages")
-	router-view(:items="items")
+	router-view(:items="items", :filters="filters")
 		
 </template>
 
 <script>
 import Layout from "@/components/Layout";
 import Nav from "@/components/Nav";
+import Scroller from "@/components/Scroller";
 export default {
 	name: "App",
 	components: {
 		Nav,
-		Layout
+		Layout,
+		Scroller
 	},
 	data() {
 		return {
@@ -32,6 +34,28 @@ export default {
 				{
 					id: "Quote",
 					path: "/calculator"
+				}
+			],
+			filters: [
+				{
+					id: "Brand",
+					data: ["Gildan", "Anvil", "Comfort Colors", "Bella + Canvas"]
+				},
+				{
+					id: "Fabric",
+					data: ["100% Cotton", "50% / 50%", "100% Polyester"]
+				},
+				{
+					id: "Upgrade",
+					data: [0, 1, 2, 3, 4]
+				},
+				{
+					id: "Color",
+					data: [1, 2, 3, 4, 5, 6]
+				},
+				{
+					id: "Style",
+					data: ["Short Sleeve", "Longsleeve", "V-Neck"]
 				}
 			],
 			items: [
@@ -213,17 +237,23 @@ export default {
 
 <style lang="sass">
 @import "@/sass/main.sass"
+@import url("https://use.typekit.net/scb7avt.css")
 
-html
-	background: $light
+// html
+// 	background: $light
+	
+// h1,h2,h3,h4,h5,h6, p, a
+// 	font-family: brandon-grotesque, sans-serif
+// 	font-weight: 400
+// 	font-style: normal
 
-#layout
-	margin: 1em
+// #layout
+// 	margin: 1em
 
-input
-  &[type="color"], &[type="date"], &[type="datetime"], &[type="datetime-local"], &[type="email"], &[type="month"], &[type="number"], &[type="password"], &[type="search"], &[type="tel"], &[type="text"], &[type="time"], &[type="url"], &[type="week"]
-	 font-size: 16px
+// input
+// 	[type="color"], &[type="date"], &[type="datetime"], &[type="datetime-local"], &[type="email"], &[type="month"], &[type="number"], &[type="password"], &[type="search"], &[type="tel"], &[type="text"], &[type="time"], &[type="url"], &[type="week"]
+// 	 font-size: 16px
 
-select:focus, textarea
-  font-size: 16px
+// select:focus, textarea
+//   font-size: 16px
 </style>

@@ -1,3 +1,31 @@
 @import "./node_modules/bulma/bulma.sass"
 
-// #app`
+/* RGB */
+$dark: rgba(35, 40, 49, 1);
+$color2: rgba(44, 50, 61, 1);
+$color3: rgba(76, 80, 108, 1);
+$primary: rgba(95, 199, 130, 1);
+$light: rgba(247, 247, 247, 1);
+	
+@mixin font-stack 
+	font-family: brandon-grotesque, sans-serif
+	// font-size: 18px
+	font-weight: 500
+	
+html
+	background: $light
+	// font-weight: 400
+	font-style: normal
+	color: $primary
+
+h1, h2, h3, h4, h5, h6, p, button, a, select, input
+	@include font-stack
+	
+h1, h2, h3, h4, h5, h6
+	font-weight: bold
+	
+input
+	font-size: 19px
+
+#layout
+	margin: 1em 0

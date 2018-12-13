@@ -1,5 +1,6 @@
 <template lang="pug">
 .product
+
 	//- Single Product View
 	template(v-if="view('product')")
 			.card
@@ -101,11 +102,9 @@ export default {
 		},
 		getQuote() {
 			var obj = {
-				path: "/quote/id/" + this.item.id,
-				params: {
-					id: this.item.id
-				},
+				path: "/calculator",
 				query: {
+					id: this.item.id,
 					color: this.color.abr
 				}
 			};
@@ -116,18 +115,19 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+@import "@/sass/main.sass"
 
 .product
 	.card-content
 		text-align: left
 	text-align: center
-	
+
 	.quote-btn
 		text-align: center
 		padding: .25em
 		.el-button
 			width: 90%
-		
+
 .el-carousel
 	background: white
 	img
@@ -137,5 +137,4 @@ export default {
 .features
 	// padding-top: 1em
 	text-align: left
-
 </style>

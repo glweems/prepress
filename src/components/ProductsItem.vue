@@ -5,7 +5,7 @@
 		p.item-title {{ item.title }}
 		p.item-brand {{ item.brand }}
 		p.item-fabric {{ item.fabric }}
-		router-link(:to="url") go
+		router-link(:to="url") Select
 </template>
 
 <script>
