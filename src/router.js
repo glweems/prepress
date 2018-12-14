@@ -1,8 +1,5 @@
 import Vue from "vue"
 import Router from "vue-router"
-// import Layout from "@/components/Layout"
-// import Filter from "@/components/Filter"
-// import Nav from "@/components/Nav"
 
 Vue.use(Router);
 
@@ -23,17 +20,17 @@ export default new Router({
 		{
 			path: "/products",
 			name: "products",
-			component: () => import("@/components/Products"),
+			component: () => import("@/views/Browse"),
 			props: true
 		}, {
 			path: "/product",
 			name: "product",
-			component: () => import("@/views/Product/Product"),
+			component: () => import("@/views/Product"),
 			props: true
 		}, {
 			path: "/calculator",
 			name: "calculator",
-			component: () => import("@/components/Calculator"),
+			component: () => import("@/views/Calculator.vue"),
 			props: true
 		},
 	]

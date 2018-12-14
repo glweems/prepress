@@ -15,18 +15,15 @@
 				@click="addQuery(item)"
 				) {{ item }}	
 		
-	p {{ test }}
-	p {{ test2 }}
-		
 </template>
 
 <script>
-import FilterBar from "@/components/FilterBar";
+// import FilterBar from "@/components/FilterBar";
 export default {
 	name: "Filter",
 	props: ["filters"],
 	components: {
-		"filter-bar": FilterBar
+		// "filter-bar": FilterBar
 	},
 
 	data() {
@@ -116,8 +113,6 @@ export default {
 	padding: .3em
 	margin: 0 .15em
 	background: $primary
-
-	p
 
 
 .filter-data

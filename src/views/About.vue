@@ -1,6 +1,6 @@
 <template lang="pug">
 .about
-
+	greeter(name="hi")
 	p.title This is the 
 		span About
 		| 	page

@@ -1,39 +1,38 @@
 <template lang="pug">
 #calculator
 	
+	//- Product
 	.p-details(v-if="hasItem")
 		p Product: 
 			span
 				h1 {{ item.title }} 
 		
-	//- Product
-	.calculator
-	
-		.quote(v-if="form.viewQuote")
-			el-card.box-card
-				.clearfix(slot='header')
-					span Job Details
-					el-button(style='float: right; padding: 3px 0', type='text') Save Quote
-					
-				.text.item Product: {{ item.title }}
-				.text.item Color:
-					span(:style="{ color: color.hex }") {{ "   " + color.name }}
-					
-				template(v-if="form.hasSizes" v-for="size in form.sizes")
-					.text.item(v-if="size.qty != 0") {{size.id}} - {{size.qty}}
-					
-				.text.item(v-if="form.hasSizes") Total: {{ form.qty }}
+	.quote(v-if="form.viewQuote")
+		el-card.box-card
+			.clearfix(slot='header')
+				span Job Details
+				el-button(style='float: right; padding: 3px 0', type='text') Save Quote
 				
-				.text.item(v-if="!form.hasSizes") Qty: {{ form.qty }}
-				.text.item Printed Colors Front: {{ form.locations[0].colors }}
-				.text.item(v-if="form.locations[1].colors != 0") Printed Colors Back: {{ form.locations[1].colors }}
-				.text.item Price per shirt: ${{ price.pricePer }}
-				.text.item Subtotal: ${{ price.subtotal }}
-				.text.item Tax: ${{ price.tax }}
-				.text.item Total: ${{ price.total }}
+			.text.item Product: {{ item.title }}
+			.text.item Color:
+				span(:style="{ color: color.hex }") {{ "   " + color.name }}
 				
+			.text.item(v-if="form.hasSizes" v-for="size in form.sizes")
+			| {{size.id}} - {{size.qty}}
+				
+			.text.item(v-if="form.hasSizes") Total: {{ form.qty }}
+			
+			.text.item(v-if="!form.hasSizes") Qty: {{ form.qty }}
+			.text.item Printed Colors Front: {{ form.locations[0].colors }}
+			.text.item(v-if="form.locations[1].colors != 0") Printed Colors Back: {{ form.locations[1].colors }}
+			.text.item Price per shirt: ${{ price.pricePer }}
+			.text.item Subtotal: ${{ price.subtotal }}
+			.text.item Tax: ${{ price.tax }}
+			.text.item Total: ${{ price.total }}
+			
 		//- Calculator Form
-		el-form(ref='form', :model='form', labelPosition="top")
+			
+		el-form.calculator(ref='form', :model='form', labelPosition="top")
 
 			//- Breakouts Switch
 			el-form-item(label='Have Sizes?')
@@ -41,26 +40,20 @@
 				
 				//- Total Qty			
 				.total-qty 
-					template(v-if="!form.hasSizes")
-						el-form-item(label='Quantity')
-							el-input-number(v-model='form.qty', :min='0', :max='1000')
+					el-form-item(v-if="!form.hasSizes", label='Quantity')
+						el-input-number(v-model='form.qty', :min='0', :max='1000')
 
 				//- Breakouts
-				template(v-if="form.hasSizes")
-					.scroller
-						template(v-for="size in form.sizes")
-							.scroll-item
-								el-form-item(:label='size.title')
-									el-input-number(v-model='size.qty', :min='0')
+				.scroller(v-if="form.hasSizes")
+					.scroll-item(v-for="size in form.sizes")
+						el-form-item(:label='size.title')
+							el-input-number(v-model='size.qty', :min='0')
 
 				//- Printed Colors
-				.scroller
-					el-form-item(label="Number of Printed Colors")
-						template(v-for="location in form.locations")
-							.scroll-item
-								el-form-item(:label='location.id')
-									el-select(v-model='location.colors', :placeholder='location.id', :key="location.id" clearable)
-										el-option(v-for='color in screenprint.colors', :key='color', :label='color', :value='color')
+				el-form-item(label="Number of Printed Colors")
+					el-form-item(v-for="location in form.locations", :label='location.id')
+						el-select(v-model='location.colors', :placeholder='location.id', :key="location.id" clearable)
+							el-option(v-for='color in screenprint.colors', :key='color', :label='color', :value='color')
 
 			//- Quote Button
 			el-form-item
@@ -75,8 +68,8 @@
 </template>
 
 <script>
-import List from "@/views/Product/List";
-import Product from "@/views/Product/Product";
+// import List from "@/views/Product/List";
+// import Product from "@/views/Product";
 export default {
 	name: "Calculator",
 	props: ["items"],
@@ -314,32 +307,29 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-#calculator
-	margin: 2vh 3vw
+// #calculator
+// 	margin: 2vh 3vw
 
-.calculator
-	text-align: center
+// .calculator
+// 	text-align: center
 
-.scroller
-	padding-left: 1em
-	overflow-x: scroll
-	overflow-y: hidden
-	-webkit-overflow-scrolling: touch
-	white-space: nowrap
 
-.scroll-item
-	display: inline-flex
-	margin: 0 .25em
-	.el-input-number
-		max-width: 10em
-		display: flex
-	.el-select
-		max-width: 7em
+	
+// .el-input-number
+// 	max-width: 11em
+// 	display: flex
+// 	text-align: center
+// 	font-size: 50px
 
-.total-qty
-	.el-input-number
-		// width: 100%
+	
+// .el-select
+// 	max-width: 7em
+// 	text-align: center
+
+// .total-qty
+// 	// .el-input-number
+// 		// width: 100%
 		
-.quote
-	text-align: left
+// .quote
+// 	// text-align: left  
 </style>

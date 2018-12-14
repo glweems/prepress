@@ -1,31 +1,25 @@
 @import "./node_modules/bulma/bulma.sass"
+@import "./_variables.sass"
+@import "./_typography.sass"
 
-/* RGB */
-$dark: rgba(35, 40, 49, 1);
-$color2: rgba(44, 50, 61, 1);
-$color3: rgba(76, 80, 108, 1);
-$primary: rgba(95, 199, 130, 1);
-$light: rgba(247, 247, 247, 1);
-	
-@mixin font-stack 
-	font-family: brandon-grotesque, sans-serif
-	// font-size: 18px
-	font-weight: 500
-	
 html
 	background: $light
-	// font-weight: 400
-	font-style: normal
+	// font-style: normal
 	color: $primary
-
-h1, h2, h3, h4, h5, h6, p, button, a, select, input
-	@include font-stack
 	
-h1, h2, h3, h4, h5, h6
-	font-weight: bold
-	
-input
-	font-size: 19px
-
 #layout
 	margin: 1em 0
+	
+.scroller
+	padding-left: 1em
+	overflow-x: scroll
+	overflow-y: hidden
+	-webkit-overflow-scrolling: touch
+	white-space: nowrap
+
+.scroll-item
+	display: inline-flex
+	margin: 0 .25em
+	
+
+

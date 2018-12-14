@@ -2,19 +2,17 @@
 #app
 	Nav(:pages="pages")
 	router-view(:items="items", :filters="filters")
-		
+	
 </template>
 
+
+
 <script>
-import Layout from "@/components/Layout";
 import Nav from "@/components/Nav";
-import Scroller from "@/components/Scroller";
 export default {
 	name: "App",
 	components: {
 		Nav,
-		Layout,
-		Scroller
 	},
 	data() {
 		return {

@@ -2,23 +2,22 @@
 .product
 
 	//- Single Product View
-	template(v-if="view('product')")
-			.card
-				.card-content
-					p.title.is-5 {{item.title}}
-					p.subtitle.is-6 {{ item.brand }}
-					.media-content
-						el-carousel(:autoplay="false", key="images", arrow="always")
-							el-carousel-item(v-for="(color, index) in item.colors", :key="color.name")
-								img#item-img(:src="color.path")
-
-					.content
-						.quote-btn
-							el-button(type='success' @click="getQuote()" plain) Get Quote
-						.features
-							ul
-								template(v-for="(feature, index) in item.features")
-									li {{ feature }}
+	.card(v-if="view('product')")
+		.card-content
+			p.title.is-5 {{item.title}}
+			p.subtitle.is-6 {{ item.brand }}
+			.media-content
+				el-carousel(:autoplay="false", key="images", arrow="always")
+					el-carousel-item(v-for="(color, index) in item.colors", :key="color.name")
+						img#item-img(:src="color.path")
+			Swatches(:item="item")
+			.content
+				.quote-btn
+					el-button(type='success' @click="getQuote()" plain) Get Quote
+				.features
+					ul
+						template(v-for="(feature, index) in item.features")
+							li {{ feature }}
 				
 	//- Multi Product View
 	template(v-if="view('products')")
@@ -36,7 +35,7 @@
 						slot(name="fabric")
 						slot(name="swatches")
 						slot(name="link")
-
+			
 	//- Calculator Product View
 	template(v-if="view('quoteId')")
 		.card
@@ -54,7 +53,7 @@
 </template>
 
 <script>
-import Swatches from "@/views/Product/Swatches";
+import Swatches from "@/components/Swatches"
 export default {
 	name: "Product",
 	props: ["items"],
