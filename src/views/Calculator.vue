@@ -1,8 +1,9 @@
 <template lang="pug">
 #calculator
-	ProductsItem(v-if="hasItem", :item="item")
-	
 	//- Product
+	//- ProductsItem(v-if="hasItem", :item="item")
+	
+	//-Customer Quote
 	.customer-quote(v-if="form.viewQuote")
 		el-card
 			.clearfix(slot='header')
@@ -31,43 +32,45 @@
 		el-form(ref='form', :model='form', labelPosition="top")
 
 			.step.qty
-				//- Breakouts Switch
-				el-form-item(label='Have Sizes?')
-					el-switch(v-model='form.hasSizes')
+				#step-title
+					h1 Get your price!
 					
-					//- Total Qty			
-					.total-qty(v-if="!form.hasSizes") 
-						el-form-item(label='Quantity')
-							el-input-number(v-model='form.qty', :min='0', :max='1000')
+					//- Breakouts Switch
+					//- el-form-item(label='Have Sizes?')
+				el-form-item(label='Have Size Breakouts?')
+					el-switch(v-model='form.hasSizes')
+				//- Total Qty			
+				.qty-total(v-if="!form.hasSizes") 
+					el-form-item(label='Quantity')
+						el-input-number.qty-input(v-model='form.qty', :min='0', :max='1000')
 
-					//- Breakouts
-					.scroller(v-if="form.hasSizes")
-						.scroll-item(v-for="size in form.sizes")
-							el-form-item(:label='size.title')
-								el-input-number(v-model='size.qty', :min='0')
+				//- Breakouts
+				.qty-breaks.scroller(v-if="form.hasSizes")
+					.scroll-item(v-for="size in form.sizes")
+						el-form-item.size(:label='size.title')
+							el-input-number.qty-input(v-model='size.qty', :min='0')
 
-					//- Printed Colors
-					.scroller
-							.scroll-item(v-for="location in form.locations")
-								el-form-item(:label='location.id')
-									el-select(v-model='location.colors', :placeholder='location.id', :key="location.id" clearable)
-										el-option(v-for='color in screenprint.colors', :key='color', :label='color', :value='color')
+				//- Printed Colors
+				//- .step
+				.scroller(v-if="showSides")
+					.colors.scroll-item(v-for="(location, index) in form.locations")
+						el-form-item(:label='location.id')
+							el-select(v-model='location.colors', :placeholder='location.id', :key="location.id" clearable)
+								el-option(v-for='color in screenprint.colors', :key='color', :label='color', :value='color')
 
 			//- Quote Button
-			el-form-item
-				el-button(type="success", :disabled="submit()" @click="viewQuote()") Get Quote
+			//- el-form-item
+			//- 	el-button(type="success", :disabled="submit()" @click="viewQuote()") Get Quote
 			
 				
 </template>
 
 <script>
-import ProductsItem from "@/components/ProductsItem"
+import ProductsItem from "@/components/ProductsItem";
 export default {
 	name: "Calculator",
 	props: ["items"],
-	components: {
-		ProductsItem
-	},
+	components: { ProductsItem },
 	data() {
 		return {
 			form: {
@@ -126,7 +129,7 @@ export default {
 		};
 	},
 	methods: {
-		dollar(value) {
+		step(value) {
 			return;
 		},
 		viewQuote() {
@@ -157,6 +160,14 @@ export default {
 		}
 	},
 	computed: {
+		showSides() {
+			let qty = this.form.qty	
+			if (qty <= 0) {
+				return false
+			} else {
+				return true
+			}
+		},
 		id() {
 			return this.$route.query.id;
 		},
@@ -298,29 +309,29 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import "@/sass/main.sass"
+@import "@/sass/_variables.sass"
+@import "@/sass/_layout.sass"
 
 .calculator
 	text-align: center
+	color: $light
 	
 .step
 	height: 100vh
 	
+#step-title
+	font-size: 6vh
+	color: $light
+	margin-bottom: 3vh
+	
 .qty
 	background: $primary
+.qty-input
+	max-width: 10em
+.colors
+	max-width: 5em	
+	
 
-.customer-quote
-	text-align: left
-
-
-.total-qty
-	.el-input-number
-		// width: 100%
-
-.el-option
-	font-size: 16px
-.quote
-	// text-align: left
 	
 input
 	font-size: 14px
