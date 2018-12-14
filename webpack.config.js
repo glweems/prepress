@@ -1,31 +1,29 @@
-const path = require('path');
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
+// const path = require('path');
+// const {
+//   VueLoaderPlugin
+// } = require('vue-loader')
+
 module.exports = {
   mode: 'development',
-  entry: '/Users/gw/Sites/playground',
-  plugins: [
-    new BrowserSyncPlugin(
-      // BrowserSync options
-      {
-        // browse to http://localhost:3000/ during development
-        host: '$LOCAL_IP',
-        port: 80,
-        // proxy the Webpack Dev Server endpoint
-        // (which should be serving on http://localhost:3100/)
-        // through BrowserSync
-        proxy: "localhost:8080",
-
-      },
-      // plugin options
-      {
-        //   server: {
-        //     baseDir: "src",
-        //     index: "main.js"
-        // },
-        // prevent BrowserSync from reloading the page
-        // and let Webpack Dev Server take care of this
-        reload: false
-      }
-    )
+  entry: [
+    './src/main.js'
   ],
-};
+  resolve: {
+    extensions: ['.js', '.vue', '.json', 'sass'],
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': resolve('./src'),
+    }
+  },
+  module: {
+    rules: [{
+      test: /\.vue$/,
+      use: ['vue-loader'],
+    }]
+  },
+
+  plugins: [
+    new VueLoaderPlugin()
+  ]
+}
+module.exports = config
