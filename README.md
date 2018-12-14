@@ -4,6 +4,15 @@
 
 ### You will be able to view products / get pricing for a print job
 
+
+![calculator](./.INFO/products.jpg)
+
+
+![calculator](./.INFO/product.jpg)
+
+
+![calculator](./.INFO/calculator.jpg)
+
 ## Project setup
 
 ```
