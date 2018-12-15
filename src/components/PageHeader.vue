@@ -3,9 +3,8 @@
 	.titles
 		p.title {{ title }}
 		p.subtitle {{ subtitle }}
-		hr
-		.msg(v-if="msg")
-			p.msg {{ msg }}
+	.msg(v-if="msg")
+		p.msg {{ msg }}
 	
 	
 	
@@ -43,7 +42,7 @@ export default {
 	
 	.titles
 		padding: .5em
-		background: $alt
+		background: $primary
 		margin-bottom: 1vh
 		text-align: center
 		
@@ -52,10 +51,11 @@ export default {
 			font-weight: 800
 			
 		.subtitle	
-			color: $light
+			color: $alt
 			font-weight: 500
 	
 		.msg
+			color: $dark
 			text-align: left
 			padding: 0 5vw
 		

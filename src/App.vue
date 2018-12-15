@@ -1,7 +1,7 @@
 <template lang="pug">
 #app
 	Nav(:pages="pages")
-	router-view(:items="items", :filters="filters")
+	router-view(:items="items", :filters="filters", :categories="categories")
 	
 </template>
 
@@ -12,7 +12,7 @@ import Nav from "@/components/Nav";
 export default {
 	name: "App",
 	components: {
-		Nav,
+		Nav
 	},
 	data() {
 		return {
@@ -54,6 +54,20 @@ export default {
 				{
 					id: "Style",
 					data: ["Short Sleeve", "Longsleeve", "V-Neck"]
+				}
+			],
+			categories: [
+				{
+					title: "T-Shirts",
+					img: require("@/assets/img/categories/category-tshirts.jpg")
+				},
+				{
+					title: "Sweatshirts",
+					img: require("@/assets/img/categories/category-sweatshirts.jpg")
+				},
+				{
+					title: "Polos",
+					img: require("@/assets/img/categories/category-polos.jpg")
 				}
 			],
 			items: [
