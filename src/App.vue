@@ -59,14 +59,17 @@ export default {
 			categories: [
 				{
 					title: "T-Shirts",
+					path: "/t-shirts",
 					img: require("@/assets/img/categories/category-tshirts.jpg")
 				},
 				{
 					title: "Sweatshirts",
+					path: "/sweatshirts",
 					img: require("@/assets/img/categories/category-sweatshirts.jpg")
 				},
 				{
 					title: "Polos",
+					path: "/polos",
 					img: require("@/assets/img/categories/category-polos.jpg")
 				}
 			],
