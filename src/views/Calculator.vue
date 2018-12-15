@@ -1,5 +1,6 @@
 <template lang="pug">
 #calculator
+	page-header(title="Calculate your price!", subtitle="Only three steps required!", msg="Quantity, Locations, and number of Colors being printed")
 	//- Product
 	//- ProductsItem(v-if="hasItem", :item="item")
 	
@@ -66,11 +67,12 @@
 </template>
 
 <script>
+import PageHeader from "@/components/PageHeader";
 import ProductsItem from "@/components/ProductsItem";
 export default {
 	name: "Calculator",
 	props: ["items"],
-	components: { ProductsItem },
+	components: { ProductsItem, "page-header": PageHeader },
 	data() {
 		return {
 			form: {
@@ -161,11 +163,11 @@ export default {
 	},
 	computed: {
 		showSides() {
-			let qty = this.form.qty	
+			let qty = this.form.qty;
 			if (qty <= 0) {
-				return false
+				return false;
 			} else {
-				return true
+				return true;
 			}
 		},
 		id() {
