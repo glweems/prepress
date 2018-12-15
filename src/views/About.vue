@@ -1,21 +1,21 @@
 <template lang="pug">
 .about
-	greeter(name="hi")
-	p.title This is the 
-		span About
-		| 	page
-		
-	p This is a t-shirt pricing calulator
+	page-header(:title="title", :subtitle="subtitle")
 		
 </template>
 
 <script>
+import PageHeader from "@/components/PageHeader";
 import Items from "@/App";
 export default {
 	name: "About",
+	components: {
+		"page-header": PageHeader
+	},
 	data() {
 		return {
-			Items: {}
+			title: "About",
+			subtitle: "This is the about page"
 		};
 	}
 };

@@ -2,17 +2,27 @@
 
 .home
 
-	p.title This is the 
-		span Home 
-		|	page
-		
-	p This is a t-shirt pricing calulator
+	page-header(:title="title", :subtitle="subtitle", msg="This is a message")
+	
+	
 	
 </template>
 
 <script>
+import PageHeader from "@/components/PageHeader";
+import Categories from "@/components/Categories";
 export default {
-	components: {}
+	name: "Home",
+	components: {
+		categories: Categories,
+		"page-header": PageHeader
+	},
+	data() {
+		return {
+			title: "Home",
+			subtitle: "This is a t-shirt pricing calculator"
+		};
+	}
 };
 </script>
 
