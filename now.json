@@ -1,0 +1,16 @@
+{
+	"version": 2,
+	"name": "prepress",
+	"builds": [{
+			"src": "*.html",
+			"use": "@now/static"
+		},
+		{
+			"src": "*.js",
+			"use": "@now/node"
+		}
+	],
+	"github": {
+		"enabled": true
+	}
+}
