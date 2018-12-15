@@ -1,33 +1,20 @@
 <template lang="pug">
-.category(@click="toPath")
-	h6 {{ title }}
+.category
+	h6 {{ items }}
 	img(:src="img")
 </template>
 
 <script>
 export default {
 	name: "Category",
-	props: ["title", "img"],
+	props: ["items"],
 	data() {
 		return {};
 	},
 	computed: {
-		path() {
-			let obj = {
-				name: "category",
-				params: {
-					category: this.title
-				}
-			};
-			return obj;
-		}
+		url() {}
 	},
-	methods: {
-		toPath() {
-			let route = this.path;
-			this.$router.push(route);
-		}
-	}
+	methods: {}
 };
 </script>
 

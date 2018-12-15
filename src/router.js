@@ -22,8 +22,14 @@ export default new Router({
 			name: "products",
 			component: () => import("@/views/Browse"),
 			props: true
+		},
+		{
+			path: "/products/category/:category",
+			name: "category",
+			components: () => import("@/components/Nav"),
+			props: true
 		}, {
-			path: "/product",
+			path: "/products/id/:id",
 			name: "product",
 			component: () => import("@/views/Product"),
 			props: true

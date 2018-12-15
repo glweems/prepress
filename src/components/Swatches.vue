@@ -6,20 +6,21 @@
 
 <script>
 export default {
-  name: "Swatches",
-  props: ["item"],
-  data() {
-    return {
-      computed: {},
-      methods() {},
-      swatch(color) {
-        document.getElementById("item-img").src = color.path;
-        this.$router.push({ query: { color: color.abr } });
-        this.colorAbr = color.abr;
-      },
-      created: {}
-    };
-  }
+	name: "Swatches",
+	props: ["item"],
+	data() {
+		return {
+			computed: {},
+			methods() {},
+			swatch(color) {
+				document.getElementById("item-img").src = color.path;
+				this.$router.push({
+					query: { color: color.abr }
+				});
+			},
+			created: {}
+		};
+	}
 };
 </script>
 

@@ -19,8 +19,8 @@ export default {
 	computed: {
 		url() {
 			return {
-				path: "/product",
-				query: {
+				name: "product",
+				params: {
 					id: this.item.id
 				}
 			};
