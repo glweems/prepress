@@ -1,6 +1,6 @@
 <template lang="pug">
 .products-list-item
-	img(:src="item.colors[0].path")
+	img(:src="item.img")
 	.info 
 		p.item-title {{ item.title }}
 		p.item-brand {{ item.brand }}
@@ -20,7 +20,7 @@ export default {
 		itemPath() {
 			return `/products/${this.$route.params.category}/${
 				this.$route.params.style
-			}/${this.item.id}`;
+			}/${this.item.sku}`;
 		}
 	}
 };

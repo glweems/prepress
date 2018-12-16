@@ -2,9 +2,9 @@
 .breadcrums
 	nav
 		breadcrum(title="All Products", path="/products")
-		breadcrum(v-if="category", :title="category", path="/products")
-		breadcrum(v-if="style", :title="style", path="/products")
-		breadcrum(v-if="item", :title="item", path="/products")
+		breadcrum(v-if="category", :title="category.title", :path="category.path")
+		breadcrum(v-if="style", :title="style.title", :path="style.path")
+		breadcrum(v-if="sku", :title="sku.title", :path="sku.path")
 </template>
 
 <script>
@@ -20,13 +20,26 @@ export default {
 	methods: {},
 	computed: {
 		category() {
-			return this.$route.params.category;
+			return {
+				title: this.$route.params.category,
+				path: `/products/${this.$route.params.category}`
+			};
 		},
 		style() {
-			return this.$route.params.style;
+			return {
+				title: this.$route.params.style,
+				path: `/products/${this.$route.params.category}/${
+					this.$route.params.style
+				}`
+			};
 		},
-		item() {
-			return this.$route.params.item;
+		sku() {
+			return {
+				title: this.$route.params.sku,
+				path: `/products/${this.$route.params.category}/${
+					this.$route.params.style
+				}/${this.$route.params.sku}`
+			};
 		}
 	}
 };
@@ -36,11 +49,14 @@ export default {
 @import "@/sass/main.sass"
 .breadcrums
 	background: $light
-	padding: .5em 1em
+	padding: .2em .25em
+	border-bottom: 1.75px solid $secondary
 	nav
-		padding: 0 1em
+		padding: 0 .75em
 		display: inline
 		color: $primary
 		a
-			margin-right: 1em
+			font-size: 20px
+			margin-right: .5em
+			font-weight: 400
 </style>

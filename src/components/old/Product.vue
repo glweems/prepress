@@ -1,6 +1,5 @@
 <template lang="pug">
 .product
-
 	//- Single Product View
 	.card(v-if="view('product')")
 		.card-content

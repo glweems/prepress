@@ -1,13 +1,18 @@
 <template lang="pug">
 .swatches
-	template(v-for="(color, index) in item.colors")
-		a.swatch.card(@click="swatch(color)", :style=" { background: color.hex } ")
+	product-swatch-item(v-for="(color, index) in colors", :color="colors[index]")
+		//- (v-for="(color, index) in item.colors",
+		//- @click="swatch(color)", :color="colors[index]")
 </template>
 
 <script>
+import ProductSwatchItem from "@/components/ProductSwatchItem";
 export default {
-	name: "Swatches",
-	props: ["item"],
+	name: "product-swatches",
+	props: ["colors"],
+	components: {
+		"product-swatch-item": ProductSwatchItem
+	},
 	data() {
 		return {
 			computed: {},
@@ -27,7 +32,7 @@ export default {
 <style lang="sass" scoped>
 .swatches
 	width: 100%
-
+	text-align: center
 .swatch
 	margin: 0 .25em
 	display: inline-block

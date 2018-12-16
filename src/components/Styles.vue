@@ -1,6 +1,6 @@
 <template lang="pug">
 .styles
-	style-item(v-for="(style, index) in styles", :item="styles[index]")
+	style-item(v-for="(style, index) in styles", :item="styles[index]", :key="style.title")
 </template>
 
 <script>
@@ -31,5 +31,9 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-
+@import "@/sass/main.sass"
+.styles
+	background: white
+	width: 100%
+	border-radius: 1em 1em 0 0
 </style>

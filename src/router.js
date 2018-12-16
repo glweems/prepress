@@ -42,9 +42,9 @@ export default new Router({
 					props: true,
 				},
 				{
-					path: ":category/:style/:item",
-					name: "browse",
-					component: () => import("@/components/Browse"),
+					path: ":category/:style/:sku",
+					name: "product",
+					component: () => import("@/components/ProductPage"),
 					props: true,
 				}
 			]

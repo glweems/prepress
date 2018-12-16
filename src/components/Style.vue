@@ -25,6 +25,13 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+@import "@/sass/main.sass"
 .style
 	text-align: center
+	padding: 1em 3em
+	corner-radius: 7em
+	// margin: 1em
+a
+	color: $primary
+	font-size: 5vh
 </style>

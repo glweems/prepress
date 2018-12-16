@@ -1,13 +1,12 @@
 <template lang="pug">
 .product-list
-	template(v-for="item in items")
-		ProductItem(:item="item")
+	ProductItem(v-for="(item, index) in items", :item="items[index]", :key="item.title")
 </template>
 
 <script>
 import ProductItem from "@/components/ProductItem";
 export default {
-	name: "test",
+	name: "ListItems",
 	props: ["items"],
 	components: {
 		ProductItem
