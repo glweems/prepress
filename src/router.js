@@ -19,25 +19,47 @@ export default new Router({
 		},
 		{
 			path: "/products",
-			name: "products",
-			component: () => import("@/views/Browse"),
-			props: true
-		},
-		{
-			path: "/products/category/:category",
-			name: "category",
-			components: () => import("@/components/Nav"),
-			props: true
-		}, {
-			path: "/products/id/:id",
-			name: "product",
-			component: () => import("@/views/Product"),
-			props: true
-		}, {
-			path: "/calculator",
-			name: "calculator",
-			component: () => import("@/views/Calculator.vue"),
-			props: true
-		},
+			component: () => import("@/components/Products"),
+			props: true,
+			children: [{
+					path: "",
+					component: () => import("@/components/Categories"),
+					meta: {
+						breadcrums: "home"
+					},
+					props: true,
+				},
+				{
+					path: ":category",
+					name: "style",
+					component: () => import("@/components/Styles"),
+					props: true,
+				},
+				{
+					path: ":category/:style",
+					name: "browse",
+					component: () => import("@/components/Browse"),
+					props: true,
+				},
+				{
+					path: ":category/:style/:item",
+					name: "browse",
+					component: () => import("@/components/Browse"),
+					props: true,
+				}
+			]
+		}
+		// {
+		// 	path: "/products/categories/:category",
+		// 	name: "category",
+		// 	components: () => import("@/components/Category"),
+		// 	props: true,
+		// },
+		// {
+		// 	path: "/calculator",
+		// 	name: "calculator",
+		// 	component: () => import("@/views/Calculator.vue"),
+		// 	props: true
+		// },
 	]
 })

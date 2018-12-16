@@ -1,14 +1,15 @@
-@mixin font-stack 
-	font-family: brandon-grotesque, sans-serif
-	// font-size: 18px
-	font-weight: 500
-	
+=font-stack
+    font-family: brandon-grotesque, sans-serif
+    font-weight: 500
 
 h1, h2, h3, h4, h5, h6, p, button, a
-	@include font-stack
-	
+    +font-stack
+
 h1, h2, h3, h4, h5, h6
-	font-weight: bold
-	
+    font-weight: bold
+
 input, select, option
-	font-size: 19px
+    font-size: 19px
+
+a, a.router-link
+    color: $alt

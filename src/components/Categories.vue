@@ -1,19 +1,14 @@
 <template lang="pug">
 .categories
-
-	category(
-		v-for="(category, index) in categories"
-		:title="category.title"
-		:img="category.img"
-		:key="category.title")
-		
+	template(v-for="(product, index) in products")
+		category(:category="product", :key="product.title")
 </template>
 
 <script>
 import Category from "@/components/Category";
 export default {
 	name: "Categories",
-	props: ["categories"],
+	props: ["products"],
 	components: {
 		category: Category
 	},

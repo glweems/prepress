@@ -1,33 +1,23 @@
 <template lang="pug">
-.category(@click="toPath")
-	h6 {{ title }}
-	img(:src="img")
+.category
+	img(:src="category.img")
+	router-link(:to="{path: `/products/${category.title}`}") {{ category.title }}
+		//- router-link(:to="path") {{ title }}
 </template>
 
 <script>
+import CategoryStyle from "@/components/CategoryStyle";
 export default {
-	name: "Category",
-	props: ["title", "img"],
+	name: "category",
+	props: ["category"],
+	components: {
+		"category-style": CategoryStyle
+	},
 	data() {
 		return {};
 	},
-	computed: {
-		path() {
-			let obj = {
-				name: "category",
-				params: {
-					category: this.title
-				}
-			};
-			return obj;
-		}
-	},
-	methods: {
-		toPath() {
-			let route = this.path;
-			this.$router.push(route);
-		}
-	}
+	computed: {},
+	methods: {}
 };
 </script>
 
@@ -37,9 +27,7 @@ export default {
 .category
 	padding: 1em
 	text-align: center
-	// margin: 1em
-	// background: $primary
 	
-	p
-		color: $light
+a
+	color: $primary
 </style>

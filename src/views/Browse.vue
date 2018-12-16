@@ -1,8 +1,5 @@
 <template lang="pug">
 .browse
-	p-filter(:filters="filters")
-	
-	
 	template(v-for="item in items")
 		p-item(:item="item", :key="item.id")
 		
