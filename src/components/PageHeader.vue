@@ -1,10 +1,12 @@
 <template lang="pug">
-.page-header
-	.titles
-		p.title {{ title }}
-		p.subtitle {{ subtitle }}
-	.msg(v-if="msg")
-		p.msg {{ msg }}
+.page-header.animated.fadeIn
+	
+		.titles
+			p.title {{ title }}
+			p.subtitle {{ subtitle }}
+			
+		.msg(v-if="msg")
+			p.msg.animated.fadeIn.delay-1s {{ msg }}
 	
 	
 	
