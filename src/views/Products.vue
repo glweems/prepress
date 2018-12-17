@@ -1,7 +1,7 @@
 <template lang="pug">
 .products
-	page-header(v-if="!this.$route.params.category", :title="header.title", :subtitle="header.subtitle", :msg="header.msg")
-	Breadcrums(v-if="this.$route.params.category")
+	//- page-header(v-if="!this.$route.params.category", :title="header.title", :subtitle="header.subtitle", :msg="header.msg")
+	//- Breadcrums(v-if="this.$route.params.category")
 	router-view(:products="products")
 </template>
 

@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "src/sass"
+		},
+		{
+			"path": "src/components"
+		}
+	]
+}
