@@ -1,7 +1,6 @@
 <template lang="pug">
 .categories
-	template(v-for="(product, index) in products")
-		category(:category="product", :key="product.title")
+	category(v-for="(product, index) in products", :category="product", :key="product.title")
 </template>
 
 <script>

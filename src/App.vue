@@ -1,7 +1,11 @@
 <template lang="pug">
 #app
 	Nav(:pages="pages")
-	router-view(:products="products")
+	transition(
+					name='router-animation'
+					enter-active-class='animated fadeIn faster'
+					)
+		router-view(:products="products")
 	
 </template>
 

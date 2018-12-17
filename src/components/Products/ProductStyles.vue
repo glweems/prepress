@@ -1,18 +1,20 @@
 <template lang="pug">
 .product-styles
-	h1 {{product}}
-	.scroller
-		.scroll-item
-			product-style(v-for="(style, index) in styles", :key="style.title", :item="styles[index]", :product="product")
+	.info
+		h1 {{product}}
+	scroller
+		product-style(v-for="(style, index) in styles", :key="style.title", :item="styles[index]", :product="product")
 	
 </template>
 	
 <script>
 import ProductStyle from "@/components/Products/ProductStyle";
+import Scroller from "@/components/Scroller";
+
 export default {
 	name: "ProductStyles",
 	props: ["product", "styles"],
-	components: { "product-style": ProductStyle },
+	components: { "product-style": ProductStyle, scroller: Scroller },
 	data() {
 		return {};
 	},
@@ -28,8 +30,13 @@ export default {
 <style lang="sass" scoped>
 @import "@/sass/main.sass"
 .product-styles
-	h1
-		color: $alt-lighter
-		font-size: 30px
+.info
+	padding: 1em
+h1
+	color: $alt-lighter
+	font-size: 30px
+
+    
+  
 
 </style>

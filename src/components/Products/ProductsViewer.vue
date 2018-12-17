@@ -1,7 +1,6 @@
 <template lang="pug">
 .products-viewer
-	.product-styles-scroller
-		product-styles(v-for="product in products", :styles="product.styles",:product="product.title", :key="product.title")
+	product-styles(v-for="product in products", :styles="product.styles",:product="product.title", :key="product.title")
 		
 </template>
 	
@@ -24,7 +23,6 @@ export default {
 .products-viewer
 	height: 100vh
 	padding-top: .5em
-	padding-left: .5em
 	// background: $alt
 	color: $light
 </style>

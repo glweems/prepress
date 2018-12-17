@@ -2,7 +2,11 @@
 .products
 	//- page-header(v-if="!this.$route.params.category", :title="header.title", :subtitle="header.subtitle", :msg="header.msg")
 	//- Breadcrums(v-if="this.$route.params.category")
-	router-view(:products="products")
+	transition(
+		name="products-animation"
+		enter-active-class='animated slideInRight faster'
+		)
+		router-view(:products="products")
 </template>
 
 <script>

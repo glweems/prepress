@@ -1,7 +1,6 @@
 import Vue from "vue"
 import Router from "vue-router"
 
-
 Vue.use(Router);
 
 export default new Router({
@@ -28,12 +27,6 @@ export default new Router({
 			meta: {
 				breadcrums: "home"
 			},
-			props: true,
-		},
-		{
-			path: ":style",
-			name: "browse",
-			component: () => import("@/components/Browse"),
 			props: true,
 		},
 		{

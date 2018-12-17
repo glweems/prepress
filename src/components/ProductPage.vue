@@ -5,7 +5,8 @@
 			p.title.is-5 {{item.title}}
 			p.subtitle.is-6 {{ item.brand }}
 			.media-content
-				img#item-img(:src="item.img")
+				transition(name="product-img-animation" class="animated")
+					img#item-img.animated.fadeIn(:src="item.img", :key="item.img")
 			product-swatches(:colors="item.colors")
 			.content
 				.features
@@ -66,4 +67,10 @@ export default {
 <style lang="sass" scoped>
 .quote-btn
 	text-align: center
+	
+img
+	-webkit-transition: opacity 1s ease-in-out
+	-moz-transition: opacity 1s ease-in-out
+	-o-transition: opacity 1s ease-in-out
+	transition: opacity 1s ease-in-out
 </style>

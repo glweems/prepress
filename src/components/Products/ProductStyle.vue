@@ -1,7 +1,8 @@
 <template lang="pug">
-.product-style(@click="link()")
-	h1.style-title {{item.title}}
-	img(:src="item.img")
+.product-style-wrapper
+	.product-style(@click="link()")
+		h1.style-title {{item.title}}
+		img(:src="item.img" lazy)
 </template>
 	
 <script>
@@ -25,22 +26,24 @@ export default {
 	
 <style lang="sass" scoped>
 @import "@/sass/main.sass"
-.product-style
-	margin: 0.35em
-	padding: .5em
+.product-style-wrapper
 	
-	.style-title
-		padding-left: .2em
-		padding-bottom: .5em
-	
-	img
-		background: white
-		padding: 0 .5em
-		min-width: 40vw
-		border-radius: 3px;
-		box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+	.product-style
+		margin: 0.35em
 		
-	.style-title
-		color: $alt-dark
+		.style-title
+			padding-left: .2em
+			padding-bottom: .5em
+		
+		img
+			background: white
+			padding: 0 .5em
+			max-width: 40vw
+			border-radius: 3px;
+			box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 
+			
+		.style-title
+			color: $alt-dark
+	
 </style>
