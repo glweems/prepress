@@ -1,11 +1,12 @@
 <template lang="pug">
-router-link.breadcrum(:to="path") {{ title }} 
+
 </template>
 
 <script>
 export default {
-	name: "Breadcrum",
-	props: ["title", "path"],
+	name: "",
+	props: [""],
+	components: {},
 	data() {
 		return {};
 	},

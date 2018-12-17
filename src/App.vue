@@ -31,7 +31,7 @@ export default {
 				},
 				{
 					id: "Quote",
-					path: "/calculator"
+					path: "/quote"
 				}
 			],
 			products: [
@@ -52,7 +52,7 @@ export default {
 									brand: "Gildan",
 									title: "Heavy Cotton T-Shirt",
 									fabric: "100% Cotton",
-									upgrade: 1,
+									upgrade: 0,
 									tbn: 0,
 									features: [
 										"6 oz. 100% pre-shrunk cotton; Ash, Sports Grey, Heather, Antique, and Safety colors are poly/cotton blends",

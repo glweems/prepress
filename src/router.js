@@ -1,5 +1,8 @@
 import Vue from "vue"
 import Router from "vue-router"
+import {
+	homedir
+} from "os";
 
 Vue.use(Router);
 
@@ -19,7 +22,7 @@ export default new Router({
 		},
 		{
 			path: "/products",
-			component: () => import("@/components/Products"),
+			component: () => import("@/views/Products"),
 			props: true,
 			children: [{
 					path: "",
@@ -48,18 +51,21 @@ export default new Router({
 					props: true,
 				}
 			]
+		}, {
+			path: "/quote",
+			component: () => import("@/views/Quote"),
+			props: true,
+			children: [{
+				path: "",
+				name: "quote",
+				component: () => import("@/components/ProductItem"),
+				props: true
+			},{
+				path: ":sku/:color",
+				name: "quote-item",
+				component: () => import("@/components/ProductItem"),
+				props: true
+			}],
 		}
-		// {
-		// 	path: "/products/categories/:category",
-		// 	name: "category",
-		// 	components: () => import("@/components/Category"),
-		// 	props: true,
-		// },
-		// {
-		// 	path: "/calculator",
-		// 	name: "calculator",
-		// 	component: () => import("@/views/Calculator.vue"),
-		// 	props: true
-		// },
 	]
 })

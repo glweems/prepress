@@ -1,12 +1,14 @@
 <template lang="pug">
-.styles
-	p {{styles}}
+.quote-step
+	h1 {{ title }}
+	p {{ desc }}
 </template>
 
 <script>
 export default {
-	name: "Styles",
-	props: ["styles"],
+	name: "QuoteStep",
+	props: ["title", "desc"],
+	components: {},
 	data() {
 		return {};
 	},
