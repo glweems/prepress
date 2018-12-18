@@ -2,15 +2,6 @@
 	"folders": [
 		{
 			"path": "."
-		},
-		{
-			"path": "src/sass"
-		},
-		{
-			"path": "src/components"
-		},
-		{
-			"path": "src/views"
 		}
 	]
 }

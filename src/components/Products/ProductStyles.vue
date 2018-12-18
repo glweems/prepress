@@ -33,7 +33,7 @@ export default {
 .info
 	padding: 1em
 h1
-	color: $alt-lighter
+	color: $alt
 	font-size: 30px
 
     

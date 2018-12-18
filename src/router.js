@@ -40,6 +40,13 @@ export default new Router({
 			name: "product",
 			component: () => import("@/components/ProductPage"),
 			props: true,
+		},
+		{
+			path: ":category/:style/:sku/quote",
+			name: "product-quote",
+			component: () => import("@/views/Quote"),
+			// component: () => import("@/components/Calculator/Calculator"),
+			props: true,
 		}
 		]
 	}, {
@@ -52,7 +59,7 @@ export default new Router({
 			component: () => import("@/components/ProductItem"),
 			props: true
 		}, {
-			path: ":sku/:color",
+			path: ":category/:sku/:color/",
 			name: "quote-item",
 			component: () => import("@/components/ProductItem"),
 			props: true

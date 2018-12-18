@@ -56,17 +56,18 @@ export default {
 	display: grid
 	grid-template-columns: 2fr 5fr
 	margin: .35em
-	gap: 1em
+	gap: .75em
 	margin: 1em
+	padding: .5em .35em
+	+product-img
 	
 	
 img
 	padding: .1em .5em
-	+product-img
+	// +product-img
 		
 .info
-	border-right: 2px solid $primary-light
-	border-radius: .2em
+	// border-right: 2px solid $primary-light
 	
 	.item-title
 		color: $alt-darker

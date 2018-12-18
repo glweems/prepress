@@ -1,5 +1,5 @@
 <template lang="pug">
-a.swatch.card(:style=" { background: color.hex } ", @click="swatch(color)")
+a(:style=" { background: color.hex } ", @click="swatch(color)")
 </template>
 
 <script>
@@ -24,10 +24,10 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.product-swatch-item
+a
 	margin: 0 .25em
 	display: inline-block
-	height: 1em
-	width: 1em
+	height: 1.5em
+	width: 1.5em
 	border-radius: 25px
 </style>
