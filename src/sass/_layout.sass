@@ -1,3 +1,39 @@
+$nav-height: 7vh
+
+$screen-height: (100vh - $nav-height) -2vh
+
+=product-img
+    background: white
+    border-radius: 3px
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16)
+
 html
     background: $light
     color: $primary
+
+nav.nav
+    display: flex
+    width: 100%
+    align-items: center
+    text-align: center
+    background: $dark
+    height: $nav-height
+    padding-left: 1em
+    overflow-x: scroll
+    overflow-y: hidden
+    -webkit-overflow-scrolling: touch
+    white-space: nowrap
+    font-weight: bold
+
+.nav-item
+    text-align: center
+    padding-left: 0.5em
+
+    a
+        padding-right: 0.5em
+        color: $light
+
+    a.router-link-exact-active
+        color: $primary
+
+// $screen

@@ -1,11 +1,12 @@
 <template lang="pug">
-.products-item
+.products-item(@click="link()")
 	img(:src="tbn")
 	.info 
 		p.item-title {{ item.title }}
 		p.item-brand {{ item.brand }}
-		p.item-fabric {{ item.fabric }}
-		router-link(v-if="this.$route.name != 'quote'", :to="url") Select
+		i.fas.fa-dollar-sign(v-for="index in icon(item.upgrade)")
+		.border-bottom
+	    
 </template>
 
 <script>
@@ -15,7 +16,24 @@ export default {
 	data() {
 		return {};
 	},
-	methods: {},
+	methods: {
+		link() {
+			let dest = this.url;
+			this.$router.push(dest);
+		},
+		icon(upgrade) {
+			var arr = [];
+			var i = 0;
+			if (upgrade == 0) {
+				upgrade = 1;
+			}
+			while (i < upgrade) {
+				arr.push(i);
+				i++;
+			}
+			return arr;
+		}
+	},
 	computed: {
 		url() {
 			return {
@@ -35,31 +53,41 @@ export default {
 <style lang="sass" scoped>
 @import "@/sass/main.sass"
 .products-item
-	background: white
-	border-radius: .35em
 	display: grid
-	grid-template-columns: 2fr 4fr
+	grid-template-columns: 2fr 5fr
 	margin: .35em
-	border: 3px solid $light-dark
+	gap: 1em
+	margin: 1em
 	
-	img
-		padding: 1em
+	
+img
+	padding: .1em .5em
+	+product-img
 		
-	.info
-		padding-top: 1em
+.info
+	border-right: 2px solid $primary-light
+	border-radius: .2em
+	
+	.item-title
+		color: $alt-darker
+		font-size: 18px
 		
-		.item-title
-			color: $dark
-			font-size: 18px
+	.item-brand
+		color: $alt-light
+		font-size: 16px
+		font-weight: 400
+	
+	.item-upgrade
+		font-weight: 600
+		font-style: italic
+		color: $primary
+		
+	.item-fabric
+		color: $dark
+		font-size: 14px
+		font-weight: 300
 			
-		.item-brand
-			color: $primary-dark
-			font-size: 16px
-			font-weight: 400
-			
-		.item-fabric
-			color: $dark
-			font-size: 14px
-			font-weight: 300
-
+i
+	color: $primary-light	
+	padding-left: .1em
 </style>

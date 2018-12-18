@@ -36,14 +36,12 @@ export default {
 			padding-bottom: .5em
 		
 		img
-			background: white
-			padding: 0 .5em
+			padding: 0 0.5em
 			max-width: 40vw
-			border-radius: 3px;
-			box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+			+product-img
 
 			
 		.style-title
-			color: $alt-dark
+			color: $alt-lighter
 	
 </style>

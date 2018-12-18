@@ -4,14 +4,14 @@
 </template>
 
 <script>
-import Product from "@/components/Product"
-	export default {
-		name: "Product", 
-		props: ["items"],
-		components: {
-			"product": Product
-		}
+import Product from "@/components/Product";
+export default {
+	name: "Product",
+	props: ["items"],
+	components: {
+		product: Product
 	}
+};
 </script>
 
 <style lang="sass" scoped>

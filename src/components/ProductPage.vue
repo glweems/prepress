@@ -1,29 +1,30 @@
 <template lang="pug">
 .product-page
-	.card
-		.card-content
-			p.title.is-5 {{item.title}}
-			p.subtitle.is-6 {{ item.brand }}
-			.media-content
-				transition(name="product-img-animation" class="animated")
-					img#item-img.animated.fadeIn(:src="item.img", :key="item.img")
-			product-swatches(:colors="item.colors")
-			.content
-				.features
-					ul
-						template(v-for="(feature, index) in item.features")
-							li {{ feature }}
-			.quote-btn
-				el-button(type='success' @click="getQuote()" plain) Get Quote
+	.info
+		p.title.is-5 {{item.title}}
+		p.subtitle.is-6 {{ item.brand }}
+	VueGlide(perView="1" rewind="false" bound="true")
+		GlideSlide(v-for="(color, index) in item.colors" :key="index")
+			.img-wrapper
+				img#item-img(:id="color.abr" :src="color.path")
+	product-swatches(:colors="item.colors")
+	.content
+		features(:items="item.features")
+		el-button(type='success' @click="getQuote()" plain) Get Quote
 </template>
 
 <script>
+import Features from "@/components/Features";
+import { Glide, GlideSlide } from "vue-glide-js";
 import ProductSwatches from "@/components/ProductSwatches";
 export default {
 	name: "ProductPage",
 	props: ["products"],
 	components: {
-		"product-swatches": ProductSwatches
+		"product-swatches": ProductSwatches,
+		features: Features,
+		[Glide.name]: Glide,
+		[GlideSlide.name]: GlideSlide
 	},
 	data() {
 		return {};
@@ -65,12 +66,23 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.quote-btn
-	text-align: center
+@import "@/sass/main.sass"
+.product-page
+	height: $screen-height
+	.info
+		padding: 2em
+	.content
+		text-align: center
 	
-img
-	-webkit-transition: opacity 1s ease-in-out
-	-moz-transition: opacity 1s ease-in-out
-	-o-transition: opacity 1s ease-in-out
-	transition: opacity 1s ease-in-out
+.img-wrapper
+	padding: .75em
+	img
+		padding: 1em 4.5em
+		background: white
+		border-radius: .5em
+		box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+		-webkit-transition: opacity 1s ease-in-out
+		-moz-transition: opacity 1s ease-in-out
+		-o-transition: opacity 1s ease-in-out
+		transition: opacity 1s ease-in-out
 </style>

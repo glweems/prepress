@@ -6,7 +6,6 @@
 					enter-active-class='animated fadeIn faster'
 					)
 		router-view(:products="products")
-	
 </template>
 
 
