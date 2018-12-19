@@ -45,7 +45,6 @@ export default new Router({
 			path: ":category/:style/:sku/quote",
 			name: "product-quote",
 			component: () => import("@/views/Quote"),
-			// component: () => import("@/components/Calculator/Calculator"),
 			props: true,
 		}
 		]
@@ -56,12 +55,12 @@ export default new Router({
 		children: [{
 			path: "",
 			name: "quote",
-			component: () => import("@/components/ProductItem"),
+			component: () => import("@/components/ProductListItem"),
 			props: true
 		}, {
 			path: ":category/:sku/:color/",
 			name: "quote-item",
-			component: () => import("@/components/ProductItem"),
+			component: () => import("@/components/ProductListItem"),
 			props: true
 		}],
 	}

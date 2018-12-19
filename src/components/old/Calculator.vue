@@ -68,11 +68,9 @@
 
 <script>
 import PageHeader from "@/components/PageHeader";
-import ProductsItem from "@/components/ProductsItem";
 export default {
 	name: "Calculator",
 	props: ["items"],
-	components: { ProductsItem, "page-header": PageHeader },
 	data() {
 		return {
 			form: {

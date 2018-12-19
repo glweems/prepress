@@ -1,14 +1,12 @@
 <template lang="pug">
-.quote-step
-	h1 {{ title }}
-	p {{ desc }}
+.product-list
+	product-list-item(v-for="(item, index) in items", :item="items[index]", :key="item.title")
 </template>
 
 <script>
 export default {
-	name: "QuoteStep",
-	props: ["title", "desc"],
-	components: {},
+	name: "ProductList",
+	props: ["items"],
 	data() {
 		return {};
 	},

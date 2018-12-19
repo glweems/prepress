@@ -11,7 +11,7 @@
 				span.icons
 					i.fas.fa-dollar-sign(v-for="index in icon(item.upgrade)")
 		
-			product-swatches(:colors="item.colors")
+			swatches(:colors="item.colors")
 			
 		.details
 		
@@ -30,18 +30,9 @@
 </template>
 
 <script>
-import Features from "@/components/Features";
-import { Glide, GlideSlide } from "vue-glide-js";
-import ProductSwatches from "@/components/ProductSwatches";
 export default {
 	name: "ProductPage",
 	props: ["products"],
-	components: {
-		"product-swatches": ProductSwatches,
-		features: Features,
-		"vue-glide": Glide,
-		"glide-slide": GlideSlide
-	},
 	data() {
 		return {};
 	},

@@ -1,18 +1,12 @@
 <template lang="pug">
 .browse
-	list-items(:items="items")
+	product-list(:items="items")
 </template>
 
 <script>
-import ListItems from "@/components/ListItems";
-// import ProductItem from "@/components/ProducItem";
 export default {
 	name: "Browse",
 	props: ["products"],
-	components: {
-		"list-items": ListItems
-		// "product-list-item": ProductListItem
-	},
 	data() {
 		return {};
 	},

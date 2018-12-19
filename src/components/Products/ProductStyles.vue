@@ -9,12 +9,11 @@
 	
 <script>
 import ProductStyle from "@/components/Products/ProductStyle";
-import Scroller from "@/components/Scroller";
 
 export default {
 	name: "ProductStyles",
 	props: ["product", "styles"],
-	components: { "product-style": ProductStyle, scroller: Scroller },
+	components: { "product-style": ProductStyle },
 	data() {
 		return {};
 	},

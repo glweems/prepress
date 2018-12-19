@@ -10,15 +10,9 @@
 </template>
 
 <script>
-import PageHeader from "@/components/PageHeader";
-import Breadcrums from "@/components/Breadcrums";
 export default {
 	name: "Products",
 	props: ["products"],
-	components: {
-		"page-header": PageHeader,
-		Breadcrums
-	},
 	data() {
 		return {
 			header: {

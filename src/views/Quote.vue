@@ -6,15 +6,9 @@
 </template>
 
 <script>
-import PageHeader from "@/components/PageHeader";
-import Calculator from "@/components/Calculator/Calculator";
 export default {
 	name: "Quote",
 	props: ["products"],
-	components: {
-		"page-header": PageHeader,
-		Calculator
-	},
 	data() {
 		return {
 			title: "Get a quick quote",

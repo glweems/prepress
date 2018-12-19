@@ -4,16 +4,11 @@
 </template>
 	
 <script>
-import PageHeader from "@/components/PageHeader";
-
 export default {
 	name: "Scroller",
-	components: {},
 	data() {
 		return {};
-	},
-	methods: {},
-	computed: {}
+	}
 };
 </script>
 	

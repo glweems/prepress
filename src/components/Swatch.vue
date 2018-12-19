@@ -3,9 +3,8 @@ a(:style=" { background: color.hex } ", @click="swatch(color)")
 </template>
 
 <script>
-// import Component from "@/components/";
 export default {
-	name: "ProductSwatchItem",
+	name: "Swatch",
 	props: ["color"],
 	components: {},
 	data() {

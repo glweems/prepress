@@ -5,14 +5,9 @@
 </template>
 
 <script>
-import PageHeader from "@/components/PageHeader";
-
 export default {
 	name: "Home",
 	props: ["categories"],
-	components: {
-		"page-header": PageHeader
-	},
 	data() {
 		return {
 			title: "Home",

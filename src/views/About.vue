@@ -5,13 +5,8 @@
 </template>
 
 <script>
-import PageHeader from "@/components/PageHeader";
-import Items from "@/App";
 export default {
 	name: "About",
-	components: {
-		"page-header": PageHeader
-	},
 	data() {
 		return {
 			title: "About",

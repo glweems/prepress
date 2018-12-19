@@ -18,7 +18,6 @@ form.calculator
 </template>
 
 <script>
-// import Component from "@/components/";
 export default {
 	name: "Calculator",
 	props: ["product"],

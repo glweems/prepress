@@ -8,12 +8,8 @@
 </template>
 
 <script>
-import Breadcrum from "@/components/Breadcrum";
 export default {
 	name: "Breadcrums",
-	components: {
-		breadcrum: Breadcrum
-	},
 	data() {
 		return {};
 	},
