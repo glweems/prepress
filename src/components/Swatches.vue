@@ -1,6 +1,6 @@
 <template lang="pug">
 .product-swatches
-	Swatch(v-for="(color, index) in colors"  :color="colors[index]" @click="swatch(color)", :key="color.title")
+	Swatch(v-for="(color, index) in colors"  :color="colors[index]",  @active="active=$event", :key="color.title")
 </template>
 
 <script>
@@ -14,7 +14,14 @@ export default {
 		Swatch
 	},
 	data() {
-		return {};
+		return {
+			active: ""
+		};
+	},
+	watch: {
+		active() {
+			this.$router.replace({ params: { color: this.active } });
+		}
 	},
 	computed: {}
 };

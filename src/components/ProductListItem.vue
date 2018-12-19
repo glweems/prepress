@@ -1,5 +1,5 @@
 <template lang="pug">
-.products-item(@click="link()")
+.products-item(@click="link()" @item="item=$event")
 	img(:src="tbn")
 	.info 
 		p.item-title {{ item.title }}
@@ -13,12 +13,16 @@
 export default {
 	name: "ProductListItem",
 	props: ["item"],
+	created() {
+		this.$emit("product", this.item);
+	},
 	data() {
 		return {};
 	},
 	methods: {
 		link() {
 			let dest = this.url;
+			this.$emit("product", this.item);
 			this.$router.push(dest);
 		},
 		icon(upgrade) {
@@ -37,14 +41,37 @@ export default {
 	computed: {
 		url() {
 			return {
-				name: "product",
+				name: "product-page",
 				params: {
-					sku: this.item.sku
+					sku: this.item.sku,
+					color: this.color.abr
+				},
+				props: {
+					product: this.item
 				}
 			};
 		},
+		color() {
+			let obj = {};
+			var i;
+			if (this.$route.name == "browse") {
+				for (i = 0; i < this.item.colors.length; i++) {
+					if (this.item.colors[i].default) {
+						obj = this.item.colors[i];
+					}
+				}
+			} else {
+				for (i = 0; i < this.item.colors.length; i++) {
+					if (this.item.colors[i].abr == this.$route.params.color) {
+						obj = this.item.colors[i];
+					}
+				}
+			}
+
+			return obj;
+		},
 		tbn() {
-			return this.item.colors[0].path;
+			return this.color.path;
 		}
 	}
 };

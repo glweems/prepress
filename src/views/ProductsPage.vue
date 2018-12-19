@@ -6,7 +6,7 @@
 		name="products-animation"
 		enter-active-class='animated slideInRight faster'
 		)
-		router-view(:products="products")
+		router-view(:products="products", @item="item=$event", :product="item")
 </template>
 
 <script>
@@ -15,13 +15,11 @@ export default {
 	props: ["products"],
 	data() {
 		return {
-			header: {
-				title: "BROWSE OUR PRODUCTS",
-				subtitle: "SHOP BY STYLE",
-				msg:
-					"Browse our catalog of hundreds of product style and color combinations to find the perfect shirt to customize. We think you'll be amazed at the quality of our t-shirts, tank tops, hoodies, hats, and lots more."
-			}
+			item: {}
 		};
+	},
+	watch: {
+		item() {}
 	},
 	methods: {},
 	computed: {}

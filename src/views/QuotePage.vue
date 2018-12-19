@@ -1,8 +1,7 @@
 <template lang="pug">
 .quote
 	page-header(:title="title", :subtitle="subtitle")
-	router-view(:item="defaultProduct")
-	calculator(:product="defaultProduct")
+	router-view()
 </template>
 
 <script>
@@ -14,7 +13,7 @@ const Calculator = () =>
 
 export default {
 	name: "Quote",
-	props: ["products"],
+	props: ["products", "item"],
 	components: { PageHeader, Calculator },
 	data() {
 		return {

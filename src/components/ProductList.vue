@@ -13,6 +13,11 @@ export default {
 	components: {
 		ProductListItem
 	},
+	created() {
+		let item = {};
+		this.$emit("item", item);
+		console.log("Item Destroyed");
+	},
 	data() {
 		return {};
 	},

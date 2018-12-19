@@ -2,7 +2,7 @@
 .product-page
 
 	.img-wrapper
-		img#item-img(:src="item.img")
+		img#item-img(:src="color.path")
 	
 	
 	.content
@@ -23,11 +23,9 @@
 			
 		transition(name="quote-button-transition")
 			.quote
-				router-link.button(:to="quote") Get a Quote!
+				router-link.button(:to="quote", :item="item") Get a Quote!
 					span
 						<i class="fas fa-file-invoice-dollar"></i>
-	
-		
 </template>
 
 <script>
@@ -43,6 +41,11 @@ export default {
 	components: {
 		Swatches,
 		Features
+	},
+	created() {
+		let msg = "Item Created: " + this.item.title;
+		console.log(msg);
+		this.$emit("item", this.item);
 	},
 	data() {
 		return {};
@@ -65,15 +68,13 @@ export default {
 		quote() {
 			let path = {
 				name: "product-quote",
-				path:
-					"/products" +
-					"/" +
-					this.$route.params.category +
-					"/" +
-					this.$route.params.style +
-					"/" +
-					this.$route.params.sku +
-					"/quote"
+				params: {
+					category: this.$route.params.category,
+					style: this.$route.params.style,
+					sku: this.$route.params.sku,
+					sku: this.$route.params.sku,
+					color: this.$route.params.color
+				}
 			};
 			return path;
 		},
@@ -106,6 +107,17 @@ export default {
 				}
 			}
 			return obj;
+		},
+		color() {
+			var obj = {};
+			var i;
+			for (i = 0; i < this.item.colors.length; i++) {
+				if (this.item.colors[i].abr == this.$route.params.color) {
+					obj = this.item.colors[i];
+				}
+			}
+			return obj;
+			// return this.$route.params.color;
 		}
 	}
 };

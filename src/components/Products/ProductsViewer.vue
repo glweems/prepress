@@ -10,8 +10,13 @@ const ProductStyles = () =>
 
 export default {
 	name: "ProductsViewer",
-	props: ["products"],
+	props: ["products", "product"],
 	components: { "product-styles": ProductStyles },
+	created() {
+		let item = {};
+		this.$emit("item", item);
+		console.log("Item Destroyed");
+	},
 	data() {
 		return {};
 	},

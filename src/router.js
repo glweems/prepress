@@ -6,8 +6,8 @@ const ProductsPage = () => import(/* webpackChunkName: "products-page" */ '@/vie
 const ProductPage = () => import(/* webpackChunkName: "products-page" */ '@/components/ProductPage')
 const ProductsViewer = () => import(/* webpackChunkName: "products-viewer" */ '@/components/Products/ProductsViewer')
 const Browse = () => import(/* webpackChunkName: "browse" */ '@/components/Browse')
+const ProductListItem = () => import(/* webpackChunkName: "product-list-item" */ '@/components/ProductListItem')
 const ProductQuote = () => import(/* webpackChunkName: "product-quote" */ '@/components/ProductQuote')
-
 const QuotePage = () => import(/* webpackChunkName: "quote-page" */ '@/views/QuotePage');
 
 Vue.use(Router);
@@ -46,28 +46,18 @@ export default new Router({
 				props: true,
 			},
 			{
-				path: ":category/:style/:sku",
-				name: "product",
+				path: ":category/:style/:sku/:color",
+				name: "product-page",
 				component: ProductPage,
 				props: true,
 			},
 			{
-				path: ":category/:style/:sku/quote",
+				path: ":category/:style/:sku/:color/quote",
 				name: "product-quote",
 				component: ProductQuote,
 				props: true,
-			}
+			},
+
 		]
-	}, {
-		path: "/quote",
-		component: QuotePage,
-		props: true,
-		children: [{
-			path: "",
-			name: "quote",
-			component: QuotePage,
-			props: true
-		}],
-	}
-	]
+	}]
 })

@@ -1,5 +1,5 @@
 <template lang="pug">
-a(:style=" { background: color.hex } ", @click="swatch(color)")
+a(:style=" { background: color.hex } ", @click="swatch($event)")
 </template>
 
 <script>
@@ -11,13 +11,11 @@ export default {
 		return {};
 	},
 	methods: {
-		swatch(color) {
-			document.getElementById("item-img").src = color.path;
-			this.$router.push({
-				query: { color: color.abr }
-			});
+		swatch() {
+			this.$emit("active", this.color.abr);
 		}
 	},
+	watch: {},
 	computed: {}
 };
 </script>
