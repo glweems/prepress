@@ -1,12 +1,18 @@
 <template lang="pug">
 .product-swatches
-	swatch(v-for="(color, index) in colors"  :color="colors[index]" @click="swatch(color)", :key="color.title")
+	Swatch(v-for="(color, index) in colors"  :color="colors[index]" @click="swatch(color)", :key="color.title")
 </template>
 
 <script>
+const Swatch = () =>
+	import(/* webpackChunkName: "Swatch" */ "@/components/Swatch");
+
 export default {
 	name: "product-swatches",
 	props: ["colors"],
+	components: {
+		Swatch
+	},
 	data() {
 		return {};
 	},

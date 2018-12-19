@@ -4,9 +4,15 @@
 </template>
 
 <script>
+const ProductListItem = () =>
+	import(/* webpackChunkName: "product-list-item" */ "@/components/ProductListItem");
+
 export default {
 	name: "ProductList",
 	props: ["items"],
+	components: {
+		ProductListItem
+	},
 	data() {
 		return {};
 	},

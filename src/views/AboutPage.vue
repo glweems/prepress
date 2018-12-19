@@ -5,8 +5,14 @@
 </template>
 
 <script>
+const PageHeader = () =>
+	import(/* webpackChunkName: "page-header" */ "@/components/PageHeader");
+
 export default {
 	name: "About",
+	components: {
+		PageHeader
+	},
 	data() {
 		return {
 			title: "About",

@@ -1,15 +1,21 @@
 <template lang="pug">
 .breadcrums
 	nav
-		breadcrum(title="All Products", path="/products")
-		breadcrum(v-if="category", :title="category.title", :path="category.path")
-		breadcrum(v-if="style", :title="style.title", :path="style.path")
-		breadcrum(v-if="sku", :title="sku.title", :path="sku.path")
+		Breadcrum(title="All Products", path="/products")
+		Breadcrum(v-if="category", :title="category.title", :path="category.path")
+		Breadcrum(v-if="style", :title="style.title", :path="style.path")
+		Breadcrum(v-if="sku", :title="sku.title", :path="sku.path")
 </template>
 
 <script>
+const Breadcrum = () =>
+	import(/* webpackChunkName: "breadcrum" */ "@/components/Utilities/Breadcrum");
+
 export default {
 	name: "Breadcrums",
+	components: {
+		Breadcrum
+	},
 	data() {
 		return {};
 	},

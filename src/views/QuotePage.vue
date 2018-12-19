@@ -6,9 +6,16 @@
 </template>
 
 <script>
+const PageHeader = () =>
+	import(/* webpackChunkName: "page-header" */ "@/components/PageHeader");
+
+const Calculator = () =>
+	import(/* webpackChunkName: "calculator" */ "@/components/Calculator/Calculator");
+
 export default {
 	name: "Quote",
 	props: ["products"],
+	components: { PageHeader, Calculator },
 	data() {
 		return {
 			title: "Get a quick quote",

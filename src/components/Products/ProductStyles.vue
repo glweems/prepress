@@ -2,18 +2,22 @@
 .product-styles
 	.info
 		h1 {{product}}
-	scroller
+	Scroller
 		product-style(v-for="(style, index) in styles", :key="style.title", :item="styles[index]", :product="product")
 	
 </template>
 	
 <script>
-import ProductStyle from "@/components/Products/ProductStyle";
+const ProductStyle = () =>
+	import(/* webpackChunkName: "product-style" */ "@/components/Products/ProductStyle");
+
+const Scroller = () =>
+	import(/* webpackChunkName: "Scroller" */ "@/components/Utilities/Scroller");
 
 export default {
 	name: "ProductStyles",
 	props: ["product", "styles"],
-	components: { "product-style": ProductStyle },
+	components: { "product-style": ProductStyle, Scroller },
 	data() {
 		return {};
 	},

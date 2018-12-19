@@ -21,18 +21,29 @@
 					
 			features(:items="item.features")
 			
-		.quote
-			router-link.button(:to="quote") Get a Quote!
-				span
-					<i class="fas fa-file-invoice-dollar"></i>
+		transition(name="quote-button-transition")
+			.quote
+				router-link.button(:to="quote") Get a Quote!
+					span
+						<i class="fas fa-file-invoice-dollar"></i>
 	
 		
 </template>
 
 <script>
+const Swatches = () =>
+	import(/* webpackChunkName: "Swatches" */ "@/components/Swatches");
+
+const Features = () =>
+	import(/* webpackChunkName: "Features" */ "@/components/Features");
+
 export default {
 	name: "ProductPage",
 	props: ["products"],
+	components: {
+		Swatches,
+		Features
+	},
 	data() {
 		return {};
 	},

@@ -5,7 +5,9 @@
 </template>
 	
 <script>
-import ProductStyles from "@/components/Products/ProductStyles";
+const ProductStyles = () =>
+	import(/* webpackChunkName: "product-styles" */ "@/components/Products/ProductStyles");
+
 export default {
 	name: "ProductsViewer",
 	props: ["products"],

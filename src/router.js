@@ -1,5 +1,14 @@
 import Vue from "vue"
 import Router from "vue-router"
+const HomePage = () => import(/* webpackChunkName: "home-page" */ '@/views/HomePage')
+const AboutPage = () => import(/* webpackChunkName: "about-page" */ '@/views/AboutPage')
+const ProductsPage = () => import(/* webpackChunkName: "products-page" */ '@/views/ProductsPage')
+const ProductPage = () => import(/* webpackChunkName: "products-page" */ '@/components/ProductPage')
+const ProductsViewer = () => import(/* webpackChunkName: "products-viewer" */ '@/components/Products/ProductsViewer')
+const Browse = () => import(/* webpackChunkName: "browse" */ '@/components/Browse')
+const ProductQuote = () => import(/* webpackChunkName: "product-quote" */ '@/components/ProductQuote')
+
+const QuotePage = () => import(/* webpackChunkName: "quote-page" */ '@/views/QuotePage');
 
 Vue.use(Router);
 
@@ -8,59 +17,55 @@ export default new Router({
 	routes: [{
 		path: "/",
 		name: "home",
-		component: () => import("@/views/Home"),
+		component: HomePage,
 		props: true
 	},
 	{
 		path: "/about",
 		name: "about",
-		component: () => import("@/views/About"),
+		component: AboutPage,
 		props: true
 	},
 	{
 		path: "/products",
-		component: () => import("@/views/Products"),
+		component: ProductsPage,
 		props: true,
-		children: [{
-			path: "",
-			component: () => import("@/components/Products/ProductsViewer"),
-			meta: {
-				breadcrums: "home"
+		children: [
+			{
+				path: "",
+				component: ProductsViewer,
+				meta: {
+					breadcrums: "home"
+				},
+				props: true,
 			},
-			props: true,
-		},
-		{
-			path: ":category/:style",
-			name: "browse",
-			component: () => import("@/components/Browse"),
-			props: true,
-		},
-		{
-			path: ":category/:style/:sku",
-			name: "product",
-			component: () => import("@/components/ProductPage"),
-			props: true,
-		},
-		{
-			path: ":category/:style/:sku/quote",
-			name: "product-quote",
-			component: () => import("@/views/Quote"),
-			props: true,
-		}
+			{
+				path: ":category/:style",
+				name: "browse",
+				component: Browse,
+				props: true,
+			},
+			{
+				path: ":category/:style/:sku",
+				name: "product",
+				component: ProductPage,
+				props: true,
+			},
+			{
+				path: ":category/:style/:sku/quote",
+				name: "product-quote",
+				component: ProductQuote,
+				props: true,
+			}
 		]
 	}, {
 		path: "/quote",
-		component: () => import("@/views/Quote"),
+		component: QuotePage,
 		props: true,
 		children: [{
 			path: "",
 			name: "quote",
-			component: () => import("@/components/ProductListItem"),
-			props: true
-		}, {
-			path: ":category/:sku/:color/",
-			name: "quote-item",
-			component: () => import("@/components/ProductListItem"),
+			component: QuotePage,
 			props: true
 		}],
 	}

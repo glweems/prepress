@@ -5,9 +5,15 @@
 </template>
 
 <script>
+const PageHeader = () =>
+	import(/* webpackChunkName: "page-header" */ "@/components/PageHeader");
+
 export default {
-	name: "Home",
+	name: "HomePage",
 	props: ["categories"],
+	components: {
+		PageHeader
+	},
 	data() {
 		return {
 			title: "Home",
