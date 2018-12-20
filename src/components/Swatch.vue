@@ -1,5 +1,5 @@
 <template lang="pug">
-a(:style=" { background: color.hex } ", @click="swatch($event)")
+a(:style="style", @click="swatch($event)")
 </template>
 
 <script>
@@ -8,7 +8,14 @@ export default {
 	props: ["color"],
 	components: {},
 	data() {
-		return {};
+		return {
+			style: {
+				background: this.color.hex
+			},
+			active: {
+				border: "2px solid pink"
+			}
+		};
 	},
 	methods: {
 		swatch() {
@@ -27,4 +34,7 @@ a
 	height: 1.5em
 	width: 1.5em
 	border-radius: 25px
+	
+a.active
+	border: 2px solid pink
 </style>

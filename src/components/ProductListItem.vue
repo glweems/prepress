@@ -41,7 +41,7 @@ export default {
 	computed: {
 		url() {
 			return {
-				name: "product-page",
+				name: "product-page-home",
 				params: {
 					sku: this.item.sku,
 					color: this.color.abr

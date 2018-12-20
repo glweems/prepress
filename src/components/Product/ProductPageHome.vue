@@ -18,14 +18,15 @@
 			ul
 				li {{ item.brand }}
 				li {{ item.fabric }}
-					
-			features(:items="item.features")
+				
+			transition(name='products-animation' enter-active-class='animated slideInRight faster')
+				router-view(:features="item.features")
 			
-		transition(name="quote-button-transition")
-			.quote
+			.quote(v-if="this.$route.name == 'product-page-home'")
 				router-link.button(:to="quote", :item="item") Get a Quote!
 					span
 						<i class="fas fa-file-invoice-dollar"></i>
+						
 </template>
 
 <script>
@@ -33,10 +34,10 @@ const Swatches = () =>
 	import(/* webpackChunkName: "Swatches" */ "@/components/Swatches");
 
 const Features = () =>
-	import(/* webpackChunkName: "Features" */ "@/components/Features");
+	import(/* webpackChunkName: "Features" */ "@/components/Product/Features");
 
 export default {
-	name: "ProductPage",
+	name: "ProductPageHome",
 	props: ["products"],
 	components: {
 		Swatches,

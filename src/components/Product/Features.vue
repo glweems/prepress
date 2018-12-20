@@ -1,13 +1,13 @@
 <template lang="pug">
 .features
 	ul(v-if="preview")
-		li(v-for="(item, index) in items") {{ item }}  
+		li(v-for="(feature, index) in features") {{ feature }}  
 </template>
 	
 <script>
 export default {
 	name: "Features",
-	props: ["items"],
+	props: ["features"],
 	components: {},
 	data() {
 		return {

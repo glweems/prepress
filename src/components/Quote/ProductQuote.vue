@@ -1,13 +1,10 @@
 <template lang="pug">
 .product-quote
-	product-list-item(:item="item")
+	//- quote-step
 	calculator(:product="product")
 </template>
 	
 <script>
-const ProductListItem = () =>
-	import(/* webpackChunkName: "product-list-item" */ "@/components/ProductListItem");
-
 const Calculator = () =>
 	import(/* webpackChunkName: "calculator" */ "@/components/Calculator/Calculator");
 
@@ -15,7 +12,6 @@ export default {
 	name: "ProductQuote",
 	props: ["products", "product"],
 	components: {
-		"product-list-item": ProductListItem,
 		calculator: Calculator
 	},
 	data() {
@@ -69,6 +65,12 @@ export default {
 </script>
 	
 <style lang="sass" scoped>
+@import '@/sass/main.sass'
 .product-quote
+	background: $primary
+	margin: .5em
+	padding: .5em
+	border-radius: .5em
+	transition: 1s
     
 </style>

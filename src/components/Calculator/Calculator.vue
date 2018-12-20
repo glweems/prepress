@@ -130,11 +130,9 @@ export default {
 				return this.screenprint.matrix[this.qtyArr][this.colorArrs.front];
 			}
 		},
-		backPrice(colors) {
+		backPrice() {
 			// If yes find how many and what cost is
-			let value = 0;
-			var arr;
-			if (this.colorArrs.back) {
+			if (this.isReady) {
 				return this.screenprint.secondLocation[this.colorArrs.back];
 			}
 		},
@@ -161,6 +159,9 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+@import '@/sass/main.sass'
+.calculator
+	transition: 1s
 form
 	margin-right: 25%
 	margin-left: 25%
