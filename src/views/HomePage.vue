@@ -1,7 +1,13 @@
 <template lang="pug">
 .home
 	page-header(:title="title", :subtitle="subtitle", msg="This is a message")
-	
+	el-row(:gutter='12')
+		el-col(:span='8')
+			el-card(shadow='always') Always
+		el-col(:span='8')
+			el-card(shadow='hover') Hover
+		el-col(:span='8')
+			el-card(shadow='never') Never
 </template>
 
 <script>

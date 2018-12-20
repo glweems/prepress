@@ -66,11 +66,10 @@ export default {
 	
 <style lang="sass" scoped>
 @import '@/sass/main.sass'
-.product-quote
-	background: $primary
-	margin: .5em
-	padding: .5em
-	border-radius: .5em
-	transition: 1s
+// .product-quote
+	// margin: .5em
+	// padding: .5em
+	// border-radius: .5em
+	// transition: 1s
     
 </style>

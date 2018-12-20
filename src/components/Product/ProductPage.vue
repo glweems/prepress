@@ -6,7 +6,6 @@
 	product-title(:title='item.title', :upgrade='item.upgrade')
 	transition(name='product-quote-animation' enter-active-class='animated fadeInUp faster')
 		router-view(:products="products")
-	
 						
 </template>
 
@@ -111,53 +110,6 @@ export default {
 
 <style lang="sass" scoped>
 
-@import "@/sass/main.sass"
+// @import "@/sass/main.sass"
 
-.product-page
-	height: $screen-height
-	
-.img-wrapper
-	width: 100%
-	background: $primary
-	+product-img
-	text-align: center
-	
-	img
-		padding: 1em .5em
-		background: white
-		height: 25vh
-	
-.product-swatches
-	
-.content
-
-	.info
-		padding-top: .7em 
-		padding-left: 1em
-		
-		.product-title
-			padding: .5em 0
-			font-size: 20px
-			margin-right: 1em
-			
-		.icons
-			margin-left: 1em
-			i
-				padding-right: .1em
-				color: $primary
-
-	.details
-		text-align: left
-		ul
-			list-style-type: none
-			
-	.quote
-		margin: 1em 0
-		text-align: center
-		a
-			background: $primary
-			color: $light
-		span
-			padding-left: .5em
-	
 </style>

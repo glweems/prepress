@@ -1,20 +1,30 @@
 <template lang="pug">
-form.calculator
-	template(v-if="!form.hasSizes")
-		label(for="total-qty") Total Qty
-		input.input(id="total-qty", type="number", v-model="form.qty")
-	
-	template(v-if="form.hasSizes", v-for="size in form.sizes")
-		label(:for="size.id") {{ size.id }}
-		input.input(:id="size.id", type="number")
-		
+el-form(label-position="top")
+	el-form-item(label="Qty")
+		el-input-number(v-model='form.qty')
 	template(v-for="location in form.locations")
-		label(:for="location.id") {{ location.id }}
-		input.input(:id="location.id", type="number", v-model="location.colors")
+		el-form-item(:label="location.id")
+		el-input-number(v-model='location.colors')
 		
-	button.button(type="submit" disabled) Click me
-	
 	p(v-if="jobTotal") {{jobTotal}}
+//- 		label(:for="location.id") {{ location.id }}
+//- 		input.input(:id="location.id", type="number", v-model="location.colors")
+//- form.calculator
+//- 	template(v-if="!form.hasSizes")
+//- 		label(for="total-qty") Total Qty
+//- 		input.input(id="total-qty", type="number", v-model="form.qty")
+	
+//- 	template(v-if="form.hasSizes", v-for="size in form.sizes")
+//- 		label(:for="size.id") {{ size.id }}
+//- 		input.input(:id="size.id", type="number")
+		
+//- 	template(v-for="location in form.locations")
+//- 		label(:for="location.id") {{ location.id }}
+//- 		input.input(:id="location.id", type="number", v-model="location.colors")
+		
+//- 	button.button(type="submit" disabled) Click me
+	
+
 </template>
 
 <script>
@@ -160,8 +170,7 @@ export default {
 
 <style lang="sass" scoped>
 @import '@/sass/main.sass'
-.calculator
-	transition: 1s
+
 form
 	margin-right: 25%
 	margin-left: 25%

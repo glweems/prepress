@@ -1,4 +1,4 @@
-w<template lang="pug">
+<template lang="pug">
 .product-info
 
 	.content

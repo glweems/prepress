@@ -10,6 +10,7 @@ const QuoteInfo = () => import(/* webpackChunkName: "product-quote" */ '@/compon
 const ProductPage = () => import(/* webpackChunkName: "product-page-home" */ '@/components/Product/ProductPage')
 const ProductPageHome = () => import(/* webpackChunkName: "product-page-home" */ '@/components/Product/ProductPageHome')
 const Content = () => import(/* webpackChunkName: "product-page-home" */ '@/components/Product/Content')
+
 Vue.use(Router)
 
 export default new Router({
