@@ -29,5 +29,6 @@ export default {
 
 <style lang="sass" scoped>
 .product-swatches
+	display: flex
 	width: 100%
 </style>

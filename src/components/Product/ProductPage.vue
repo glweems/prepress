@@ -2,7 +2,6 @@
 .product-page
 
 	product-img(:img="color.path")
-
 	product-title(:title='item.title', :upgrade='item.upgrade')
 	transition(name='product-quote-animation' enter-active-class='animated fadeInUp faster')
 		router-view(:products="products")

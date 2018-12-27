@@ -10,6 +10,7 @@ const QuoteInfo = () => import(/* webpackChunkName: "product-quote" */ '@/compon
 const ProductPage = () => import(/* webpackChunkName: "product-page-home" */ '@/components/Product/ProductPage')
 const ProductPageHome = () => import(/* webpackChunkName: "product-page-home" */ '@/components/Product/ProductPageHome')
 const Content = () => import(/* webpackChunkName: "product-page-home" */ '@/components/Product/Content')
+const Calculator = () => import(/* webpackChunkName: "calculator" */ "@/components/Calculator/Calculator")
 
 Vue.use(Router)
 
@@ -59,9 +60,21 @@ export default new Router({
 						},
 						{
 							path: 'quote',
-							name: 'product-quote',
-							component: ProductQuote
-						}
+							component: ProductQuote,
+							children: [
+								{
+									path: '',
+									name: 'product-calculator',
+									component: Calculator
+								},
+								{
+									path: 'info',
+									name: 'quote-info',
+									component: QuoteInfo,
+								}
+							],
+						},
+
 					]
 				}
 			]

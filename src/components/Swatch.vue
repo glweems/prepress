@@ -1,5 +1,5 @@
 <template lang="pug">
-a(:style="style", @click="swatch($event)")
+.swatch(:id="color.abr", :style="style", @click="swatch($event)")
 </template>
 
 <script>
@@ -28,13 +28,13 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-a
+.swatch
 	margin: 0 .25em
 	display: inline-block
-	height: 1.5em
-	width: 1.5em
-	border-radius: 25px
+	height: 2.25em
+	width: 100%
+	border-radius: 2px
 	
-a.active
+.active
 	border: 2px solid pink
 </style>

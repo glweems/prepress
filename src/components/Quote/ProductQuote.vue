@@ -1,19 +1,14 @@
 <template lang="pug">
 .product-quote
 	//- quote-step
-	calculator(:product="product")
+	router-view 
 </template>
 	
 <script>
-const Calculator = () =>
-	import(/* webpackChunkName: "calculator" */ "@/components/Calculator/Calculator");
-
 export default {
 	name: "ProductQuote",
-	props: ["products", "product"],
-	components: {
-		calculator: Calculator
-	},
+	props: ["products"],
+	components: {},
 	data() {
 		return {};
 	},

@@ -1,12 +1,12 @@
 <template lang="pug">
 .quote-info
-    
+	h1 {{ jobInfo }}
 </template>
 	
 <script>
 export default {
 	name: "QuoteInfo",
-	props: [""],
+	props: ["jobInfo"],
 	components: {},
 	data() {
 		return {};
