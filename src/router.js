@@ -3,12 +3,12 @@ import Router from "vue-router"
 const HomePage = () => import(/* webpackChunkName: "home-page" */ '@/views/HomePage')
 const AboutPage = () => import(/* webpackChunkName: "about-page" */ '@/views/AboutPage')
 const ProductsPage = () => import(/* webpackChunkName: "products-page" */ '@/views/ProductsPage')
+const PricingTable = () => import(/* webpackChunkName: "pricing-table-page" */ '@/views/PricingTable')
 const ProductsViewer = () => import(/* webpackChunkName: "products-viewer" */ '@/components/Products/ProductsViewer')
 const Browse = () => import(/* webpackChunkName: "browse" */ '@/components/Browse')
 const ProductQuote = () => import(/* webpackChunkName: "product-quote" */ '@/components/Quote/ProductQuote')
 const QuoteInfo = () => import(/* webpackChunkName: "product-quote" */ '@/components/Quote/QuoteInfo')
 const ProductPage = () => import(/* webpackChunkName: "product-page-home" */ '@/components/Product/ProductPage')
-const ProductPageHome = () => import(/* webpackChunkName: "product-page-home" */ '@/components/Product/ProductPageHome')
 const Content = () => import(/* webpackChunkName: "product-page-home" */ '@/components/Product/Content')
 const Calculator = () => import(/* webpackChunkName: "calculator" */ "@/components/Calculator/Calculator")
 
@@ -27,6 +27,12 @@ export default new Router({
 			path: "/about",
 			name: "about",
 			component: AboutPage,
+			props: true
+		},
+		{
+			path: "/matrix",
+			name: "MatrixTable",
+			component: PricingTable,
 			props: true
 		},
 		{

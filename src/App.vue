@@ -35,6 +35,10 @@ export default {
 				{
 					id: "Quote",
 					path: "/quote"
+				},
+				{
+					id: "Matrix",
+					path: "/matrix"
 				}
 			],
 			products: [
