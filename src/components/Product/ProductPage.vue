@@ -1,8 +1,7 @@
 <template lang="pug">
 .product-page
 
-	product-img(:img="color.path")
-	product-title(:title='item.title', :upgrade='item.upgrade')
+	product-banner(:item="item", :color="color")
 	transition(name='product-quote-animation' enter-active-class='animated fadeInUp faster')
 		router-view(:products="products")
 						
@@ -15,15 +14,15 @@ const ProductTitle = () =>
 const Swatches = () =>
 	import(/* webpackChunkName: "Swatches" */ "@/components/Swatches");
 
-const ProductImg = () =>
-	import(/* webpackChunkName: "product-img" */ "@/components/Product/Img");
+const ProductBanner = () =>
+	import(/* webpackChunkName: "product-img" */ "@/components/Product/Banner");
 
 export default {
 	name: "ProductPage",
 	props: ["products"],
 	components: {
-		"product-img": ProductImg,
 		"product-title": ProductTitle,
+		"product-banner": ProductBanner,
 		Swatches
 	},
 	created() {
