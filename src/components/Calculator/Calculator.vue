@@ -1,16 +1,37 @@
 <template lang="pug">
 
+//- Form Start
 el-form(label-position="top")
 
-	el-form-item(label="Qty")
+	//- Form Quantity Input
+	el-form-item(label="Number of Shirts needed")
+		p.warning-msg(v-if="!isReady") Minimum Qty 12
 		el-input-number(v-model='form.qty')
 		
-	template(v-for="location in form.locations")
+	//- Location Checkboxes
+	transition(name='sides-checkboxes' enter-active-class='animated fadeIn faster' leave-active-class='animated fadeOut faster')
 	
-		el-form-item(:label="location.id")
-		el-input-number(v-model='location.colors')
+		el-form-item(v-if="isReady" label="Select Sides")
+			el-checkbox(v-model='form.checkedSides.front') Front
+			el-checkbox(v-model='form.checkedSides.back') Back
 		
-	router-link.button(v-if="jobTotal" to="quote/info", :jobInfo="jobInfo") View Price
+	//- Font Colors Dropdown
+	transition(name='font-sides' enter-active-class='animated fadeIn' leave-active-class='animated fadeOut')
+	
+		el-form-item(v-if="form.checkedSides.front", :label="form.locations[0].id")
+			el-select(v-model='form.locations[0].colors' clearable placeholder='Number of Colors')
+				el-option(v-for='(color, i) in screenprint.colors', :key='color', :label='color', :value='color')
+			
+	//- Back Colors Dropdown
+	transition(name='back-sides' enter-active-class='animated fadeIn' leave-active-class='animated fadeOut')
+	
+		el-form-item(v-if="form.checkedSides.back", :label="form.locations[1].id")
+			el-select(v-model='form.locations[1].colors' clearable placeholder='Number of Colors')
+				el-option(v-for='(color, i) in screenprint.colors', :key='color', :label='color', :value='color')
+				
+	//- Button to see price		
+	transition(name='submit' enter-active-class='animated fadeIn' leave-active-class='animated fadeOut')
+		router-link.button.is-primary(v-if="total", :to="viewQuote()") View Price
 	
 </template>
 
@@ -36,6 +57,10 @@ export default {
 				viewQuote: false,
 				hasSizes: false,
 				qty: 0,
+				checkedSides: {
+					front: false,
+					back: false
+				},
 				sizes: [
 					{
 						id: "S",
@@ -81,6 +106,15 @@ export default {
 			if (colors != 0) {
 				return colors - 1;
 			}
+		},
+		viewQuote() {
+			let obj = {
+				name: "quote-info",
+				params: {
+					job: this.job
+				}
+			};
+			return obj;
 		}
 	},
 	computed: {
@@ -143,22 +177,23 @@ export default {
 		subTotal() {
 			return this.form.qty * this.pricePer;
 		},
-		jobTax() {
+		tax() {
 			let tax = 0.07;
 			// Rounds result to only 2 decimals
 			return this.subTotal * tax;
 		},
-		jobTotal() {
-			return this.subTotal + this.jobTax;
+		total() {
+			return this.subTotal + this.tax;
 		},
-		jobInfo() {
+		job() {
 			let obj = {
+				qty: this.form.qty,
 				basePrice: this.basePrice,
 				backPrice: this.backPrice,
 				pricePer: this.pricePer,
 				subTotal: this.subTotal,
-				jobTax: this.jobTax,
-				jobTotal: this.jobTotal
+				tax: this.tax,
+				total: this.total
 			};
 			return obj;
 		}
@@ -168,14 +203,19 @@ export default {
 
 <style lang="sass" scoped>
 @import '@/sass/main.sass'
-
+	
 form
-	margin-right: 25%
-	margin-left: 25%
 	text-align: center
-	max-width: 80%
-	input
-		margin: 1em 0
-	button
-		margin-top: 3em
+	width: 100%
+	height: 100%
+	
+button
+	margin-top: 3em
+
+.warning-msg
+	font-weight: 300
+	color: $alt
+		
+.el-select-dropdown__item
+	padding-left: 1em
 </style>

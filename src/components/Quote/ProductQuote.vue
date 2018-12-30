@@ -1,7 +1,7 @@
 <template lang="pug">
 .product-quote
 	//- quote-step
-	router-view 
+	router-view(@jobInfo="jobInfo=$event")
 </template>
 	
 <script>
@@ -10,7 +10,9 @@ export default {
 	props: ["products"],
 	components: {},
 	data() {
-		return {};
+		return {
+			jobInfo: {}
+		};
 	},
 	methods: {},
 	computed: {
