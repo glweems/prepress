@@ -31,7 +31,7 @@ el-form(label-position="top")
 				
 	//- Button to see price		
 	transition(name='submit' enter-active-class='animated fadeIn' leave-active-class='animated fadeOut')
-		router-link.button.is-primary(v-if="total", :to="viewQuote()") View Price
+		router-link.button.is-primary(v-if="total", :to="viewQuote()", key="quote-info") View Price
 	
 </template>
 
@@ -108,11 +108,18 @@ export default {
 			}
 		},
 		viewQuote() {
+			let link = 'quote/info/' + this.form.qty + '/' + this.basePrice + '/' + this.backPrice + '/' + this.pricePer + '/' + this.subTotal + '/' + this.tax + '/' + this.total;
 			let obj = {
-				name: "quote-info",
-				params: {
-					job: this.job
-				}
+				path: link
+				// params: {
+				// 	qty: this.form.qty,
+				// 	basePrice: this.basePrice,
+				// 	backPrice: this.backPrice,
+				// 	pricePer: this.pricePer,
+				// 	subTotal: this.subTotal,
+				// 	tax: this.tax,
+				// 	total: this.total
+				// }
 			};
 			return obj;
 		}
@@ -164,7 +171,11 @@ export default {
 		backPrice() {
 			// If yes find how many and what cost is
 			if (this.isReady) {
-				return this.screenprint.secondLocation[this.colorArrs.back];
+				if (this.screenprint.secondLocation[this.colorArrs.back] == undefined) {
+					return 0 
+				} else {
+					return this.screenprint.secondLocation[this.colorArrs.back]
+				}
 			}
 		},
 		pricePer() {

@@ -74,7 +74,7 @@ export default new Router({
 									component: Calculator
 								},
 								{
-									path: 'info',
+									path: '/info/:qty/:basePrice/:backPrice/:pricePer/:subTotal/:tax/:total',
 									name: 'quote-info',
 									component: QuoteInfo,
 								}
