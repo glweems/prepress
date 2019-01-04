@@ -11,7 +11,6 @@ export default {
 	props: ["pages"],
 	data() {
 		return {
-			brand: require("@/assets/icon-logo.svg")
 		};
 	}
 };

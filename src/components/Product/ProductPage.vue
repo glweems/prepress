@@ -3,7 +3,7 @@
 
 	product-banner(:item="item", :color="color")
 	transition(name='product-quote-animation' enter-active-class='animated fadeInUp faster')
-		router-view(:products="products")
+		router-view(:product="item", :item="item", :products="products")
 						
 </template>
 

@@ -1,16 +1,26 @@
 import Vue from "vue"
+
 import Router from "vue-router"
+
 const HomePage = () => import(/* webpackChunkName: "home-page" */ '@/views/HomePage')
+
 const AboutPage = () => import(/* webpackChunkName: "about-page" */ '@/views/AboutPage')
+
 const ProductsPage = () => import(/* webpackChunkName: "products-page" */ '@/views/ProductsPage')
-const PricingTable = () => import(/* webpackChunkName: "pricing-table-page" */ '@/views/PricingTable')
+
 const ProductsViewer = () => import(/* webpackChunkName: "products-viewer" */ '@/components/Products/ProductsViewer')
+
 const Browse = () => import(/* webpackChunkName: "browse" */ '@/components/Browse')
-const ProductQuote = () => import(/* webpackChunkName: "product-quote" */ '@/components/Quote/ProductQuote')
-const QuoteInfo = () => import(/* webpackChunkName: "product-quote" */ '@/components/Quote/QuoteInfo')
+
 const ProductPage = () => import(/* webpackChunkName: "product-page-home" */ '@/components/Product/ProductPage')
+
 const Content = () => import(/* webpackChunkName: "product-page-home" */ '@/components/Product/Content')
-const Calculator = () => import(/* webpackChunkName: "calculator" */ "@/components/Calculator/Calculator")
+
+const Quote = () => import(/* webpackChunkName: "quote" */ '@/components/Quote/Quote')
+
+const QuoteForm = () => import(/* webpackChunkName: "quote-form" */ "@/components/Quote/Form")
+
+const QuoteCalculator = () => import(/* webpackChunkName: "quote-calculator" */ '@/components/Quote/Calculator')
 
 Vue.use(Router)
 
@@ -66,17 +76,17 @@ export default new Router({
 						},
 						{
 							path: 'quote',
-							component: ProductQuote,
+							component: Quote,
 							children: [
 								{
 									path: '',
-									name: 'product-calculator',
-									component: Calculator
+									name: 'quote-form',
+									component: QuoteForm
 								},
 								{
-									path: '/info/:qty/:basePrice/:backPrice/:pricePer/:subTotal/:tax/:total',
-									name: 'quote-info',
-									component: QuoteInfo,
+									path: 'qty/:qty/front/:front/back/:back',
+									name: 'quote-calculator',
+									component: QuoteCalculator,
 								}
 							],
 						},
@@ -85,11 +95,5 @@ export default new Router({
 				}
 			]
 		},
-		// {
-		// 	path: ":category/:style/:sku/:color",
-		// 	name: "product-page",
-		// 	component: ProductPage,
-		// 	props: true,
-		// }
 	]
 })

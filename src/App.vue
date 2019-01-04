@@ -31,14 +31,6 @@ export default {
 				{
 					id: "Products",
 					path: "/products"
-				},
-				{
-					id: "Quote",
-					path: "/quote"
-				},
-				{
-					id: "Matrix",
-					path: "/matrix"
 				}
 			],
 			products: [
