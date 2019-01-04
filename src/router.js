@@ -40,12 +40,6 @@ export default new Router({
 			props: true
 		},
 		{
-			path: "/matrix",
-			name: "MatrixTable",
-			component: PricingTable,
-			props: true
-		},
-		{
 			path: "/products",
 			component: ProductsPage,
 			props: true,
