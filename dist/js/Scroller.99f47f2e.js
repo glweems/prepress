@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["Scroller"],{"2b3a":function(e,t,n){"use strict";var r=n("c2ff"),c=n.n(r);c.a},"428d":function(e,t,n){"use strict";n.r(t);var r=function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",{staticClass:"scroller"},[e._t("default")],2)},c=[],l={name:"Scroller",data(){return{}}},a=l,o=(n("2b3a"),n("2877")),s=Object(o["a"])(a,r,c,!1,null,"be2901fc",null);s.options.__file="Scroller.vue";t["default"]=s.exports},c2ff:function(e,t,n){}}]);
-//# sourceMappingURL=Scroller.99f47f2e.js.map
