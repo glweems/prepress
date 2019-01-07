@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div v-for="product in products" :key="product.id">
+		<div v-for="product in products" :key="product.id" @click="pushRoute(product.id)">
 			<h4>{{ product.title }}</h4>
 			<p>{{ product.brand }}</p>
 			<small>{{ product.sku }}</small>
@@ -10,7 +10,6 @@
 
 <script>
 export default {
-	name: "Products",
 	data() {
 		return {
 			products: [],
@@ -45,6 +44,9 @@ export default {
 				prevPage: links.prev
 			};
 			this.pagination = pagination;
+		},
+		pushRoute(sku) {
+			this.$router.push({ path: `/product/${sku}` });
 		}
 	}
 };
