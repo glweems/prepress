@@ -13,18 +13,19 @@ export default new VueRouter({
 	routes: [
 		{
 			path: '/',
-			name: 'Home',
 			component: Home
 		},
 		{
 			path: '/about',
-			name: 'About',
 			component: About
 		},
 		{
 			path: '/products',
-			name: 'Products',
 			component: Products
+		},
+		{
+			path: '/product/:sku',
+			component: Product
 		},
 	]
 });

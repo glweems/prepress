@@ -1907,8 +1907,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Product"
+  data: function data() {
+    return {
+      product: {}
+    };
+  },
+  created: function created() {
+    this.fetchProduct();
+  },
+  methods: {
+    fetchProduct: function fetchProduct() {
+      var _this = this;
+
+      var api = "/api/product/" + this.$route.params.sku;
+      fetch(api).then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        _this.product = data;
+        console.log(data);
+      }).catch(function (err) {
+        console.log("error");
+      });
+    }
+  },
+  computed: {}
 });
 
 /***/ }),
@@ -1933,7 +1957,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Products",
   data: function data() {
     return {
       products: [],
@@ -1970,6 +1993,11 @@ __webpack_require__.r(__webpack_exports__);
         prevPage: links.prev
       };
       this.pagination = pagination;
+    },
+    pushRoute: function pushRoute(sku) {
+      this.$router.push({
+        path: "/product/".concat(sku)
+      });
     }
   }
 });
@@ -6342,7 +6370,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -6361,7 +6389,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -37920,16 +37948,13 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("h6", [_vm._v("Single Product Page")]),
+    _vm._v(" "),
+    _c("p", [_vm._v(_vm._s(_vm.product.title))])
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("p", [_vm._v("Single Product Page")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -37954,13 +37979,24 @@ var render = function() {
   return _c(
     "div",
     _vm._l(_vm.products, function(product) {
-      return _c("div", { key: product.id }, [
-        _c("h4", [_vm._v(_vm._s(product.title))]),
-        _vm._v(" "),
-        _c("p", [_vm._v(_vm._s(product.brand))]),
-        _vm._v(" "),
-        _c("small", [_vm._v(_vm._s(product.sku))])
-      ])
+      return _c(
+        "div",
+        {
+          key: product.id,
+          on: {
+            click: function($event) {
+              _vm.pushRoute(product.id)
+            }
+          }
+        },
+        [
+          _c("h4", [_vm._v(_vm._s(product.title))]),
+          _vm._v(" "),
+          _c("p", [_vm._v(_vm._s(product.brand))]),
+          _vm._v(" "),
+          _c("small", [_vm._v(_vm._s(product.sku))])
+        ]
+      )
     }),
     0
   )
@@ -52240,16 +52276,16 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
   mode: "history",
   routes: [{
     path: '/',
-    name: 'Home',
     component: _js_views_Home__WEBPACK_IMPORTED_MODULE_2__["default"]
   }, {
     path: '/about',
-    name: 'About',
     component: _js_views_About__WEBPACK_IMPORTED_MODULE_3__["default"]
   }, {
     path: '/products',
-    name: 'Products',
     component: _js_views_Products__WEBPACK_IMPORTED_MODULE_4__["default"]
+  }, {
+    path: '/product/:sku',
+    component: _js_views_Product__WEBPACK_IMPORTED_MODULE_5__["default"]
   }]
 }));
 
