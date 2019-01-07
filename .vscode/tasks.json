@@ -20,6 +20,20 @@
 				"kind": "build",
 				"isDefault": true
 			}
+		},
+		{
+			"type": "npm",
+			"script": "dev",
+			"problemMatcher": [
+				"$eslint-stylish"
+			]
+		},
+		{
+			"type": "npm",
+			"script": "watch",
+			"problemMatcher": [
+				"$eslint-compact"
+			]
 		}
 	]
 }

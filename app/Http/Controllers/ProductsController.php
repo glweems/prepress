@@ -19,7 +19,7 @@ class ProductsController extends Controller
     public function index()
     {
         // Get Products
-        $products = Product::paginate(15);
+        $products = Product::paginate(3);
         
         // Return collection of products as resource
         return ProductResource::collection($products);
@@ -33,6 +33,8 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
+        // $name = DB::table('users')->where('name', 'John')->pluck('name');
+        
         // Get Product
         $product = Product::findOrFail($id);
         
