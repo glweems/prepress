@@ -1,24 +1,26 @@
 <template>
-	<div>
-		<div v-for="product in products" :key="product.id" @click="pushRoute(product.id)">
-			<h4>{{ product.title }}</h4>
-			<p>{{ product.brand }}</p>
-			<small>{{ product.sku }}</small>
+	<div class="products">
+		<div
+			class="product"
+			v-for="product in products"
+			:key="product.sku"
+			@click="pushRoute(product.id)"
+		>
+			<card :header="product.title" :title="product.brand" :subtitle="product.sku" :key="product.sku"></card>
 		</div>
 	</div>
 </template>
 
 <script>
+import card from "%/Card/Card";
 export default {
+	name: "products",
+	components: {
+		card
+	},
 	data() {
 		return {
 			products: [],
-			product: {
-				id: "",
-				sku: "",
-				title: ""
-			},
-			product_id: "",
 			pagination: {}
 		};
 	},

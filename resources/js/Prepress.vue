@@ -1,15 +1,15 @@
 <template>
 	<div>
-		<Navbar :pages="pages"></Navbar>
+		<navbar :pages="pages"></navbar>
 		<router-view></router-view>
 	</div>
 </template>
 
 <script>
-import Navbar from "#/components/Navbar/Navbar";
+import navbar from "%/Navbar/Navbar";
 export default {
-	name: "App",
-	components: { Navbar },
+	name: "pre-press",
+	components: { navbar },
 	data() {
 		return {
 			pages: [

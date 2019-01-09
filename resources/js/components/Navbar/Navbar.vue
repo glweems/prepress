@@ -5,14 +5,13 @@
 </template>
 
 <script>
-import NavLink from "@/js/components/Navbar/NavLink";
+import NavLink from "%/Navbar/NavLink";
 export default {
-	name: "Navbar",
-	props: ["pages"],
-	components: { NavLink },
-	data() {
-		return {};
-	}
+	name: "navbar",
+	props: {
+		pages: Array
+	},
+	components: { NavLink }
 };
 </script>
 

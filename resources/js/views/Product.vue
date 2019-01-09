@@ -1,16 +1,23 @@
 <template>
-	<div>
+	<div class="product">
 		<h6>Single Product Page</h6>
 		<p>{{ title }}</p>
 		<p>{{ brand }}</p>
-		<img class="img-fluid" :src="tbn">
+		<list :items="features" key="features"></list>
+		<swatches :colors="colors"></swatches>
 	</div>
 </template>
 
 <script>
+import swatches from "%/Swatches/Swatches";
+import list from "%/List/List";
 import prettylog from "glweems-prettylogs";
 export default {
-	name: "Product",
+	name: "product",
+	components: {
+		list,
+		swatches
+	},
 	data() {
 		return {
 			id: 0,
@@ -28,7 +35,6 @@ export default {
 		this.fetchProduct();
 		console.clear;
 	},
-	watch: {},
 	methods: {
 		fetchProduct() {
 			const api = "/api/product/" + this.$route.params.sku;
@@ -73,7 +79,6 @@ export default {
 							".jpg";
 					}
 					this.tbn = path.toLowerCase();
-					require(path);
 				}
 			}
 		}
@@ -81,5 +86,5 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 </style>

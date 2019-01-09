@@ -1,12 +1,12 @@
 <template>
 	<div>
-		<h2>Articles</h2>
+		<p>{{ color }}</p>
 	</div>
 </template>
 
 <script>
 export default {
-	name: "Products"
+	props: ["color"]
 };
 </script>
 
