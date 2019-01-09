@@ -1,13 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
 import Home from '#/views/Home'
 import About from '#/views/About'
 import Products from '#/views/Products'
 import Product from '#/views/Product'
-import prettylog from 'glweems-prettylogs'
 
-Vue.use(VueRouter, prettylog)
+
+Vue.use(VueRouter)
 
 export default new VueRouter({
 	mode: "history",

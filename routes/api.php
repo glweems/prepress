@@ -22,3 +22,12 @@ Route::get('products', 'ProductsController@index');
 
 // List Single Product
 Route::get('product/{id}', 'ProductsController@show');
+
+// List Single Product Colors
+Route::get('product/colors/{id}', 'ProductsController@colors');
+
+// Get Image From 'public/images'
+Route::get('images/{filename}', 'PhotoController@image');
+
+// Get Image From 'public/images/product'
+Route::get('images/product/{filename}', 'PhotoController@product');

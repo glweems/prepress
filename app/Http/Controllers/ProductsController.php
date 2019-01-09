@@ -8,14 +8,8 @@ use App\Product;
 use App\Http\Resources\Product as ProductResource;
 
 
-
 class ProductsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         // Get Products
@@ -25,16 +19,17 @@ class ProductsController extends Controller
         return ProductResource::collection($products);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        // $name = DB::table('users')->where('name', 'John')->pluck('name');
+        // Get Product
+        $product = Product::findOrFail($id);
         
+        // Return single Product as a resource
+        return new ProductResource($product);
+    }
+    
+    public function colors($id)
+    {
         // Get Product
         $product = Product::findOrFail($id);
         
@@ -42,3 +37,6 @@ class ProductsController extends Controller
         return new ProductResource($product);
     }
 }
+
+
+// $model = User::where('votes', '>', 100)->firstOrFail();

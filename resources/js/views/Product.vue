@@ -3,12 +3,14 @@
 		<h6>Single Product Page</h6>
 		<p>{{ title }}</p>
 		<p>{{ brand }}</p>
+		<product-img :img="tbn" :key="tbn"></product-img>
 		<list :items="features" key="features"></list>
 		<swatches :colors="colors"></swatches>
 	</div>
 </template>
 
 <script>
+import image from "%/Image";
 import swatches from "%/Swatches/Swatches";
 import list from "%/List/List";
 import prettylog from "glweems-prettylogs";
@@ -16,7 +18,8 @@ export default {
 	name: "product",
 	components: {
 		list,
-		swatches
+		swatches,
+		"product-img": image
 	},
 	data() {
 		return {
@@ -65,20 +68,12 @@ export default {
 		findTbn() {
 			prettylog.success("findTbn() Called");
 			var i;
-			let path = "";
+			var tbn;
 			if (this.title != undefined) {
 				for (i = 0; i < this.colors.length; i++) {
 					if (this.colors[i].default) {
-						path =
-							"@/" +
-							this.sku +
-							"/" +
-							this.sku +
-							"_" +
-							this.colors[i].abr +
-							".jpg";
+						this.tbn = productImg(this.sku, this.colors[i].abr);
 					}
-					this.tbn = path.toLowerCase();
 				}
 			}
 		}

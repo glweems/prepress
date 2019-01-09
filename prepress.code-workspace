@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "app"
+		},
+		{
+			"path": "resources/js/components"
+		},
+		{
+			"path": "resources/js/views"
+		},
+		{
+			"path": "resources/sass"
+		},
+		{
+			"path": "public"
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
+}

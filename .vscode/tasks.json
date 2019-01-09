@@ -32,7 +32,7 @@
 			"type": "npm",
 			"script": "watch",
 			"problemMatcher": [
-				"$eslint-compact"
+				"$eslint-stylish"
 			]
 		},
 		{
