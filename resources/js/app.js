@@ -1,7 +1,7 @@
 require('./bootstrap')
 import Vue from 'vue'
-import Routes from '@/js/routes.js'
-import App from '@/js/App.vue'
+import Routes from '#/routes'
+import App from '#/App.vue'
 
 Vue.config.productionTip = false
 

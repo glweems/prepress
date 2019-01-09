@@ -34,6 +34,13 @@
 			"problemMatcher": [
 				"$eslint-compact"
 			]
+		},
+		{
+			"type": "npm",
+			"script": "hot",
+			"problemMatcher": [
+				"$eslint-compact"
+			]
 		}
 	]
 }
