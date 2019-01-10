@@ -1,23 +1,27 @@
 <template>
 	<div class="card">
-		<div class="card-inner">
-			<div v-if="header" class="header">
-				<h4>{{ header }}</h4>
-			</div>
+		<!-- Card Header -->
+		<div v-if="header" class="header">
+			<card-header v-if="header" :header="header"></card-header>
+		</div>
+		<!-- Card Inner -->
+		<div :class="cardInner()">
+			<!-- Card Image -->
+			<card-image v-if="img" :img="img"></card-image>
+			<!-- Card Body -->
 			<div class="body">
-				<div v-if="img" class="card-img">
-					<card-image :img="img"></card-image>
-				</div>
 				<h4 v-if="title" class="title">{{ title }}</h4>
 				<h4 v-if="subtitle" class="title">{{ subtitle }}</h4>
-				<p v-if="msg" class="msg">{{ msg }}</p>
+				<card-text v-if="msg" :text="msg"></card-text>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-import image from "%/Image";
+import header from "%/Card/Header";
+import image from "Basic/Image";
+import paragraph from "Basic/P";
 export default {
 	props: {
 		header: String,
@@ -27,36 +31,36 @@ export default {
 		img: String
 	},
 	components: {
-		"card-image": image
+		"card-header": header,
+		"card-image": image,
+		"card-text": paragraph
 	},
-	data() {
-		return {
-			type: {
-				img: {
-					style: {}
-				}
+	methods: {
+		cardInner() {
+			let classes = ["card-inner"];
+			if (this.img) {
+				classes.push("card-has-img");
 			}
-		};
+			return classes;
+		}
 	}
 };
 </script>
 
 <style lang="scss" scoped>
+	@import "sassy";
 	.card {
-		-webkit-box-flex: 1;
-		-webkit-box-orient: vertical;
-		background-color: #fff;
-		border: 1px solid #dfe1e5;
-		border-radius: 8px;
-		box-shadow: none;
-		display: block;
-		display: flex;
-		flex: 1 0 auto;
-		flex-basis: auto;
-		flex-direction: column;
-		flex-grow: 1;
-		flex-shrink: 0;
-		overflow: hidden;
-		padding: 16px;
+		@include shadow;
+	}
+	.card-inner {
+		background: green;
+	}
+	.card-has-img {
+		display: grid;
+		grid-template-columns: 2fr 5fr;
+		margin: 0.35em;
+		gap: 0.75em;
+		margin: 1em;
+		padding: 0.5em 0.35em;
 	}
 </style>

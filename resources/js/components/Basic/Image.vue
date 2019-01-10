@@ -12,7 +12,10 @@ export default {
 </script>
 
 <style scoped>
-img{
-	max-width: 100%;
-}
+	img {
+		box-sizing: inherit;
+		height: auto;
+		max-width: 100%;
+		padding: 0.1em 0.5em;
+	}
 </style>

@@ -6,13 +6,21 @@
 			:key="product.sku"
 			@click="pushRoute(product.id)"
 		>
-			<card :header="product.title" :title="product.brand" :subtitle="product.sku" :key="product.sku"></card>
+			<card
+				:header="product.title"
+				:img="productListImg(product)"
+				:title="product.brand"
+				:msg="product.title"
+				:subtitle="product.sku"
+				:key="product.sku"
+			></card>
 		</div>
 	</div>
 </template>
 
 <script>
-import { productFromSku, defaultProductColor } from "#/helpers";
+import { productFromSku, defaultProductColor, productListImg } from "#/helpers";
+
 import card from "%/Card/Card";
 export default {
 	name: "products",
@@ -29,6 +37,7 @@ export default {
 		this.fetchProducts();
 	},
 	methods: {
+		productListImg,
 		fetchProducts(page_url) {
 			let vm = this;
 			page_url = page_url || "/api/products";

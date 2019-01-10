@@ -26,8 +26,10 @@ export function colorFromRoute(colors, abr) {
 	return color
 };
 
+export const productListImg = (product) => productImg(product.sku, defaultProductColor(product.colors).abr)
+
 export const productPath = "/product"
 
 export const getProductApi = (sku) => '/api/product/' + sku;
 
-export default { productImg, defaultProductColor, getProductApi, colorFromRoute, productFromSku }
+export default { productImg, defaultProductColor, getProductApi, colorFromRoute, productFromSku, productListImg }

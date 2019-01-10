@@ -8,7 +8,9 @@ mix.webpackConfig({
          '#': __dirname + '/resources/js',
          '!': __dirname + '/resources/images',
          '%': __dirname + '/resources/js/components',
-         '~': __dirname + './node_modules/'
+         '~': __dirname + './node_modules/',
+         "sassy": __dirname + "/resources/sass/app.scss",
+         "Basic": __dirname + '/resources/js/components/Basic'
       }
    },
 });
