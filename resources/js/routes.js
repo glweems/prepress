@@ -25,7 +25,11 @@ export default new VueRouter({
 		},
 		{
 			path: '/product/:sku',
-			component: Product
+			component: Product,
+		},
+		{
+			path: '/product/:sku/:color',
+			component: Product,
 		},
 	]
 });

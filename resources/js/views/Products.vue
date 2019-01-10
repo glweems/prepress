@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { productFromSku, defaultProductColor } from "#/helpers";
 import card from "%/Card/Card";
 export default {
 	name: "products",
@@ -48,7 +49,9 @@ export default {
 			this.pagination = pagination;
 		},
 		pushRoute(sku) {
-			this.$router.push({ path: `/product/${sku}` });
+			const product = productFromSku(this.products, sku);
+			const color = defaultProductColor(product.colors);
+			this.$router.push({ path: `/product/${sku}/${color.abr}` });
 		}
 	}
 };
