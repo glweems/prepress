@@ -20,12 +20,13 @@
 
 <script>
 import { productFromSku, defaultProductColor, productListImg } from "#/helpers";
-
+import button from "Elements/Button";
 import card from "%/Card/Card";
 export default {
 	name: "products",
 	components: {
-		card
+		card,
+		product: button
 	},
 	data() {
 		return {

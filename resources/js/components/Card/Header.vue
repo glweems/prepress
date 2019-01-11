@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import text from "Basic/P";
+import text from "Elements/P";
 export default {
 	props: {
 		header: {

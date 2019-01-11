@@ -16,7 +16,7 @@ import {
 	getProductApi,
 	colorFromRoute
 } from "#/helpers";
-import image from "Basic/Image";
+import image from "Elements/Img";
 import swatches from "%/Swatches/Swatches";
 import features from "%/List/List";
 import prettylog from "glweems-prettylogs";

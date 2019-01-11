@@ -1,3 +1,16 @@
 @mixin shadow {
     box-shadow: rgba(0, 0, 0, 0.16) 0 3px 6px;
 }
+
+@function rem($px, $base: $base-font-size) {
+    @return $px / $base * 1rem;
+}
+
+@mixin corners {
+    border: 1px solid #dfe1e5;
+    border-radius: 8px;
+}
+
+@mixin margin {
+    margin: 0.1em 1em;
+}

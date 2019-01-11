@@ -1,0 +1,373 @@
+{
+	"products": {
+		"g500": {
+			"colors": [
+				{
+					"default": true,
+					"abr": "wht",
+					"hex": "#FFFFFF",
+					"title": "White"
+				},
+				{
+					"abr": "blk",
+					"hex": "#000000",
+					"title": "Black"
+				}
+			],
+			"description": "Our best selling and most cost-effective t-shirt. The Gildan Ultra Cotton Tee is a standard crew-neck t-shirt, made of great quality 100% pre-shrunk cotton. It's available in a wide variety of colors so you should be able to find exactly what you're looking for!",
+			"features": [
+				"5.3 oz., pre-shrunk 100% cotton",
+				"Blackberry, Dark Heather, Graphite Heather, Heather Military Green, Heather Red, Heather Sapphire, Lilac, Midnight, Neon Blue, Neon Green, Russet, Safety Green, S. Orange, Safety Pink, Sunset and Tweed are 50/50 cotton/polyester",
+				"Antique Cherry Red, Antique Irish Green, Antique Jade Dome, Antique Orange, Antique Sapphire and Sport Grey are 90/10 cotton/polyester",
+				"Ash is 99/1 cotton/polyester",
+				"Double-needle stitched neckline, bottom hem and sleeves",
+				"Quarter-turned",
+				"Seven-eighths inch seamless collar",
+				"Shoulder-to-shoulder taping",
+				"Tearaway label"
+			]
+		},
+		"980": {
+			"description": "One of our softest 100% preshrunk cotton tees, this is a great choice for anybody looking for a lightweight, slightly fitted custom shirt. It's a unisex product, so it's great for men or women!",
+			"colors": [
+				{
+					"abr": "wht",
+					"hex": "#FFFFFF",
+					"title": "White",
+					"default": true
+				},
+				{
+					"abr": "blk",
+					"hex": "#000000",
+					"title": "Black"
+				},
+				{
+					"abr": "strg",
+					"hex": "#4F5150",
+					"title": "Storm Grey"
+				},
+				{
+					"abr": "smk",
+					"hex": "#313131",
+					"title": "Smoke"
+				},
+				{
+					"abr": "gnap",
+					"hex": "#458E3D",
+					"title": "Green Apple"
+				},
+				{
+					"title": "Independence Red",
+					"abr": "ired",
+					"hex": "#9C0C0C"
+				},
+				{
+					"title": "Navy",
+					"abr": "nvy",
+					"hex": "#091F36"
+				},
+				{
+					"abr": "slv",
+					"hex": "#AAA8AB",
+					"title": "Silver"
+				}
+			],
+			"features": [
+				"4.3 oz., pre-shrunk 100% combed ringspun cotton, 32 singles",
+				"Heather Grey is 90/10 combed ringspun cotton/polyester",
+				"Heather colors and Neons are 35/65 combed ringspun cotton/polyester",
+				"Heather Graphite is 50/50 cotton/polyester",
+				"Shoulder-to-shoulder taping",
+				"Double-needle stitched sleeves and bottom hem",
+				"Tubular construction",
+				"TearAway™ label for easy relabeling"
+			]
+		},
+		"3001c": {
+			"title": "Greenwhich T-Shirt",
+			"brand": "Bella + Canvas",
+			"description": "One of our softest 100% cotton tees, this is a great choice for anybody looking for a lightweight, slightly fitted shirt. It's a unisex product, so it makes great custom shirts for men or women!",
+			"fabric": "100% combed ringspun cotton",
+			"features": [
+				"4.2 oz., 100% airlume combed and ringspun cotton, 32 singles",
+				"Ash is 99/1 airlume combed and ringspun cotton/polyester",
+				"Side seams, retail fit",
+				"Shoulder to shoulder taping",
+				"Unisex sizing",
+				"Tearaway label"
+			],
+			"colors": [
+				{
+					"default": true,
+					"title": "White",
+					"abr": "wht",
+					"hex": "#FFFFFF"
+				},
+				{
+					"title": "Black",
+					"abr": "blk",
+					"hex": "#000000"
+				},
+				{
+					"title": "Dark Gray Heather",
+					"abr": "dght",
+					"hex": "#333331"
+				},
+				{
+					"title": "Red",
+					"abr": "red",
+					"hex": "#B40E24"
+				},
+				{
+					"title": "Yellow",
+					"abr": "yel",
+					"hex": "#F2DE65"
+				},
+				{
+					"title": "Leaf",
+					"abr": "lef",
+					"hex": "#497242"
+				},
+				{
+					"title": "True Royal",
+					"abr": "tryl",
+					"hex": "#2A4B90"
+				},
+				{
+					"title": "Navy",
+					"abr": "nvy",
+					"hex": "#2E2D3F"
+				},
+				{
+					"title": "Light Blue",
+					"abr": "lbl",
+					"hex": "#ADB9C7"
+				},
+				{
+					"title": "Olive",
+					"abr": "olv",
+					"hex": "#414725"
+				}
+			],
+			"sizes": [
+				{
+					"title": "Small",
+					"abr": "S",
+					"width": "20.5",
+					"length": "27.5"
+				},
+				{
+					"title": "Medium",
+					"abr": "M",
+					"width": 21.5,
+					"length": 28.5
+				},
+				{
+					"title": "Large",
+					"abr": "L",
+					"width": 22.5,
+					"length": 29.5
+				},
+				{
+					"title": "Extra Large",
+					"abr": "XL",
+					"width": 23.5,
+					"length": 30.5
+				},
+				{
+					"title": "Double Extra Large",
+					"abr": "2XL",
+					"width": 24.5,
+					"length": 31.5
+				},
+				{
+					"title": "Triple Extra Large",
+					"abr": "3XL",
+					"width": 25.5,
+					"length": 32.5
+				}
+			]
+		},
+		"g640": {
+			"title": "Softstyle T-Shirt",
+			"brand": "Gildan",
+			"category": "T-Shirts",
+			"description": "A soft, modern version of our basic Gildan tee. The Soft Style tee is an affordable basic tee with a more contemporty fit. Heather colors are poly/cotton blends. Double-needle stitched for durablility.",
+			"fabric": "100% cotton",
+			"features": [
+				"4.5 oz., pre-shrunk 100% ringspun cotton",
+				"30 singles",
+				"Double-needle stitched neckline and sleeves",
+				"Quarter-turned",
+				"Taped neck and shoulder",
+				"Three-quarter inch seamless collar",
+				"Tearaway label",
+				"Heathers are 35/65 cotton/polyester",
+				"Sport Grey and Antiques are 90/10 cotton/polyester",
+				"Graphite Heather is 50/50 cotton/polyester"
+			],
+			"colors": [
+				{
+					"default": true,
+					"title": "White",
+					"abr": "wht",
+					"hex": "#FFFFFF"
+				},
+				{
+					"title": "Black",
+					"abr": "blk",
+					"hex": "#000000"
+				},
+				{
+					"title": "Sport Grey",
+					"abr": "sgry",
+					"hex": "#B0B0B0"
+				},
+				{
+					"title": "Charcoal",
+					"abr": "chr",
+					"hex": "#403F3D"
+				},
+				{
+					"title": "Heather Coral Silk",
+					"abr": "hcor",
+					"hex": "#EF686A"
+				},
+				{
+					"title": "Daisy",
+					"abr": "dsy",
+					"hex": "#F5B122"
+				},
+				{
+					"title": "iris",
+					"abr": "irs",
+					"hex": "#6D7FAF"
+				},
+				{
+					"title": "Red",
+					"abr": "red",
+					"hex": "#C80D28"
+				},
+				{
+					"title": "Indigo",
+					"abr": "ind",
+					"hex": "#566779"
+				},
+				{
+					"title": "Tropical Blue",
+					"abr": "tblu",
+					"hex": "#008998"
+				},
+				{
+					"title": "Eletric Green",
+					"abr": "elgn",
+					"hex": "#45A238"
+				}
+			],
+			"sizes": [
+				{
+					"title": "Small",
+					"abr": "S",
+					"width": "20.5",
+					"length": "27.5"
+				},
+				{
+					"title": "Medium",
+					"abr": "M",
+					"width": 21.5,
+					"length": 28.5
+				},
+				{
+					"title": "Large",
+					"abr": "L",
+					"width": 22.5,
+					"length": 29.5
+				},
+				{
+					"title": "Extra Large",
+					"abr": "XL",
+					"width": 23.5,
+					"length": 30.5
+				},
+				{
+					"title": "Double Extra Large",
+					"abr": "2XL",
+					"width": 24.5,
+					"length": 31.5
+				},
+				{
+					"title": "Triple Extra Large",
+					"abr": "3XL",
+					"width": 25.5,
+					"length": 32.5
+				}
+			]
+		}
+	},
+	"sku": {
+		"title": "",
+		"brand": "",
+		"description": "",
+		"fabric": "",
+		"features": [
+			"One",
+			"Two"
+		],
+		"colors": [
+			{
+				"default": true,
+				"title": "White",
+				"abr": "wht",
+				"hex": "#FFFFFF"
+			},
+			{
+				"title": "Black",
+				"abr": "blk",
+				"hex": "#000000"
+			},
+			{
+				"title": "",
+				"abr": "",
+				"hex": "#"
+			}
+		],
+		"sizes": [
+			{
+				"title": "Small",
+				"abr": "S",
+				"width": 20.5,
+				"length": 27.5
+			},
+			{
+				"title": "Medium",
+				"abr": "M",
+				"width": 21.5,
+				"length": 28.5
+			},
+			{
+				"title": "Large",
+				"abr": "L",
+				"width": 22.5,
+				"length": 29.5
+			},
+			{
+				"title": "Extra Large",
+				"abr": "XL",
+				"width": 23.5,
+				"length": 30.5
+			},
+			{
+				"title": "Double Extra Large",
+				"abr": "2XL",
+				"width": 24.5,
+				"length": 31.5
+			},
+			{
+				"title": "Triple Extra Large",
+				"abr": "3XL",
+				"width": 25.5,
+				"length": 32.5
+			}
+		]
+	}
+}

@@ -16,6 +16,5 @@ export default {
 		box-sizing: inherit;
 		height: auto;
 		max-width: 100%;
-		padding: 0.1em 0.5em;
 	}
 </style>

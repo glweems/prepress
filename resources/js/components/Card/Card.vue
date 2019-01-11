@@ -20,8 +20,8 @@
 
 <script>
 import header from "%/Card/Header";
-import image from "Basic/Image";
-import paragraph from "Basic/P";
+import image from "Elements/Img";
+import paragraph from "Elements/P";
 export default {
 	props: {
 		header: String,
@@ -36,6 +36,9 @@ export default {
 		"card-text": paragraph
 	},
 	methods: {
+		buttonClick() {
+			console.log("Button Clicked");
+		},
 		cardInner() {
 			let classes = ["card-inner"];
 			if (this.img) {
@@ -50,17 +53,16 @@ export default {
 <style lang="scss" scoped>
 	@import "sassy";
 	.card {
-		@include shadow;
+		@include margin;
+		@include corners;
 	}
 	.card-inner {
-		background: green;
+		// background: green;
 	}
 	.card-has-img {
 		display: grid;
 		grid-template-columns: 2fr 5fr;
-		margin: 0.35em;
 		gap: 0.75em;
-		margin: 1em;
-		padding: 0.5em 0.35em;
+		// padding: 0.5em 0.35em;
 	}
 </style>

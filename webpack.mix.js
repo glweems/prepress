@@ -10,7 +10,7 @@ mix.webpackConfig({
          '%': __dirname + '/resources/js/components',
          '~': __dirname + './node_modules/',
          "sassy": __dirname + "/resources/sass/app.scss",
-         "Basic": __dirname + '/resources/js/components/Basic'
+         "Elements": __dirname + '/resources/js/components/Elements'
       }
    },
 });
