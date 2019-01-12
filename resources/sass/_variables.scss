@@ -1,21 +1,26 @@
 // Body
 $body-bg: #f8fafc;
 
-// Typography
-$font-family-sans-serif: "Nunito", sans-serif;
-$font-size-base: 0.7rem;
-$line-height-base: 1.6;
+$primary: #5fc782;
+$secondary: #2c323d;
+$alt: rgba(76, 80, 108, 1);
+$light: rgba(247, 247, 247, 1);
+$dark: rgba(35, 40, 49, 1);
 
-// Colors
-$blue: #3490dc;
-$indigo: #6574cd;
-$purple: #9561e2;
-$pink: #f66D9b;
-$red: #e3342f;
-$orange: #f6993f;
-$yellow: #ffed4a;
-$green: #38c172;
-$teal: #4dc0b5;
-$cyan: #6cb2eb;
+$primary-dark: darken($primary, 20%);
+$primary-darker: darken($primary, 40%);
 
-$light: #c0cad3;
+$primary-light: lighten($primary, 10%);
+$primary-lighter: lighten($primary, 20%);
+
+$light-dark: darken($light, 5%);
+$light-darker: darken($light, 40%);
+
+$light-light: lighten($light, 5%);
+$light-lighter: lighten($light, 40%);
+
+$alt-dark: darken($alt, 20%);
+$alt-darker: darken($alt, 40%);
+
+$alt-light: lighten($alt, 5%);
+$alt-lighter: lighten($alt, 40%);

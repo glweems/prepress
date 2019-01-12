@@ -8,7 +8,7 @@
 import prettylog from "glweems-prettylogs";
 import swatch from "%/Swatches/Swatch";
 export default {
-	props: ["sku", "colors"],
+	props: ["colors"],
 	components: {
 		swatch
 	},

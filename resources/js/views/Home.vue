@@ -1,13 +1,24 @@
 <template>
 	<div>
-		<h5>Home</h5>
-		<p>This is the home page.</p>
+		<gw-header :title="header.title" :subtitle="header.subtitle" :msg="header.msg"></gw-header>
 	</div>
 </template>
 
 <script>
+import header from "%/Header/Header";
 export default {
-	name: "Home"
+	components: {
+		"gw-header": header
+	},
+	data() {
+		return {
+			header: {
+				title: "This is the Home page!",
+				subtitle: "pre-press",
+				msg: "Welcome to prepress.com."
+			}
+		};
+	}
 };
 </script>
 

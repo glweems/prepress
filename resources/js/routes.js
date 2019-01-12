@@ -1,10 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '#/views/Home'
-import About from '#/views/About'
-import Products from '#/views/Products'
-import Product from '#/views/Product'
-
 
 Vue.use(VueRouter)
 
@@ -13,23 +8,40 @@ export default new VueRouter({
 	routes: [
 		{
 			path: '/',
-			component: Home
+			component: () => import('#/views/Home'),
 		},
 		{
 			path: '/about',
-			component: About
+			component: () => import('#/views/About'),
 		},
 		{
 			path: '/products',
-			component: Products
+			component: () => import('#/views/Products'),
 		},
 		{
 			path: '/product/:sku',
-			component: Product,
+			component: () => import('#/views/Product'),
 		},
 		{
 			path: '/product/:sku/:color',
-			component: Product,
+			component: () => import('#/views/Product'),
+			children: [
+				{
+					path: '',
+					meta: { header: "product-header-full", content: "info" },
+					components: {
+						default: () => import('%/Product/Info')
+					}
+				},
+				{
+					path: 'quote',
+					meta: { header: "product-header-mini", content: "form" },
+					name: "product-form",
+					components: {
+						default: () => import('%/Calculator/Form')
+					}
+				}
+			],
 		},
 	]
 });

@@ -1,22 +1,50 @@
 <template>
-	<div class="navbar">
-		<router-link v-for="page in pages" :to="page.path" :key="page.name">{{ page.name }}</router-link>
+	<div :class="classes()">
+		<gw-nav :items="pages" nav-style="dark" :color="color"></gw-nav>
 	</div>
 </template>
 
 <script>
-import NavLink from "%/Navbar/NavLink";
+import nav from "%/Nav/Nav";
 export default {
 	props: {
-		pages: Array
+		pages: {
+			type: Array,
+			required: true
+		},
+		bg: {
+			type: String,
+			default: "primary"
+		},
+		color: {
+			type: String,
+			default: "light"
+		}
 	},
-	components: { NavLink }
+	components: { "gw-nav": nav },
+	data() {
+		return {};
+	},
+	methods: {
+		classes() {
+			let array = [];
+			array.push(this.bg, this.color);
+			console.log(array);
+			return array;
+		}
+	}
 };
 </script>
 
 <style lang="scss" scoped>
 	@import "sassy";
-	.navbar {
+	.navbar-component {
 		display: flex;
+	}
+	.primary {
+		background: $primary;
+	}
+	.dark {
+		background: $dark;
 	}
 </style>

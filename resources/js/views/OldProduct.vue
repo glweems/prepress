@@ -1,12 +1,13 @@
 <template>
 	<div class="product">
-		<component :is="header()" :title="product.title" :brand="product.brand" :img="img"/>
-		<component :is="content"/>
-		<router-view :colors="product.colors" :features="product.features"/>
-		<router-view name="form" :colors="product.colors" :features="product.features"/>
-		<product-button :onClick="toForm">
-			<p class="product-button">GET QUOTE</p>
-		</product-button>
+		<h6>Single Product Page</h6>
+		<p>{{ product.title }}</p>
+		<p>{{ product.brand }}</p>
+		<p>Color Name</p>
+		<product-img :img="img" :key="img"></product-img>
+		<swatches :sku="product.sku" :colors="product.colors"></swatches>
+		<features :items="product.features"></features>
+		<router-view></router-view>
 	</div>
 </template>
 
@@ -18,21 +19,12 @@ import {
 	colorFromRoute
 } from "#/helpers";
 import image from "Elements/Img";
-import header from "%/Product/Header";
-import headerMini from "%/Product/HeaderMini";
-import button from "Elements/Button";
+import swatches from "%/Swatches/Swatches";
+import features from "%/List/List";
 import prettylog from "glweems-prettylogs";
-import calculatorForm from "%/Calculator/Form";
-// import info from
 
 export default {
-	components: {
-		"product-header-full": header,
-		"product-header-mini": headerMini,
-		"product-img": image,
-		"product-button": button,
-		"job-form": calculatorForm
-	},
+	components: { features, swatches, "product-img": image },
 	data() {
 		return {
 			product: {}
@@ -59,17 +51,6 @@ export default {
 		setProduct(product) {
 			this.product = product;
 			prettylog.success("Product: " + product.sku + " set.");
-		},
-		header() {
-			return this.$route.meta.header;
-		},
-		content() {
-			return this.$route.meta.content;
-		},
-		toForm() {
-			this.$router.push({
-				name: "product-form"
-			});
 		}
 	},
 	computed: {
@@ -81,7 +62,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-	.product-button {
-		width: 100vw;
-	}
 </style>

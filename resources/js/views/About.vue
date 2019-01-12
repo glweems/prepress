@@ -1,13 +1,25 @@
 <template>
 	<div>
-		<h5>About</h5>
-		<p>This is the About page.</p>
+		<gw-header :title="header.title" :subtitle="header.subtitle" :msg="header.msg"></gw-header>
 	</div>
 </template>
 
 <script>
+import header from "%/Header/Header";
 export default {
-	name: "About"
+	components: {
+		"gw-header": header
+	},
+	data() {
+		return {
+			header: {
+				title: "This is the About page!",
+				subtitle: "prepress",
+				msg:
+					"We are a family owned screen printing companay based in Denton, TX."
+			}
+		};
+	}
 };
 </script>
 
