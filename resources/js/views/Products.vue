@@ -20,13 +20,10 @@
 
 <script>
 import { productFromSku, defaultProductColor, productListImg } from "#/helpers";
-import button from "Elements/Button";
-import card from "%/Card/Card";
 export default {
 	name: "products",
 	components: {
-		card,
-		product: button
+		card: () => import(/* webpackChunkName: "product-card" */ "%/Card/Card")
 	},
 	data() {
 		return {

@@ -6,11 +6,11 @@
 
 <script>
 import prettylog from "glweems-prettylogs";
-import swatch from "%/Swatches/Swatch";
 export default {
 	props: ["colors"],
 	components: {
-		swatch
+		swatch: () =>
+			import(/* webpackChunkName: "product-swatch" */ "%/Swatches/Swatch")
 	},
 	data() {
 		return {

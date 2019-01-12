@@ -1,6 +1,6 @@
 <template>
 	<div class="header-mini">
-		<img class="header-mini-img" :src="img">
+		<!-- <img class="header-mini-img" :src="img"> -->
 		<div class="header-mini-info">
 			<p>{{ title }}</p>
 			<p>{{ brand }}</p>

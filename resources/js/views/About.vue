@@ -5,10 +5,10 @@
 </template>
 
 <script>
-import header from "%/Header/Header";
 export default {
 	components: {
-		"gw-header": header
+		"gw-header": () =>
+			import(/* webpackChunkName: "page-header" */ "%/Header/Header")
 	},
 	data() {
 		return {

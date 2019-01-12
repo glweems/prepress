@@ -19,8 +19,8 @@ export default {
 	@import "sassy";
 	footer {
 		text-align: center;
-		height: 5em;
-		color: $light;
-		background: $alt;
+		// height: 5em;
+		// color: $light;
+		// background: $alt;
 	}
 </style>

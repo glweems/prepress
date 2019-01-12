@@ -10,7 +10,7 @@
 			<card-image v-if="img" :img="img"></card-image>
 			<!-- Card Body -->
 			<div class="body">
-				<h4 v-if="title" class="title">{{ title }}</h4>
+				<h4 v-if="title" class="card-title">{{ title }}</h4>
 				<h4 v-if="subtitle" class="title">{{ subtitle }}</h4>
 				<card-text v-if="msg" :text="msg"></card-text>
 			</div>
@@ -51,10 +51,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-	@import "sassy";
+	// @import "sassy";
 	.card {
-		@include margin;
-		@include corners;
+		// @include margin;
+		// @include corners;
 	}
 	.card-inner {
 		// background: green;

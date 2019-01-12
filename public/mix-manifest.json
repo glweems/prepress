@@ -1,5 +1,20 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/bulma.css": "/css/bulma.css",
-    "/css/app.css": "/css/app.css"
+    "/css/sierra-library.css": "/css/sierra-library.css",
+    "/css/app.css": "/css/app.css",
+    "/about-page.js": "/about-page.js",
+    "/button-elemnt.js": "/button-elemnt.js",
+    "/home-page.js": "/home-page.js",
+    "/list-item.js": "/list-item.js",
+    "/nav-item.js": "/nav-item.js",
+    "/page-header.js": "/page-header.js",
+    "/product-card.js": "/product-card.js",
+    "/product-features.js": "/product-features.js",
+    "/product-form.js": "/product-form.js",
+    "/product-img.js": "/product-img.js",
+    "/product-info.js": "/product-info.js",
+    "/product-swatch.js": "/product-swatch.js",
+    "/product-swatches.js": "/product-swatches.js",
+    "/product-view.js": "/product-view.js",
+    "/products-page.js": "/products-page.js"
 }

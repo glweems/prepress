@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import NavItem from "%/Nav/NavItem";
 export default {
 	props: {
 		items: {
@@ -28,7 +27,8 @@ export default {
 		}
 	},
 	components: {
-		"nav-item": NavItem
+		"nav-item": () =>
+			import(/* webpackChunkName: "nav-item" */ "%/Nav/NavItem")
 	}
 };
 </script>

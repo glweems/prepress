@@ -8,29 +8,29 @@ export default new VueRouter({
 	routes: [
 		{
 			path: '/',
-			component: () => import('#/views/Home'),
+			component: () => import(/* webpackChunkName: "home-page" */'#/views/Home'),
 		},
 		{
 			path: '/about',
-			component: () => import('#/views/About'),
+			component: () => import(/* webpackChunkName: "about-page" */'#/views/About'),
 		},
 		{
 			path: '/products',
-			component: () => import('#/views/Products'),
+			component: () => import(/* webpackChunkName: "products-page" */'#/views/Products'),
 		},
 		{
 			path: '/product/:sku',
-			component: () => import('#/views/Product'),
+			component: () => import(/* webpackChunkName: "product-view" */'#/views/Product'),
 		},
 		{
 			path: '/product/:sku/:color',
-			component: () => import('#/views/Product'),
+			component: () => import(/* webpackChunkName: "product-page-color" */'#/views/Product'),
 			children: [
 				{
 					path: '',
 					meta: { header: "product-header-full", content: "info" },
 					components: {
-						default: () => import('%/Product/Info')
+						default: () => import(/* webpackChunkName: "product-info" */'%/Product/Info')
 					}
 				},
 				{
@@ -38,7 +38,7 @@ export default new VueRouter({
 					meta: { header: "product-header-mini", content: "form" },
 					name: "product-form",
 					components: {
-						default: () => import('%/Calculator/Form')
+						default: () => import(/* webpackChunkName: "product-form" */'%/Calculator/Form')
 					}
 				}
 			],

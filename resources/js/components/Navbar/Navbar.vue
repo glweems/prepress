@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import nav from "%/Nav/Nav";
 export default {
 	props: {
 		pages: {
@@ -21,7 +20,9 @@ export default {
 			default: "light"
 		}
 	},
-	components: { "gw-nav": nav },
+	components: {
+		"gw-nav": () => import(/* webpackChunkName: "nav" */ "%/Nav/Nav")
+	},
 	data() {
 		return {};
 	},

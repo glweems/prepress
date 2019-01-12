@@ -13,11 +13,13 @@ import {
 	getProductApi,
 	colorFromRoute
 } from "#/helpers";
-import image from "Elements/Img";
 import prettylog from "glweems-prettylogs";
 
 export default {
-	components: { "product-img": image },
+	components: {
+		"product-img": () =>
+			import(/* webpackChunkName: "product-img" */ "Elements/Img")
+	},
 	props: {
 		title: { type: String },
 		brand: { type: String },

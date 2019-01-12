@@ -17,21 +17,16 @@ import {
 	getProductApi,
 	colorFromRoute
 } from "#/helpers";
-import image from "Elements/Img";
-import header from "%/Product/Header";
-import headerMini from "%/Product/HeaderMini";
-import button from "Elements/Button";
-import prettylog from "glweems-prettylogs";
-import calculatorForm from "%/Calculator/Form";
-// import info from
-
 export default {
 	components: {
-		"product-header-full": header,
-		"product-header-mini": headerMini,
-		"product-img": image,
-		"product-button": button,
-		"job-form": calculatorForm
+		"product-header-full": () => import("%/Product/Header"),
+		"product-header-mini": () => import("%/Product/HeaderMini"),
+		"product-img": () =>
+			import(/* webpackChunkName: "image-element" */ "Elements/Img"),
+		"product-button": () =>
+			import(/* webpackChunkName: "button-elemnt" */ "Elements/Button"),
+		"job-form": () =>
+			import(/* webpackChunkName: "calculator-form" */ "%/Calculator/Form")
 	},
 	data() {
 		return {

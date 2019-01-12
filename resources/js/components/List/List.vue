@@ -5,13 +5,13 @@
 </template>
 
 <script>
-import listItem from "%/List/ListItem";
 export default {
 	props: {
 		items: Array
 	},
 	components: {
-		"list-item": listItem
+		"list-item": () =>
+			import(/* webpackChunkName: "list-item" */ "%/List/ListItem")
 	}
 };
 </script>

@@ -16,7 +16,7 @@ mix.webpackConfig({
 });
 
 mix.js('resources/js/app.js', 'public/js')
-   .sass('node_modules/bulma/bulma.sass', 'public/css')
+   .sass('node_modules/sierra-library/lib/index.scss', 'public/css/sierra-library.css')
    .sass('resources/sass/app.scss', 'public/css')
    .copyDirectory('resources/images', 'public/images');
 
