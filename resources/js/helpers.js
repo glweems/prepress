@@ -9,8 +9,9 @@ export function defaultProductColor(colors) {
 };
 
 export function productFromSku(products, sku) {
+	var i;
 	for (var i = 0; i < products.length; i++) {
-		if (products[i].id == sku) {
+		if (products[i].sku == sku) {
 			return products[i]
 		}
 	}
@@ -18,6 +19,7 @@ export function productFromSku(products, sku) {
 
 export function colorFromRoute(colors, abr) {
 	var color;
+	var i;
 	for (var i = 0; i < colors.length; i++) {
 		if (colors[i].abr == abr) {
 			color = colors[i];
@@ -32,4 +34,6 @@ export const productPath = "/product"
 
 export const getProductApi = (sku) => '/api/product/' + sku;
 
-export default { productImg, defaultProductColor, getProductApi, colorFromRoute, productFromSku, productListImg }
+export default {
+	productImg, defaultProductColor, getProductApi, colorFromRoute, productFromSku, productListImg
+}

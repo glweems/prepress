@@ -15,9 +15,4 @@ class PhotoController extends Controller
         $path = public_path().'/images/'.$fileName;
         return Response::download($path);        
     }
-    
-    public function product($fileName){
-        $path = public_path().'/images/product/'.$fileName;
-        return Response::download($path);        
-    }
 }

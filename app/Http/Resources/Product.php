@@ -14,7 +14,7 @@ class Product extends JsonResource
      */
     public function toArray($request)
     {
-        $product = [
+        return [
             'id' => $this->id,
             'sku' => $this->sku,
             'brand' => $this->brand,
@@ -27,6 +27,5 @@ class Product extends JsonResource
             'colors' => json_decode($this->colors),
             'sizes' => json_decode($this->sizes)
         ];
-        return $product;
     }
 }

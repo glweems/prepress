@@ -7,7 +7,7 @@
 		<!-- Card Inner -->
 		<div :class="cardInner()">
 			<!-- Card Image -->
-			<card-image v-if="img" :img="img"></card-image>
+			<card-image v-if="img" class="border rounded-corners" :img="img"></card-image>
 			<!-- Card Body -->
 			<div class="body">
 				<h4 v-if="title" class="card-title">{{ title }}</h4>
@@ -21,7 +21,7 @@
 <script>
 import header from "%/Card/Header";
 import image from "Elements/Img";
-import paragraph from "Elements/P";
+import p from "Elements/P";
 export default {
 	props: {
 		header: String,
@@ -33,7 +33,7 @@ export default {
 	components: {
 		"card-header": header,
 		"card-image": image,
-		"card-text": paragraph
+		"card-text": p
 	},
 	methods: {
 		buttonClick() {
@@ -60,9 +60,9 @@ export default {
 		// background: green;
 	}
 	.card-has-img {
-		display: grid;
-		grid-template-columns: 2fr 5fr;
-		gap: 0.75em;
+		// display: grid;
+		// grid-template-columns: 2fr 5fr;
+		// gap: 0.75em;
 		// padding: 0.5em 0.35em;
 	}
 </style>

@@ -1,6 +1,6 @@
 <template>
 	<div class="header-mini">
-		<!-- <img class="header-mini-img" :src="img"> -->
+		<img id="mini-img" class="rounded" :src="img">
 		<div class="header-mini-info">
 			<p>{{ title }}</p>
 			<p>{{ brand }}</p>
@@ -29,13 +29,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+	#mini-img {
+		padding: 10em;
+		margin: 10em;
+		width: 10%;
+		height: auto;
+	}
 	.header-mini {
-		display: grid;
-		max-height: 8vh;
+		// display: grid;
+		// max-height: 8vh;
 	}
 	.header-mini-img {
-		height: auto;
-		width: auto;
+		// height: auto;
+		// width: auto;
 		// width: auto;
 	}
 </style>

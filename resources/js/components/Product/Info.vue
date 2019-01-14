@@ -6,12 +6,12 @@
 </template>
 
 <script>
+import swatches from "%/Swatches/Swatches";
 export default {
 	components: {
 		features: () =>
 			import(/* webpackChunkName: "product-features" */ "%/List/List"),
-		swatches: () =>
-			import(/* webpackChunkName: "product-swatches" */ "%/Swatches/Swatches")
+		swatches
 	},
 	props: {
 		features: { type: Array },

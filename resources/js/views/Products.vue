@@ -4,7 +4,7 @@
 			class="product"
 			v-for="product in products"
 			:key="product.sku"
-			@click="pushRoute(product.id)"
+			@click="pushRoute(product.sku)"
 		>
 			<card
 				:header="product.title"

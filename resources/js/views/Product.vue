@@ -1,11 +1,19 @@
 <template>
 	<div class="product">
-		<component :is="header()" :title="product.title" :brand="product.brand" :img="img"/>
+		<product-header
+			:title="product.title"
+			:brand="product.brand"
+			:fabric="product.fabric"
+			:upgrade="product.upgrade"
+			:color="color"
+			:img="img"
+		/>
+		<product-img v-if="this.$route.meta.img" :img="img" :key="img"></product-img>
 		<component :is="content"/>
 		<router-view :colors="product.colors" :features="product.features"/>
 		<router-view name="form" :colors="product.colors" :features="product.features"/>
-		<product-button :onClick="toForm">
-			<p class="product-button">GET QUOTE</p>
+		<product-button class="product-button" :pressed="toForm">
+			<span>GET QUOTE</span>
 		</product-button>
 	</div>
 </template>
@@ -16,11 +24,10 @@ import {
 	defaultProductColor,
 	getProductApi,
 	colorFromRoute
-} from "#/helpers";
+} from "#/helpers.js";
 export default {
 	components: {
-		"product-header-full": () => import("%/Product/Header"),
-		"product-header-mini": () => import("%/Product/HeaderMini"),
+		"product-header": () => import("%/Product/Header"),
 		"product-img": () =>
 			import(/* webpackChunkName: "image-element" */ "Elements/Img"),
 		"product-button": () =>
@@ -45,15 +52,15 @@ export default {
 				})
 				.then(data => {
 					this.setProduct(data);
-					prettylog.success("Success: '" + data.sku + "' fetched.");
+					logsuccess("Success: '" + data.sku + "' fetched.");
 				})
 				.catch(err => {
-					prettylog.error("Error: Product Not Fetched");
+					// logdanger("Error: Product Not Fetched");
 				});
 		},
 		setProduct(product) {
 			this.product = product;
-			prettylog.success("Product: " + product.sku + " set.");
+			// prettylog.success("Product: " + product.sku + " set.");
 		},
 		header() {
 			return this.$route.meta.header;
@@ -69,14 +76,26 @@ export default {
 	},
 	computed: {
 		img() {
+			console.clear;
 			return productImg(this.product.sku, this.$route.params.color);
+		},
+		color() {
+			console.clear;
+			return colorFromRoute(this.product.colors, this.$route.params.color);
 		}
 	}
 };
 </script>
 
 <style lang="scss" scoped>
-	.product-button {
-		width: 100vw;
+	.content {
+		text-align: left;
+	}
+	img {
+		padding: 1em;
+		width: 80%;
+	}
+	.product {
+		// text-align: center;
 	}
 </style>

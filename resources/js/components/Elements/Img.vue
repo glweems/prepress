@@ -1,5 +1,7 @@
 <template>
-	<img :src="img" :alt="alt">
+	<div class="img">
+		<img :src="img" :alt="alt">
+	</div>
 </template>
 
 <script>
@@ -12,9 +14,15 @@ export default {
 </script>
 
 <style scoped>
+	.img {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 1em 0;
+	}
 	img {
-		box-sizing: inherit;
+		padding: 1em;
 		height: auto;
-		max-width: 100%;
+		max-width: 80%;
 	}
 </style>

@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import prettylog from "glweems-prettylogs";
+import swatch from "%/Swatches/Swatch";
+// import prettylog from "glweems-prettylogs";
 export default {
 	props: ["colors"],
 	components: {
-		swatch: () =>
-			import(/* webpackChunkName: "product-swatch" */ "%/Swatches/Swatch")
+		swatch
 	},
 	data() {
 		return {
@@ -21,7 +21,7 @@ export default {
 		active() {
 			this.$router.replace({ params: { color: this.active.abr } });
 			this.$emit("color", this.active);
-			prettylog.success("Swatch: " + this.active.title + " set.");
+			// prettylog.success("Swatch: " + this.active.title + " set.");
 		}
 	}
 };

@@ -30,7 +30,6 @@ export default {
 		classes() {
 			let array = [];
 			array.push(this.bg, this.color);
-			console.log(array);
 			return array;
 		}
 	}

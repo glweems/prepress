@@ -1,25 +1,23 @@
 <template>
-	<div class="card-header">
-		<header-text :text="header" class="card-header-message"></header-text>
+	<div class="container">
+		<p class="card-header-message text-medium">{{ header }}</p>
 	</div>
 </template>
 
 <script>
-import text from "Elements/P";
 export default {
 	props: {
 		header: {
 			type: String,
 			required: true
 		}
-	},
-	components: { "header-text": text }
+	}
 };
 </script>
 
 <style lang="scss" scoped>
 	@import "sassy";
 	.card-header {
-		background: $light;
+		// background: $light;
 	}
 </style>

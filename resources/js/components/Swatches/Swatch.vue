@@ -10,9 +10,11 @@ export default {
 			this.$emit("active", this.color);
 		},
 		active() {
+			let classes = ["border"];
 			if (this.color.abr == this.$route.params.color) {
-				return "active";
+				classes.push("active");
 			}
+			return classes;
 		}
 	},
 	computed: {
@@ -36,5 +38,6 @@ export default {
 
 	.active {
 		border: 3px solid grey;
+		// padding: 0 0.5em;
 	}
 </style>

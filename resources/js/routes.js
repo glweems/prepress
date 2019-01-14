@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+// import { buttonMixin } from 'mixins'
 
+
+// Vue.mixin(buttonMixin)
 Vue.use(VueRouter)
 
 export default new VueRouter({
@@ -28,14 +31,14 @@ export default new VueRouter({
 			children: [
 				{
 					path: '',
-					meta: { header: "product-header-full", content: "info" },
+					meta: { header: "product-header-full", content: "info", img: true },
 					components: {
 						default: () => import(/* webpackChunkName: "product-info" */'%/Product/Info')
 					}
 				},
 				{
 					path: 'quote',
-					meta: { header: "product-header-mini", content: "form" },
+					meta: { header: "product-header-mini", content: "form", img: false },
 					name: "product-form",
 					components: {
 						default: () => import(/* webpackChunkName: "product-form" */'%/Calculator/Form')

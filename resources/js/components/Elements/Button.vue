@@ -1,13 +1,13 @@
 <template>
-	<button class="button" @click="onClick">
-		<slot></slot>
+	<button class="button" @click="pressed">
+		<slot/>
 	</button>
 </template>
 
 <script>
 export default {
 	props: {
-		onClick: {
+		pressed: {
 			type: Function,
 			required: true
 		}
@@ -16,5 +16,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-	@import "sassy";
 </style>
