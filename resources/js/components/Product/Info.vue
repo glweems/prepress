@@ -1,7 +1,7 @@
 <template>
 	<div class="product-details">
 		<swatches :colors="colors"></swatches>
-		<features :items="features"></features>
+		<features :items="features" :hidden="true" :show="5" title="Features"></features>
 	</div>
 </template>
 

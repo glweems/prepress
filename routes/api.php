@@ -21,3 +21,7 @@ Route::get('brands', 'BrandController@index');
 
 // Get Image From 'public/images'
 Route::get('images/{filename}', 'PhotoController@image');
+
+
+// Get Screenprint Pricing
+Route::get('screenprint', 'ScreenprintController@index');

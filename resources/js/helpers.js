@@ -18,14 +18,12 @@ export function productFromSku(products, sku) {
 };
 
 export function colorFromRoute(colors, abr) {
-	var color;
 	var i;
 	for (var i = 0; i < colors.length; i++) {
 		if (colors[i].abr == abr) {
-			color = colors[i];
+			return colors[i];
 		}
 	}
-	return color
 };
 
 export const productListImg = (product) => productImg(product.sku, defaultProductColor(product.colors).abr)

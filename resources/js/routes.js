@@ -31,17 +31,26 @@ export default new VueRouter({
 			children: [
 				{
 					path: '',
-					meta: { header: "product-header-full", content: "info", img: true },
+					meta: { header: "product-header-full", content: "info", img: true, next: "quote-form" },
+					name: "product-page",
 					components: {
 						default: () => import(/* webpackChunkName: "product-info" */'%/Product/Info')
 					}
 				},
 				{
 					path: 'quote',
-					meta: { header: "product-header-mini", content: "form", img: false },
-					name: "product-form",
+					meta: { header: "product-header-mini", content: "form", img: false, next: "show-quote", prev: "product-page" },
+					name: "quote-form",
 					components: {
 						default: () => import(/* webpackChunkName: "product-form" */'%/Calculator/Form')
+					}
+				},
+				{
+					path: 'quote/show',
+					meta: { header: "product-header-mini", content: "form", img: false, next: "show-quote", prev: "quote-form" },
+					name: "show-quote",
+					components: {
+						default: () => import(/* webpackChunkName: "product-form" */'%/Calculator/Show')
 					}
 				}
 			],

@@ -3,3 +3,13 @@
 @import "variables";
 @import "typography";
 @import "mixins";
+
+.scroll {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+
+    .scroll-item {
+        display: inline-block;
+    }
+}

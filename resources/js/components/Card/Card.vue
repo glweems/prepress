@@ -1,18 +1,19 @@
 <template>
 	<div class="card">
 		<!-- Card Header -->
-		<div v-if="header" class="header">
-			<card-header v-if="header" :header="header"></card-header>
-		</div>
+		<div v-if="header" class="header"></div>
+		<p class="header-text">{{ header }}</p>
 		<!-- Card Inner -->
 		<div :class="cardInner()">
 			<!-- Card Image -->
-			<card-image v-if="img" class="border rounded-corners" :img="img"></card-image>
+			<div v-if="img" class="img-wrapper">
+				<img class :src="img">
+			</div>
 			<!-- Card Body -->
 			<div class="body">
-				<h4 v-if="title" class="card-title">{{ title }}</h4>
-				<h4 v-if="subtitle" class="title">{{ subtitle }}</h4>
-				<card-text v-if="msg" :text="msg"></card-text>
+				<p>{{ title }}</p>
+				<p v-if="title" class="card-title">{{ title }}</p>
+				<p v-if="subtitle" class="title">{{ subtitle }}</p>
 			</div>
 		</div>
 	</div>
@@ -51,13 +52,27 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-	// @import "sassy";
+	@import "sassy";
+	p {
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+
 	.card {
-		// @include margin;
-		// @include corners;
+		.header {
+		}
+		.header-text {
+			margin-left: 1em !important;
+			background: $light;
+		}
 	}
 	.card-inner {
-		// background: green;
+		display: flex;
+		align-items: center;
+		.img-wrapper {
+			max-width: 25% !important;
+			// height: 100%;
+		}
 	}
 	.card-has-img {
 		// display: grid;

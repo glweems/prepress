@@ -12,7 +12,7 @@
 		<component :is="content"/>
 		<router-view :colors="product.colors" :features="product.features"/>
 		<router-view name="form" :colors="product.colors" :features="product.features"/>
-		<product-button class="product-button" :pressed="toForm">
+		<product-button class="product-button" :pressed="productButton">
 			<span>GET QUOTE</span>
 		</product-button>
 	</div>
@@ -21,8 +21,8 @@
 <script>
 import {
 	productImg,
-	defaultProductColor,
 	getProductApi,
+	defaultProductColor,
 	colorFromRoute
 } from "#/helpers.js";
 export default {
@@ -68,9 +68,11 @@ export default {
 		content() {
 			return this.$route.meta.content;
 		},
-		toForm() {
+		productButton() {
+			const next = this.$route.meta.next;
+			console.log("quote meta true");
 			this.$router.push({
-				name: "product-form"
+				name: next
 			});
 		}
 	},

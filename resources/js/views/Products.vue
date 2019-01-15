@@ -1,19 +1,23 @@
 <template>
 	<div class="products">
-		<div
-			class="product"
-			v-for="product in products"
-			:key="product.sku"
-			@click="pushRoute(product.sku)"
-		>
-			<card
-				:header="product.title"
-				:img="productListImg(product)"
-				:title="product.brand"
-				:msg="product.title"
-				:subtitle="product.sku"
-				:key="product.sku"
-			></card>
+		<div class="filters scroll">
+			<div class="filter scroll-item" v-for="filter in filters" :key="filter.title">
+				<p class>{{ filter.title }}</p>
+			</div>
+		</div>
+		<div class="scroll">
+			<div
+				class="product scroll-item"
+				v-for="(product, key) in products"
+				:key="key"
+				@click="pushRoute(product.sku)"
+			>
+				<p class="title">{{ product.title }}</p>
+				<img :src="productListImg(product)" alt>
+				<div class="product-scroll-info">
+					<p class="brand">{{ product.brand }}</p>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -27,6 +31,10 @@ export default {
 	},
 	data() {
 		return {
+			filters: [
+				{ title: "Brand", items: ["Gildan", "Anvil", "Bella + Canvas"] },
+				{ title: "Upgrade", items: [0, 1, 2, 3] }
+			],
 			products: [],
 			pagination: {}
 		};
@@ -64,5 +72,24 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+	@import "sassy";
+	.filter {
+	}
+	.product {
+		width: 37vw;
+		margin: 0 1.3rem;
+		img {
+			@include shadow;
+			@include corners;
+			padding: 0.3em 1.2em;
+		}
+		.title {
+			color: $alt-light;
+			font-size: 14px;
+			font-family: $font-family;
+			font-weight: 600;
+			margin-bottom: 0.2em;
+		}
+	}
 </style>
