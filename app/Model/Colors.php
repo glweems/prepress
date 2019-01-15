@@ -4,9 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Brand extends Model
+class Colors extends Model
 {
-    public function product()
-    {
-    }
+    //
 }

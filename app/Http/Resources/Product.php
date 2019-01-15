@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\Colors;
 
 class Product extends JsonResource
 {
@@ -14,7 +15,9 @@ class Product extends JsonResource
      */
     public function toArray($request)
     {
-        return [
+        // $color = Colors::all($this->colors);
+        
+        $productFields = [
             'id' => $this->id,
             'sku' => $this->sku,
             'brand' => $this->brand,
@@ -27,5 +30,6 @@ class Product extends JsonResource
             'colors' => json_decode($this->colors),
             'sizes' => json_decode($this->sizes)
         ];
+        return $productFields;
     }
 }

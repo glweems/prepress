@@ -10,5 +10,4 @@ class ProductCollection extends ResourceCollection
     {
         return parent::toArray($request);
     }
-    
 }
