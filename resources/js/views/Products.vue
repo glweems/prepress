@@ -1,21 +1,23 @@
 <template>
-	<div class="products">
-		<div class="filters scroll">
-			<div class="filter scroll-item" v-for="filter in filters" :key="filter.title">
-				<p class>{{ filter.title }}</p>
-			</div>
-		</div>
-		<div class="scroll">
-			<div
-				class="product scroll-item"
-				v-for="(product, key) in products"
-				:key="key"
-				@click="pushRoute(product.sku)"
-			>
-				<p class="title">{{ product.title }}</p>
-				<img :src="productListImg(product)" alt>
-				<div class="product-scroll-info">
-					<p class="brand">{{ product.brand }}</p>
+	<div class="wrapper">
+		<!-- Filters -->
+		<filters :filters="filters"></filters>
+		<!-- Products -->
+		<div class="products">
+			<!-- Scroller -->
+			<div class="scroll">
+				<!-- Scroll Item -->
+				<div class="scroll-item" v-for="(product, key) in products" :key="key">
+					<!-- Product -->
+					<div class="product" @click="pushRoute(product.sku)">
+						<!-- Title -->
+						<p class="title">{{ product.title }}</p>
+						<!-- Image -->
+						<img :src="productListImg(product)" alt>
+						<div class="product-scroll-info">
+							<p class="brand">{{ product.brand }}</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -27,13 +29,18 @@ import { productFromSku, defaultProductColor, productListImg } from "#/helpers";
 export default {
 	name: "products",
 	components: {
-		card: () => import(/* webpackChunkName: "product-card" */ "%/Card/Card")
+		filters: () =>
+			import(/* webpackChunkName: "product-filters" */ "%/Filter/Filter")
 	},
 	data() {
 		return {
 			filters: [
-				{ title: "Brand", items: ["Gildan", "Anvil", "Bella + Canvas"] },
-				{ title: "Upgrade", items: [0, 1, 2, 3] }
+				{ label: "Brand", items: ["Gildan", "Anvil", "Bella + Canvas"] },
+				{ label: "Upgrade", items: [0, 1, 2, 3] },
+				{
+					label: "Fabric",
+					items: ["100% Cotton", "Dri-Fit", "Polyester", "50%-50%"]
+				}
 			],
 			products: [],
 			pagination: {}

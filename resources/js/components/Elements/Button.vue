@@ -1,6 +1,6 @@
 <template>
 	<button class="button" @click="pressed">
-		<slot/>
+		<slot></slot>
 	</button>
 </template>
 
