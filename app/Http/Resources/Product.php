@@ -3,10 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Model\Color;
-use App\Http\Resources\Color as ColorResource;
-use Illuminate\Support\Arr;
-// use App\Http\Resources\ProductCollection;
+use App\Http\Resources\Colors;
 
 class Product extends JsonResource
 {
@@ -18,15 +15,15 @@ class Product extends JsonResource
      */
     public function toArray($request)
     {
-        // function img($abr, $sku)
-        // {
-        //     $z = $abr . $sku;
-        //     return $z;
         $sku = $this->sku;
         $colors = json_decode($this->colors);
+        $img;
         
         foreach($colors as $key=>$value) {
-           $colors[$key]->img = $sku . '_'. $colors[$key]->abr .'.jpg';
+           $colors[$key]->img = '/api/images/product/' . $sku . '_'. $colors[$key]->abr .'.jpg';
+           if (isset($colors[$key]->default)) {
+                $img = '/images/product/' . $sku . '_'. $colors[$key]->abr .'.jpg';
+           };
         };
         
         
@@ -36,6 +33,7 @@ class Product extends JsonResource
             'brand' => $this->brand,
             'title' => $this->title,
             'description' => $this->description,
+            'img' => $img,
             'category'=> $this->category,
             'fabric' => $this->fabric,
             'upgrade' => $this->upgrade,

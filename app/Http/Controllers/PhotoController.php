@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
-Use DB;
 
 
 class PhotoController extends Controller
@@ -14,5 +13,9 @@ class PhotoController extends Controller
     public function image($fileName){
         $path = public_path().'/images/'.$fileName;
         return Response::download($path);        
+    }
+    public function product($fileName){
+        $path = public_path() .'/images/product/'.$fileName;
+         return Response::download($path);   
     }
 }

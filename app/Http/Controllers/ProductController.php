@@ -32,8 +32,4 @@ class ProductController extends Controller
         // Return single Product as a resource
         return new ProductResource($product);
     }
-    public function img($fileName){
-        $path = public_path().'/images/product/'.$fileName;
-        return Response::download($path);        
-    }
 }

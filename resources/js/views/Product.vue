@@ -1,103 +1,39 @@
 <template>
-	<div class="product">
-		<product-header
-			:title="product.title"
-			:brand="product.brand"
-			:fabric="product.fabric"
-			:upgrade="product.upgrade"
-			:color="color"
-			:img="img"
-		/>
-		<product-img v-if="this.$route.meta.img" :img="img" :key="img"></product-img>
-		<component :is="content"/>
-		<router-view :colors="product.colors" :features="product.features"/>
-		<router-view name="form" :colors="product.colors" :features="product.features"/>
-		<product-button class="product-button" :pressed="productButton">
-			<span>GET QUOTE</span>
-		</product-button>
+	<div>
+		<p>{{ product.title }}</p>
+		<img :src="product.colors[1].img">
 	</div>
 </template>
 
 <script>
-import {
-	productImg,
-	getProductApi,
-	defaultProductColor,
-	colorFromRoute
-} from "#/helpers.js";
+import helpers from "#/helpers";
+import prettylog from "glweems-prettylogs";
 export default {
-	components: {
-		"product-header": () => import("%/Product/Header"),
-		"product-img": () =>
-			import(/* webpackChunkName: "image-element" */ "Elements/Img"),
-		"product-button": () =>
-			import(/* webpackChunkName: "button-elemnt" */ "Elements/Button"),
-		"job-form": () =>
-			import(/* webpackChunkName: "calculator-form" */ "%/Calculator/Form")
+	created() {
+		this.fetch();
 	},
 	data() {
 		return {
 			product: {}
 		};
 	},
-	created() {
-		this.fetch();
-	},
 	methods: {
 		fetch() {
-			const api = getProductApi(this.$route.params.sku);
-			fetch(api)
+			fetch(helpers.getProductApi(this.$route.params.sku))
 				.then(response => {
 					return response.json();
 				})
 				.then(data => {
-					this.setProduct(data);
-					logsuccess("Success: '" + data.sku + "' fetched.");
+					this.product = data;
+					prettylog.success("Success: '" + data.sku + "' fetched.");
 				})
 				.catch(err => {
-					// logdanger("Error: Product Not Fetched");
+					prettylog.danger("Error: Product Not Fetched");
 				});
-		},
-		setProduct(product) {
-			this.product = product;
-			// prettylog.success("Product: " + product.sku + " set.");
-		},
-		header() {
-			return this.$route.meta.header;
-		},
-		content() {
-			return this.$route.meta.content;
-		},
-		productButton() {
-			const next = this.$route.meta.next;
-			console.log("quote meta true");
-			this.$router.push({
-				name: next
-			});
-		}
-	},
-	computed: {
-		img() {
-			console.clear;
-			return productImg(this.product.sku, this.$route.params.color);
-		},
-		color() {
-			console.clear;
-			return colorFromRoute(this.product.colors, this.$route.params.color);
 		}
 	}
 };
 </script>
 
-<style lang="scss" scoped>
-	.content {
-		text-align: left;
-	}
-	img {
-		padding: 1em;
-		width: 80%;
-	}
-	.product {
-		// text-align: center;
-	}
+<style scoped>
 </style>

@@ -19,8 +19,14 @@ Route::get('images/product/{filename}', 'ProductController@img');
 // List All Brands
 Route::get('brands', 'BrandController@index');
 
+// List Single Brand
+Route::get('brand/{brand}', 'BrandController@show');
+
 // Get Image From 'public/images'
 Route::get('images/{filename}', 'PhotoController@image');
+
+// Get Image From 'public/images'
+Route::get('images/product/{filename}', 'PhotoController@product');
 
 
 // Get Screenprint Pricing
