@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Model\Product;
 use App\Http\Resources\Product as ProductResource;
 use App\Http\Resources\ProductCollection;
+
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
