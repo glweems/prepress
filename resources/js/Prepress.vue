@@ -14,7 +14,7 @@ import footer from "%/Footer/Footer";
 import navbar from "%/Navbar/Navbar";
 export default {
 	name: "pre-press",
-	components: { navbar, "gw-footer": footer, "gw-nav": nav },
+	components: { navbar, "gw-footer": footer },
 	data() {
 		return {
 			pages: [

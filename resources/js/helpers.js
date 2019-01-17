@@ -55,6 +55,10 @@ export const stylesApi = "/api/styles";
 
 export const getProductApi = (sku) => '/api/product/' + sku;
 
+String.prototype.capitalize = function () {
+	return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
 export default {
 	productImg, defaultProductColor, getProductApi, colorFromRoute, productFromSku, productListImg, productPath, fetchData, setData, stylesApi
 }

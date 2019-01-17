@@ -1,12 +1,13 @@
 <template>
-	<div class="header-component">
-		<div class="header-wrapper">
+	<div class="header">
+		<div class="container">
 			<!-- Title & Subtitle -->
 			<div class="titles">
-				<p v-if="title" class="header-title">{{ title }}</p>
-				<p v-if="subtitle" class="header-subtitle">{{ subtitle }}</p>
+				<p v-if="title" class="title">{{ title }}</p>
+				<p v-if="subtitle" class="subtitle">{{ subtitle }}</p>
 			</div>
-			<p class="header-msg">{{ msg }}</p>
+			<!-- Header Msg -->
+			<p class="msg">{{ msg }}</p>
 		</div>
 	</div>
 </template>
@@ -33,27 +34,22 @@ export default {
 <style lang="scss" scoped>
 	@import "sassy";
 
-	.header-component {
-		text-align: center;
-		width: 100%;
-		padding: none;
-	}
-	.header-wrapper {
-		text-align: center;
-		.header-title {
-			background: $alt;
-			color: $light;
-			font-weight: 800;
-		}
-
-		.header-subtitle {
-			font-weight: 500;
-		}
-
-		.msg {
-			// color: $dark;
-			text-align: left;
-			padding: 0 5vw;
+	.header {
+		background: $light;
+		padding: 1em 0;
+		.titles {
+			padding: 1em 0;
+			.title {
+				color: $primary;
+				font-size: 2em;
+				font-weight: 800;
+				margin: 0;
+			}
+			.subtitle {
+				font-size: 1.25em;
+				color: $secondary;
+				margin: 0;
+			}
 		}
 	}
 </style>

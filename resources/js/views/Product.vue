@@ -1,10 +1,16 @@
 <template>
 	<div>
-		<p>{{ product.title }}</p>
-		<img :src="img">
-		<swatches :colors="product.colors"/>
 		<div class="container">
-			<h4 class="subtitle">Description</h4>
+			<div class="inline">
+				<p class="title">{{ product.title }}</p>
+				<p v-if="color.hex && product" class="subtitle" :style="{color: color.hex}">{{ color.title }}</p>
+			</div>
+			<img :src="img">
+		</div>
+		<swatches :colors="product.colors"/>
+		<button class="button button-small" @click="getQuote">Get Quote</button>
+		<div class="container">
+			<h4 class="title">Description</h4>
 			<p>{{ product.description }}</p>
 			<features :items="product.features" title="Features" subtitle="Subtitle"/>
 		</div>
@@ -42,6 +48,9 @@ export default {
 				.catch(err => {
 					prettylog.danger("Error: Product Not Fetched");
 				});
+		},
+		getQuote() {
+			this.$router.push({ path: this.$route.path + "/quote" });
 		}
 	},
 	computed: {
@@ -58,5 +67,10 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+	@import "sassy";
+	img {
+		padding: 0 2em;
+		margin: 1em 0;
+	}
 </style>

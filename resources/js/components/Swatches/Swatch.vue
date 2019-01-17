@@ -1,5 +1,5 @@
 <template>
-	<div :class="active()" :style="style" @click="swatch($event)"></div>
+	<div :class="active()" :style="style" @click="swatch($event)" class="swatch"></div>
 </template>
 
 <script>
@@ -28,16 +28,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-	div {
+	@import "sassy";
+	.swatch {
+		padding: 0.5em;
 		margin: 0 0.25em;
-		display: inline-block;
 		height: 2.25em;
-		width: 100%;
-		border-radius: 2px;
+		width: 2.25em;
+		border-radius: 20px;
 	}
 
 	.active {
-		border: 3px solid grey;
-		// padding: 0 0.5em;
+		@include shadow;
 	}
 </style>

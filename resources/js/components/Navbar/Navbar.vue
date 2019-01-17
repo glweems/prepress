@@ -1,6 +1,6 @@
 <template>
 	<div :class="classes()">
-		<gw-nav :items="pages" nav-style="dark" :color="color"></gw-nav>
+		<gw-nav :items="pages" class="border" :color="color"></gw-nav>
 	</div>
 </template>
 
@@ -42,7 +42,7 @@ export default {
 		display: flex;
 	}
 	.primary {
-		background: $primary;
+		// background: $primary;
 	}
 	.dark {
 		background: $dark;

@@ -1,6 +1,12 @@
 <template>
-	<div class="swatches">
-		<swatch v-for="color in colors" :color="color" @active="active=$event" :key="color.title"></swatch>
+	<div class="swatches scroll">
+		<swatch
+			v-for="color in colors"
+			:color="color"
+			@active="active=$event"
+			:key="color.title"
+			class="scroll-item"
+		></swatch>
 	</div>
 </template>
 
@@ -27,9 +33,14 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+	@import "sassy";
 	.swatches {
-		display: flex;
-		width: 100%;
+		justify-content: center;
+		padding-top: 0.3em;
+		padding-bottom: 0.05em;
+		padding-left: 1em;
+		margin-bottom: 1em;
+		// background: $primary;
 	}
 </style>

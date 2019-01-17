@@ -34,14 +34,11 @@ export default {
 
 <style lang="scss" scoped>
 	@import "sassy";
-	.titles {
-		margin-bottom: 0.5em;
-	}
-	.title {
-		font-size: 1.5em;
-		font-weight: bold;
-	}
+
 	.list {
+		margin: 0 0.25em;
+		color: grey;
+		line-height: 1.25;
 		font-size: 0.85em;
 		margin-bottom: 0.5em;
 	}

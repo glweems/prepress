@@ -4,6 +4,63 @@
 @import "typography";
 @import "mixins";
 
+.titles {
+    margin-bottom: 0.5em;
+}
+
+.title {
+    font-size: 1.4em;
+    font-weight: 800;
+    margin-top: .125em;
+    margin-bottom: .25em;
+}
+
+.subtitle {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-bottom: .25em;
+}
+
+@import url("https://use.typekit.net/olo2rze.css");
+
+// Font Family
+$font-family: "Zeitung", sans-serif;
+
+// Body
+$body-bg: #f8fafc;
+
+$primary: #5fc782;
+$secondary: #2c323d;
+$alt: rgba(76, 80, 108, 1);
+$light: rgba(247, 247, 247, 1);
+$dark: rgba(35, 40, 49, 1);
+
+$primary-dark: darken($primary, 20%);
+$primary-darker: darken($primary, 40%);
+
+$primary-light: lighten($primary, 10%);
+$primary-lighter: lighten($primary, 20%);
+
+$light-dark: darken($light, 5%);
+$light-darker: darken($light, 40%);
+
+$light-light: lighten($light, 5%);
+$light-lighter: lighten($light, 40%);
+
+$alt-dark: darken($alt, 20%);
+$alt-darker: darken($alt, 40%);
+
+$alt-light: lighten($alt, 5%);
+$alt-lighter: lighten($alt, 40%);
+
+@mixin shadow {
+    box-shadow: rgba(0, 0, 0, 0.16) 0 3px 6px;
+}
+
+@mixin corner {
+    border-radius: .5em;
+}
+
 .scroll {
     overflow-x: scroll;
     overflow-y: hidden;
@@ -12,4 +69,72 @@
     .scroll-item {
         display: inline-block;
     }
+}
+
+.card-wide {
+    margin: 0 .25em;
+    padding: 0 .5em;
+
+    .card-header {
+        .header {
+            font-weight: 500;
+            padding: .25em 0.5em;
+        }
+    }
+
+    .card-body {
+        margin-left: .5em;
+        margin-right: .5em;
+        display: flex;
+        align-items: center;
+
+        .info {
+            font-weight: bold;
+            padding-top: .25em;
+            padding-bottom: .5em;
+            padding-left: .25em;
+            padding-right: .25em;
+            align-self: center;
+            text-align: left;
+
+            .title {
+                font-weight: 700;
+                color: $dark;
+                font-size: .86em;
+                padding-bottom: .2em;
+                border-bottom: 1px solid $light;
+            }
+
+            p {
+                color: $secondary;
+                margin: 0;
+                font-size: .82em;
+            }
+        }
+    }
+
+    img {
+        align-self: center;
+        background: white;
+        height: 6em;
+        margin-right: .5em;
+
+        // padding-top: .25em;
+        // padding-bottom: .25em;
+   
+    }
+}
+
+.inline {
+    display: flex;
+    align-content: stretch;
+    align-items: center;
+
+    p {
+        padding-right: .6em;
+    }
+}
+
+::-webkit-scrollbar {
+    display: none;
 }

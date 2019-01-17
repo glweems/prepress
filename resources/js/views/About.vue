@@ -13,8 +13,8 @@ export default {
 	data() {
 		return {
 			header: {
-				title: "This is the About page!",
-				subtitle: "prepress",
+				title: "About page!",
+				subtitle: "Prepress",
 				msg:
 					"We are a family owned screen printing companay based in Denton, TX."
 			}
