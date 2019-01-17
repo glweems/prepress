@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    public function brand()
+    public function style()
     {
-       return $this->belongsTo(Brand::class);
+       return $this->belongsTo(Style::class);
     }
 }

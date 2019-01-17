@@ -8,28 +8,20 @@ use App\Model\Product;
 use App\Http\Resources\Product as ProductResource;
 use App\Http\Resources\ProductCollection;
 
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\View;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Response;
 class ProductController extends Controller
 {
     public function index()
     {
         // Get Products
-        $products = Product::paginate(10);
+        $products = Product::all();
         
         // Return collection of products as resource
-        return new ProductCollection($products);
+        return new ProductCollection(Product::all());
     }
 
     public function show($sku)
     {
-        // Get Product
-        $product = Product::where('sku', $sku)->first();
-
         // Return single Product as a resource
-        return new ProductResource($product);
+        return new ProductResource(Product::where('sku', $sku)->first());
     }
 }

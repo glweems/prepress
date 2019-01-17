@@ -3,45 +3,75 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\Colors;
 
 class Product extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
     public function toArray($request)
     {
-        $sku = $this->sku;
-        $colors = json_decode($this->colors);
-        $img;
-        
-        foreach($colors as $key=>$value) {
-           $colors[$key]->img = '/api/images/product/' . $sku . '_'. $colors[$key]->abr .'.jpg';
-           if (isset($colors[$key]->default)) {
-                $img = '/images/product/' . $sku . '_'. $colors[$key]->abr .'.jpg';
-           };
-        };
-        
-        
-        $productFields = [
+        $product = [
             'id' => $this->id,
-            'sku' => $sku,
+            'sku' => $this->sku,
             'brand' => $this->brand,
             'title' => $this->title,
+            'img' => $this->img($request),
             'description' => $this->description,
-            'img' => $img,
-            'category'=> $this->category,
+            'style'=> $this->style,
             'fabric' => $this->fabric,
             'upgrade' => $this->upgrade,
             'features' => json_decode($this->features),
-            'colors' => $colors,
+            'colors' => $this->colors($request),
             'sizes' => json_decode($this->sizes)
         ];
         
-        return $productFields;
+        return $product;
+    }
+    
+    // Format colors & add img to color object.
+    public function colors($request)
+    {
+        $sku = $this->sku;
+        
+        $colors = json_decode($this->colors);
+         
+        foreach($colors as $key => $value) {
+            
+            $colors[$key]->img = '/images/product/' . $sku . '_'. $colors[$key]->abr .'.jpg';
+            
+        };
+        
+        return $colors;
+        
+    }
+    
+    // Return default product img.
+    public function img($request)
+    {
+        
+        $sku = $this->sku;
+        $colors = json_decode($this->colors);
+
+        foreach($colors as $key=>$value) {
+            if (isset($colors[$key]->default)) {
+                return '/images/product/' . $sku . '_'. $colors[$key]->abr .'.jpg';
+            };
+        };
+        
+        
     }
 }
+
+
+// $productFields = [
+        //     'id' => $this->id,
+        //     'sku' => $this->sku,
+        //     'brand' => $this->brand,
+        //     'title' => $this->title,
+        //     'description' => $this->description,
+        //     'img' => img($this->sku, json_decode($this->colors)),
+        //     'style'=> $this->style,
+        //     'fabric' => $this->fabric,
+        //     'upgrade' => $this->upgrade,
+        //     'features' => json_decode($this->features),
+        //     'colors' => colors($this->sku, json_decode($this->colors)),
+        //     'sizes' => json_decode($this->sizes)
+        // ];

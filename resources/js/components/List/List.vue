@@ -1,67 +1,31 @@
 <template>
 	<div class="list-wrapper">
-		<h4 v-if="title">{{ title }}</h4>
-		<ul @click="toggle" class="list text-left">
-			<list-item v-for="(item, index) in listItems" :item="item" :key="index"/>
-			<!-- <list-item class="toggle" :item="list.text" @click="toggle()">{{ list.text }}</list-item> -->
-			<div v-if="this.hidden" class="arrow" v-html="list.text">{{ list.text }}</div>
+		<div v-if="hasTitle" class="titles">
+			<h4 v-if="title" class="title">{{ title }}</h4>
+			<h6 v-if="subtitle" class="subtitle">{{ subtitle }}</h6>
+		</div>
+		<ul class="list text-left">
+			<list-item v-for="(item, index) in items" :item="item" :key="index"/>
 		</ul>
 	</div>
 </template>
 
 <script>
+import listItem from "%/List/ListItem";
 export default {
 	props: {
 		items: Array,
 		hidden: { type: Boolean, default: false },
 		title: { type: String, required: false },
-		show: { type: Number, default: 2 }
+		subtitle: { type: String, required: false }
 	},
 	components: {
-		"list-item": () =>
-			import(/* webpackChunkName: "list-item" */ "%/List/ListItem")
-	},
-	created() {
-		if (this.hidden) {
-			this.list = {
-				open: this.items,
-				close: this.getShortList(),
-				text: "Show More.."
-			};
-			this.open = false;
-		}
-	},
-	data() {
-		return {
-			list: undefined,
-			open: undefined
-		};
+		"list-item": listItem
 	},
 	methods: {
-		shortListButton() {},
-		getShortList() {
-			const items = this.items;
-			const msg = "See More..";
-			let copy = items.slice(0, this.show);
-			// copy.push(msg);
-			return copy;
-		},
-		toggle() {
-			this.open = !this.open;
-		}
-	},
-	computed: {
-		listItems() {
-			if (!this.hidden) {
-				return this.items;
-			}
-			if (this.hidden && this.open) {
-				this.list.text = "<i class='fas fa-caret-up'></i>";
-				return this.list.open;
-			}
-			if (this.hidden && !this.open) {
-				this.list.text = "<i class='fas fa-caret-down'></i>";
-				return this.list.close;
+		hasTitle() {
+			if (this.title | this.subtitle) {
+				return true;
 			}
 		}
 	}
@@ -70,15 +34,22 @@ export default {
 
 <style lang="scss" scoped>
 	@import "sassy";
+	.titles {
+		margin-bottom: 0.5em;
+	}
+	.title {
+		font-size: 1.5em;
+		font-weight: bold;
+	}
 	.list {
-		margin: 0.5rem 1rem;
+		font-size: 0.85em;
+		margin-bottom: 0.5em;
 	}
 	.toggle {
-		color: $alt;
+		margin: 0 1em;
+		border-top: 3px dotted $light-dark;
+		color: $light-darker;
 		text-decoration: underline;
-	}
-	li.last-item {
-		color: $primary;
 	}
 	.arrow {
 		text-align: center;
