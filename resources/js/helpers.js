@@ -49,10 +49,12 @@ export function fetchData(api, setter) {
 
 export const productListImg = (product) => productImg(product.sku, defaultProductColor(product.colors).abr)
 
-export const productPath = "/product"
+export const productPath = "/product";
+
+export const stylesApi = "/api/styles";
 
 export const getProductApi = (sku) => '/api/product/' + sku;
 
 export default {
-	productImg, defaultProductColor, getProductApi, colorFromRoute, productFromSku, productListImg, productPath, fetchData, setData
+	productImg, defaultProductColor, getProductApi, colorFromRoute, productFromSku, productListImg, productPath, fetchData, setData, stylesApi
 }

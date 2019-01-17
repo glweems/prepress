@@ -25,10 +25,16 @@ Route::get('brand/{brand}', 'BrandController@show');
 // Get Image From 'public/images'
 Route::get('images/{filename}', 'PhotoController@image');
 
+// Get All Styles
+Route::get('/styles', 'StyleController@index');
+
+// Get Single Style
+Route::get('/style/{style}', 'StyleController@show');
+
 // Get Image From 'public/images'
 Route::get('images/product/{filename}', 'PhotoController@product');
 
-Route::get('/styles', 'StyleController@index');
+
 
 // Get Screenprint Pricing
 Route::get('screenprint', 'ScreenprintController@index');

@@ -12,10 +12,18 @@ class BrandController extends Controller
  
     public function index()
     {
-        return BrandResource::collection(Brand::all());
+        $select = Brand::all();
+        $resource = new BrandResource($select);
+        $collection = new BrandCollection($resource);
+        
+        return $collection;
     }
     public function show($brand)
     {
-        return new BrandCollection(Brand::all()->where('brand', $brand));
+        $select = Brand::all()->where('brand', $brand);
+        $resource = new BrandResource($select);
+        $collection = new BrandCollection($resource);
+        
+        return $collection;
     }
 }

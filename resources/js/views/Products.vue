@@ -1,64 +1,42 @@
 <template>
-	<div class="wrapper">
-		<!-- Filters -->
-		<filters :filters="filters"></filters>
-		<!-- Products -->
-		<div class="products">
-			<!-- Scroller -->
-			<div class="scroll">
-				<!-- Scroll Item -->
-				<div class="scroll-item" v-for="(product, key) in products" :key="key">
-					<!-- Product -->
-					<div class="product" @click="pushRoute(product.sku)">
-						<!-- Title -->
-						<p class="title">{{ product.title }}</p>
-						<!-- Image -->
-						<img :src="productListImg(product)" alt>
-						<div class="product-scroll-info">
-							<p class="brand">{{ product.brand }}</p>
-						</div>
-					</div>
-				</div>
+	<div>
+		<p>Styles</p>
+		<div v-for="style in styles" :key="style.style">
+			<p>{{ style.style }}</p>
+			<img :src="style.img">
+			<p>Products: {{ style.count }}</p>
+			<div v-for="(product, index) in style.products" :key="index">
+				<p>{{ product.title }}</p>
+				<p>{{ product.upgrade }}</p>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-import { productFromSku, defaultProductColor, productListImg } from "#/helpers";
+import helpers from "#/helpers";
+import prettylog from "glweems-prettylogs";
 export default {
-	name: "products",
-	components: {
-		filters: () =>
-			import(/* webpackChunkName: "product-filters" */ "%/Filter/Filter")
+	created() {
+		this.fetch();
 	},
 	data() {
 		return {
-			filters: [
-				{ label: "Brand", items: ["Gildan", "Anvil", "Bella + Canvas"] },
-				{ label: "Upgrade", items: [0, 1, 2, 3] },
-				{
-					label: "Fabric",
-					items: ["100% Cotton", "Dri-Fit", "Polyester", "50%-50%"]
-				}
-			],
-			products: [],
-			pagination: {}
+			styles: ""
 		};
 	},
-	created() {
-		this.fetchProducts();
-	},
 	methods: {
-		productListImg,
-		fetchProducts(page_url) {
-			let vm = this;
-			page_url = page_url || "/api/products";
-			fetch(page_url)
-				.then(res => res.json())
-				.then(res => {
-					this.products = res.data;
-					vm.makePagination(res.meta, res.links);
+		fetch() {
+			fetch(helpers.stylesApi)
+				.then(response => {
+					return response.json();
+				})
+				.then(data => {
+					this.styles = data;
+					prettylog.success("Success: Data Fetched");
+				})
+				.catch(err => {
+					prettylog.danger("Error: Data Not Fetched");
 				});
 		},
 		makePagination(meta, links) {
@@ -69,34 +47,21 @@ export default {
 				prevPage: links.prev
 			};
 			this.pagination = pagination;
-		},
-		pushRoute(sku) {
-			const product = productFromSku(this.products, sku);
-			const color = defaultProductColor(product.colors);
-			this.$router.push({ path: `/product/${sku}/${color.abr}` });
+			// fetch(helpers.getProductApi(this.$route.params.sku))
+			// 	.then(response => {
+			// 		return response.json();
+			// 	})
+			// 	.then(data => {
+			// 		this.product = data;
+			// 		prettylog.success("Success: '" + data.sku + "' fetched.");
+			// 	})
+			// 	.catch(err => {
+			// 		prettylog.danger("Error: Product Not Fetched");
+			// 	});
 		}
 	}
 };
 </script>
 
-<style lang="scss" scoped>
-	@import "sassy";
-	.filter {
-	}
-	.product {
-		width: 37vw;
-		margin: 0 1.3rem;
-		img {
-			@include shadow;
-			@include corners;
-			padding: 0.3em 1.2em;
-		}
-		.title {
-			color: $alt-light;
-			font-size: 14px;
-			font-family: $font-family;
-			font-weight: 600;
-			margin-bottom: 0.2em;
-		}
-	}
+<style scoped>
 </style>

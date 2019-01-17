@@ -11,10 +11,16 @@ class StyleController extends Controller
 {
     public function index()
     {
-        return new StyleCollection(StyleResource::collection(Style::all()));
+        $select = Style::all();
+        $resource = new StyleResource($select);
+        $collection = new StyleCollection($resource);
+        return $collection;
     }
-    public function show(Style $style)
+    public function show($style)
     {
-        //
+        $select = Style::all()->where('style', $style);
+        $resource = new StyleResource($select);
+        $collection = new StyleCollection($resource);
+        return $collection;
     }
 };
