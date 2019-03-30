@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build && cd dist && now"
+    "build": "vue-cli-service build",
+    "now-build":"npm run build"
   },
   "dependencies": {
     "animate.css": "^3.7.0",
