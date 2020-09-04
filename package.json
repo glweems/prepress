@@ -24,7 +24,7 @@
     "bulma": "^0.7.2",
     "css-loader": "^2.0.1",
     "element-ui": "^2.4.11",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.13.1",
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
     "sass-loader": "^7.1.0",
